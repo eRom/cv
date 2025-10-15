@@ -198,7 +198,7 @@ export default function HomePage() {
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
-                      <CardTitle className="flex items-center gap-2">
+                      <CardTitle className="flex items-center gap-2 mb-2">
                         <Image
                           src="/healthincloud-icon.png"
                           alt="Health In Cloud"
@@ -240,7 +240,7 @@ export default function HomePage() {
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
-                      <CardTitle className="flex items-center gap-2">
+                      <CardTitle className="flex items-center gap-2 mb-2">
                         <Image
                           src="/pharmacylounge-icon.png"
                           alt="Pharmacy Lounge"
