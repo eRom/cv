@@ -1,36 +1,196 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CV Romain Ecarnot
 
-## Getting Started
+Site CV professionnel pour Romain Ecarnot, architecte cloud et développeur.
 
-First, run the development server:
+## 🚀 Technologies
 
-```bash
+- **Next.js 15** - Framework React pour le rendu côté serveur
+- **TypeScript** - Typage statique pour JavaScript
+- **Tailwind CSS** - Framework CSS utility-first
+- **ShadCN UI** - Composants UI accessibles et modernes
+- **Lucide React** - Icônes SVG
+
+## ✨ Fonctionnalités
+
+### SEO Optimisé
+- ✅ Métadonnées complètes (title, description, keywords)
+- ✅ Open Graph pour les réseaux sociaux
+- ✅ Twitter Cards
+- ✅ JSON-LD Schema.org (Person)
+- ✅ Sitemap.xml automatique
+- ✅ Robots.txt configuré
+- ✅ Manifest.json pour PWA
+
+### Accessibilité
+- ✅ Conformité WCAG AA
+- ✅ Rôles ARIA appropriés
+- ✅ Labels descriptifs
+- ✅ Navigation au clavier
+- ✅ Contraste de couleurs optimal
+
+### Performance
+- ✅ Génération statique
+- ✅ Optimisation des images
+- ✅ Code splitting automatique
+- ✅ CSS optimisé avec Tailwind
+
+## 📦 Installation
+
+\`\`\`bash
+# Installer les dépendances
+npm install
+
+# Lancer le serveur de développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Construire pour la production
+npm run build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Démarrer le serveur de production
+npm start
+\`\`\`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔧 Configuration
 
-## Learn More
+### Google Search Console
 
-To learn more about Next.js, take a look at the following resources:
+1. Remplacer le code de vérification dans \`src/app/page.tsx\`:
+\`\`\`typescript
+verification: {
+  google: "VOTRE_CODE_VERIFICATION_GOOGLE_ICI",
+}
+\`\`\`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Domaine personnalisé
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Mettre à jour l'URL dans les fichiers suivants:
+- \`src/app/layout.tsx\` - metadataBase
+- \`src/app/page.tsx\` - metadata.openGraph.url et metadata.alternates.canonical
+- \`src/app/sitemap.ts\` - baseUrl
+- \`public/robots.txt\` - Sitemap URL
 
-## Deploy on Vercel
+### Images Open Graph
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Ajouter une image Open Graph optimisée:
+- Taille: 1200x630 pixels
+- Format: JPG ou PNG
+- Emplacement: \`public/og-image.jpg\`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Icônes PWA
+
+Ajouter les icônes pour le manifest:
+- \`public/icon-192.png\` (192x192 pixels)
+- \`public/icon-512.png\` (512x512 pixels)
+
+## 📁 Structure du projet
+
+\`\`\`
+cv/
+├── public/
+│   ├── robots.txt          # Configuration pour les moteurs de recherche
+│   └── manifest.json       # Manifest PWA
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx      # Layout principal avec métadonnées
+│   │   ├── page.tsx        # Page d'accueil (CV)
+│   │   ├── sitemap.ts      # Génération du sitemap
+│   │   └── globals.css     # Styles globaux
+│   ├── components/
+│   │   └── ui/             # Composants ShadCN UI
+│   └── lib/
+│       └── utils.ts        # Utilitaires
+└── package.json
+\`\`\`
+
+## 🚢 Déploiement
+
+### Vercel (Recommandé)
+
+\`\`\`bash
+# Installer Vercel CLI
+npm i -g vercel
+
+# Se connecter à Vercel
+vercel login
+
+# Déployer
+vercel --prod
+\`\`\`
+
+### GitHub + Vercel
+
+\`\`\`bash
+# Initialiser Git
+git init
+git add .
+git commit -m "Initial commit"
+
+# Créer le repo GitHub
+gh repo create cv --public --push --source=.
+
+# Connecter à Vercel via le dashboard
+# https://vercel.com/new
+\`\`\`
+
+## 📝 Personnalisation
+
+### Modifier le contenu
+
+Éditer \`src/app/page.tsx\` pour mettre à jour:
+- Informations personnelles
+- Compétences et expertise
+- Projets
+- Liens vers les réseaux sociaux
+
+### Personnaliser les couleurs
+
+Les couleurs sont définies dans \`src/app/globals.css\` avec les variables CSS:
+- \`--background\`
+- \`--foreground\`
+- \`--primary\`
+- \`--secondary\`
+- etc.
+
+### Ajouter des sections
+
+Utiliser les composants ShadCN UI disponibles:
+- Card, CardHeader, CardTitle, CardDescription, CardContent
+- Button
+- Badge
+- Separator
+
+## 🔍 SEO Best Practices
+
+- ✅ URL canonique définie
+- ✅ Structure HTML sémantique
+- ✅ Balises alt sur les images
+- ✅ Liens avec rel="noopener noreferrer"
+- ✅ Responsive design (mobile-first)
+- ✅ Temps de chargement optimisé
+
+## 📱 Responsive Design
+
+Le site est entièrement responsive avec des breakpoints Tailwind:
+- Mobile: < 640px
+- Tablet: 640px - 1024px
+- Desktop: > 1024px
+
+## 🌐 Liens utiles
+
+- [Documentation Next.js](https://nextjs.org/docs)
+- [Documentation ShadCN UI](https://ui.shadcn.com/)
+- [Documentation Tailwind CSS](https://tailwindcss.com/docs)
+- [Schema.org Person](https://schema.org/Person)
+- [Open Graph Protocol](https://ogp.me/)
+
+## 📄 Licence
+
+Propriété de Romain Ecarnot. Tous droits réservés.
+
+## 👤 Auteur
+
+**Romain Ecarnot**
+- LinkedIn: [@romainecarnot](https://www.linkedin.com/in/romainecarnot/)
+- GitHub: [@eRom](https://github.com/eRom)
+- Website: [Health In Cloud](https://www.healthincloud.app/)
+- Tipeee: [Rebondir après l'AVC](https://fr.tipeee.com/rebondir-apres-lavc-ma-carriere-dans-la-tech/)
