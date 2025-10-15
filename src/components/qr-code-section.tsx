@@ -1,8 +1,12 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { faQrcode } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { QRCodeSVG } from "qrcode.react";
 
 export function QRCodeSection() {
@@ -15,7 +19,6 @@ export function QRCodeSection() {
       <Card className="border-2">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl flex items-center justify-center gap-2">
-            <FontAwesomeIcon icon={faQrcode} className="h-6 w-6" aria-hidden="true" />
             Retrouve-moi sur mobile
           </CardTitle>
           <CardDescription>
