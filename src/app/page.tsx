@@ -1,5 +1,6 @@
 import { AboutSection } from "@/components/about-section";
 import { ExperienceSection } from "@/components/experience-section";
+import { FormationSection } from "@/components/formation-section";
 import { QRCodeSection } from "@/components/qr-code-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -110,6 +111,11 @@ const jsonLd = {
     "DevOps",
     "Santé Digitale",
     "Health Tech",
+    "IA",
+    "RGPD",
+    "Terraform",
+    "NextJS",
+    "Cursor IDE",
   ],
   alumniOf: {
     "@type": "Organization",
@@ -146,6 +152,9 @@ export default function HomePage() {
               </Badge>
               <Badge variant="secondary" className="text-sm">
                 Santé Digitale
+              </Badge>
+              <Badge variant="secondary" className="text-sm">
+                IA
               </Badge>
             </div>
           </header>
@@ -291,6 +300,11 @@ export default function HomePage() {
 
           {/* Section QR Code (visible uniquement sur desktop) */}
           <QRCodeSection />
+
+          {/* Section Formations */}
+          <FormationSection />
+
+          <Separator className="my-8" />
 
           {/* Section Contact & Réseaux */}
           <section role="region" aria-label="Contact et réseaux sociaux">
