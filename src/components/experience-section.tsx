@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState } from "react";
 
 interface Experience {
   title: string;
@@ -96,7 +96,11 @@ export function ExperienceSection() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <Card className="mb-8 border-2" role="region" aria-label="Expériences professionnelles">
+    <Card
+      className="mb-8 border-2"
+      role="region"
+      aria-label="Expériences professionnelles"
+    >
       <CardHeader>
         <CardTitle className="text-2xl">Expériences</CardTitle>
       </CardHeader>
@@ -119,7 +123,7 @@ export function ExperienceSection() {
         {/* Expériences supplémentaires - toujours dans le DOM pour SEO, mais cachées visuellement */}
         <div
           className={`space-y-6 transition-all duration-300 overflow-hidden ${
-            isExpanded ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
+            isExpanded ? "max-h-[820px] opacity-100" : "max-h-0 opacity-0"
           }`}
           aria-hidden={!isExpanded}
         >
