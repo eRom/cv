@@ -387,7 +387,7 @@ export default function HomePage() {
                 size="lg"
                 asChild
                 aria-label="Site personnel de Romain Ecarnot"
-                className="bg-[#8b44f7] hover:bg-[#7a39e0] text-white border-[#8b44f7] hover:border-[#7a39e0] dark:bg-[#8b44f7] dark:hover:bg-[#7a39e0] dark:text-white dark:border-[#8b44f7] dark:hover:border-[#7a39e0]"
+                className="bg-[#8b44f7] hover:bg-[#7a39e0] text-white border-[#8b44f7] hover:text-white hover:border-[#7a39e0] dark:bg-[#8b44f7] dark:hover:bg-[#7a39e0] dark:text-white dark:border-[#8b44f7] dark:hover:border-[#7a39e0]"
               >
                 <a
                   href="https://www.romain-ecarnot.com"
