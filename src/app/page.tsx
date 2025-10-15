@@ -1,3 +1,5 @@
+import { AboutSection } from "@/components/about-section";
+import { QRCodeSection } from "@/components/qr-code-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -148,28 +150,7 @@ export default function HomePage() {
           </header>
 
           {/* Section Introduction */}
-          <Card
-            className="mb-8 border-2"
-            role="region"
-            aria-label="Introduction"
-          >
-            <CardHeader>
-              <CardTitle className="text-2xl">À propos</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-lg leading-relaxed">
-                Romain Ecarnot, architecte cloud & développeur. Engagé dans la
-                reprise professionnelle après un AVC, il met son expertise au
-                service de la tech et de la santé digitale.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Passionné par les technologies cloud, l&apos;innovation dans la
-                santé numérique et le développement de solutions robustes et
-                scalables. Spécialisé dans l&apos;architecture de systèmes et
-                les pratiques DevOps modernes.
-              </p>
-            </CardContent>
-          </Card>
+          <AboutSection />
 
           {/* Section Expertise */}
           <Card
@@ -301,6 +282,9 @@ export default function HomePage() {
           </section>
 
           <Separator className="my-8" />
+
+          {/* Section QR Code (visible uniquement sur desktop) */}
+          <QRCodeSection />
 
           {/* Section Contact & Réseaux */}
           <section role="region" aria-label="Contact et réseaux sociaux">
