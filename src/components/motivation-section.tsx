@@ -5,9 +5,9 @@ export function MotivationSection() {
       role="region"
       aria-label="Motivation professionnelle"
     >
-      <div className=" rounded-md p-4">
+      <div className="rounded-md p-2">
         <div className="flex items-start">
-            <div className="w-1 h-24 md:h-16 bg-white mr-4 mt-1"></div>
+          <div className="w-1 h-24 md:h-16 bg-white mr-4 mt-1"></div>
           <div className="flex-1">
             <div className="font-bold text-3xl text-white mb-1">
               Ma mission :
