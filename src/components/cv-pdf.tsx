@@ -131,13 +131,14 @@ export function CVPdfDocument() {
           <Text style={styles.sectionTitle}>À PROPOS</Text>
           <Text style={styles.aboutText}>
             Architecte Cloud & Développeur Fullstack avec plus de 20 ans
-            d'expérience. Spécialisé dans les environnements cloud sécurisés et
-            scalables.
+            d&apos;expérience. Spécialisé dans les environnements cloud
+            sécurisés et scalables.
           </Text>
           <Text style={styles.aboutText}>
-            Animé par la satisfaction client, l'innovation et l'agilité, je mets
-            mon expertise au service de la santé digitale pour apporter une
-            valeur ajoutée concrète aux organisations.
+            Animé par la satisfaction client, l&apos;innovation et
+            l&apos;agilité, je mets mon expertise au service de la santé
+            digitale pour apporter une valeur ajoutée concrète aux
+            organisations.
           </Text>
         </View>
 
@@ -145,7 +146,7 @@ export function CVPdfDocument() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>COMPÉTENCES CLÉS</Text>
           <View style={styles.skillsContainer}>
-          <View style={styles.skillBadge}>
+            <View style={styles.skillBadge}>
               <Text>Architecture</Text>
             </View>
 
@@ -157,7 +158,6 @@ export function CVPdfDocument() {
               <Text>CI/CD</Text>
             </View>
 
-          
             <View style={styles.skillBadge}>
               <Text>RGPD</Text>
             </View>
@@ -179,15 +179,15 @@ export function CVPdfDocument() {
               <Text style={styles.jobTitle}>
                 Architecte Cloud / Développeur Fullstack
               </Text>
-              <Text style={styles.period}>Jan. 2021 - Aujourd'hui</Text>
+              <Text style={styles.period}>Jan. 2021 - Aujourd&apos;hui</Text>
             </View>
             <Text style={styles.company}>Morannon • France</Text>
             <Text style={styles.bulletPoint}>
-              • Conception et déploiement d'architectures AWS sécurisées et
+              • Conception et déploiement d&apos;architectures AWS sécurisées et
               scalables
             </Text>
             <Text style={styles.bulletPoint}>
-              • Développement fullstack d'applications métiers (Node.js,
+              • Développement fullstack d&apos;applications métiers (Node.js,
               Next.js)
             </Text>
             <Text style={styles.bulletPoint}>
@@ -212,7 +212,8 @@ export function CVPdfDocument() {
               interne
             </Text>
             <Text style={styles.bulletPoint}>
-              • Encadrement d'une équipe de développeurs fullstack et DevOps
+              • Encadrement d&apos;une équipe de développeurs fullstack et
+              DevOps
             </Text>
           </View>
 
@@ -283,7 +284,7 @@ export function CVPdfDocument() {
           </View>
           <View style={styles.subsection}>
             <Text style={styles.jobTitle}>
-              Architecture avancée & Migration d'applications
+              Architecture avancée & Migration d&apos;applications
             </Text>
             <Text style={styles.company}>AWS • Paris • 2017</Text>
           </View>
@@ -325,8 +326,8 @@ export function CVPdfDocument() {
           }}
         >
           <Text>
-            CV généré depuis cv.romain-ecarnot.com • Plus de 20 ans d'expertise
-            en développement et architecture cloud
+            CV généré depuis cv.romain-ecarnot.com • Plus de 20 ans
+            d&apos;expertise en développement et architecture cloud
           </Text>
         </View>
       </Page>

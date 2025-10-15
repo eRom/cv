@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { renderToStream } from "@react-pdf/renderer";
-import { createElement } from "react";
 import { CVPdfDocument } from "@/components/cv-pdf";
+import { renderToStream } from "@react-pdf/renderer";
+import { NextResponse } from "next/server";
+import { createElement } from "react";
 
 /**
  * API Route pour générer et télécharger le CV en PDF
@@ -16,9 +16,9 @@ export async function GET() {
     const stream = await renderToStream(createElement(CVPdfDocument));
 
     // Convertir le stream en buffer
-    const chunks: Uint8Array[] = [];
+    const chunks: Buffer[] = [];
     for await (const chunk of stream) {
-      chunks.push(chunk);
+      chunks.push(Buffer.from(chunk));
     }
     const buffer = Buffer.concat(chunks);
 
