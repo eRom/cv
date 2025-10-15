@@ -8,7 +8,7 @@ import { QRCodeSVG } from "qrcode.react";
 export function QRCodeSection() {
   return (
     <section
-      className="hidden md:block mb-12"
+      className="hidden md:block mb-12 print:hidden"
       role="region"
       aria-label="QR Code"
     >

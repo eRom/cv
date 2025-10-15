@@ -53,7 +53,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="fixed top-4 right-4 z-50 rounded-full hover:bg-accent/50 transition-all"
+      className="fixed top-4 right-4 z-50 rounded-full hover:bg-accent/50 transition-all print:hidden"
       aria-label={isDark ? "Activer le mode clair" : "Activer le mode sombre"}
       title={isDark ? "Mode clair" : "Mode sombre"}
     >
