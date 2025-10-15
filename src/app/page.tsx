@@ -217,6 +217,12 @@ export default function HomePage() {
               <Badge variant="secondary" className="text-sm">
                 IA
               </Badge>
+              <Badge variant="secondary" className="text-sm">
+                Formation
+              </Badge>
+              <Badge variant="secondary" className="text-sm">
+                Support
+              </Badge>
             </div>
           </header>
 

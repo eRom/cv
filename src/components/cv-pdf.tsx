@@ -167,6 +167,12 @@ export function CVPdfDocument() {
             <View style={styles.skillBadge}>
               <Text>IA</Text>
             </View>
+            <View style={styles.skillBadge}>
+              <Text>Formation</Text>
+            </View>
+            <View style={styles.skillBadge}>
+              <Text>Support</Text>
+            </View>
           </View>
         </View>
 
