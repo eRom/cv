@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
  * Les pages individuelles peuvent surcharger ces métadonnées
  */
 export const metadata: Metadata = {
-  metadataBase: new URL("https://romainecarnot.fr"),
+  metadataBase: new URL("https://cv.romain-ecarnot.com"),
   title: {
     default: "Romain Ecarnot - CV Professionnel",
     template: "%s | Romain Ecarnot",

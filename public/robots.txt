@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://romainecarnot.fr/sitemap.xml
+Sitemap: https://cv.romain-ecarnot.com/sitemap.xml
 
 # Crawl-delay pour éviter la surcharge
 Crawl-delay: 1

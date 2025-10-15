@@ -5,7 +5,7 @@ import { MetadataRoute } from 'next'
  * Next.js génère automatiquement le fichier sitemap.xml à partir de cette fonction
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://romainecarnot.fr'
+  const baseUrl = 'https://cv.romain-ecarnot.com'
   const currentDate = new Date()
 
   return [

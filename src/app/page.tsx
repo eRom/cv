@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "profile",
     locale: "fr_FR",
-    url: "https://romainecarnot.fr",
+    url: "https://cv.romain-ecarnot.com",
     siteName: "Romain Ecarnot - CV Professionnel",
     title: "Romain Ecarnot - Architecte Cloud & Développeur",
     description:
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   alternates: {
-    canonical: "https://romainecarnot.fr",
+    canonical: "https://cv.romain-ecarnot.com",
   },
   verification: {
     google: "IEOR1xYofoX9wNR1O31-PSF9hK__8p-OpojAVz7O4JQ",
@@ -82,7 +82,7 @@ const jsonLd = {
   jobTitle: "Architecte Cloud & Développeur",
   description:
     "Architecte cloud et développeur passionné, engagé dans la reprise professionnelle après un AVC. Expert en technologies cloud et santé digitale.",
-  url: "https://romainecarnot.fr",
+  url: "https://cv.romain-ecarnot.com",
   sameAs: [
     "https://www.linkedin.com/in/romainecarnot/",
     "https://github.com/eRom",
