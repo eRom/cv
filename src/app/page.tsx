@@ -1,6 +1,7 @@
 import { AboutSection } from "@/components/about-section";
 import { ExperienceSection } from "@/components/experience-section";
 import { FormationSection } from "@/components/formation-section";
+import { MotivationSection } from "@/components/motivation-section";
 import { QRCodeSection } from "@/components/qr-code-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -221,6 +222,9 @@ export default function HomePage() {
 
           {/* Section Introduction */}
           <AboutSection />
+
+          {/* Section Motivation */}
+          <MotivationSection />
 
           {/* Section Expertise */}
           <Card
