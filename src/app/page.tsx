@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     canonical: "https://romainecarnot.fr",
   },
   verification: {
-    google: "VOTRE_CODE_VERIFICATION_GOOGLE_ICI",
+    google: "IEOR1xYofoX9wNR1O31-PSF9hK__8p-OpojAVz7O4JQ",
   },
 };
 
