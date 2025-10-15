@@ -1,9 +1,19 @@
-import type { Metadata } from "next";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Github, Linkedin, ExternalLink, Heart } from "lucide-react";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ExternalLink } from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
 
 /**
  * Métadonnées SEO optimisées pour la page CV de Romain Ecarnot
@@ -19,7 +29,6 @@ export const metadata: Metadata = {
     "Développeur",
     "Cloud Computing",
     "AWS",
-    "Azure",
     "DevOps",
     "Santé Digitale",
     "Health Tech",
@@ -85,6 +94,7 @@ const jsonLd = {
   url: "https://cv.romain-ecarnot.com",
   sameAs: [
     "https://www.linkedin.com/in/romainecarnot/",
+    "https://www.romain-ecarnot.com",
     "https://github.com/eRom",
     "https://www.healthincloud.app/",
     "https://fr.tipeee.com/rebondir-apres-lavc-ma-carriere-dans-la-tech/",
@@ -94,7 +104,6 @@ const jsonLd = {
     "Architecture Cloud",
     "Développement Web",
     "AWS",
-    "Azure",
     "DevOps",
     "Santé Digitale",
     "Health Tech",
@@ -135,34 +144,39 @@ export default function HomePage() {
               <Badge variant="secondary" className="text-sm">
                 Santé Digitale
               </Badge>
-              <Badge variant="secondary" className="text-sm">
-                AWS / Azure
-              </Badge>
             </div>
           </header>
 
           {/* Section Introduction */}
-          <Card className="mb-8 border-2" role="region" aria-label="Introduction">
+          <Card
+            className="mb-8 border-2"
+            role="region"
+            aria-label="Introduction"
+          >
             <CardHeader>
               <CardTitle className="text-2xl">À propos</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-lg leading-relaxed">
-                Romain Ecarnot, architecte cloud & développeur. Engagé dans la reprise
-                professionnelle après un AVC, il met son expertise au service de la tech
-                et de la santé digitale.
+                Romain Ecarnot, architecte cloud & développeur. Engagé dans la
+                reprise professionnelle après un AVC, il met son expertise au
+                service de la tech et de la santé digitale.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Passionné par les technologies cloud, l&apos;innovation dans la santé
-                numérique et le développement de solutions robustes et scalables.
-                Spécialisé dans l&apos;architecture de systèmes distribués et les pratiques
-                DevOps modernes.
+                Passionné par les technologies cloud, l&apos;innovation dans la
+                santé numérique et le développement de solutions robustes et
+                scalables. Spécialisé dans l&apos;architecture de systèmes et
+                les pratiques DevOps modernes.
               </p>
             </CardContent>
           </Card>
 
           {/* Section Expertise */}
-          <Card className="mb-8 border-2" role="region" aria-label="Domaines d'expertise">
+          <Card
+            className="mb-8 border-2"
+            role="region"
+            aria-label="Domaines d'expertise"
+          >
             <CardHeader>
               <CardTitle className="text-2xl">Expertise</CardTitle>
               <CardDescription>Domaines de compétences clés</CardDescription>
@@ -170,10 +184,12 @@ export default function HomePage() {
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Cloud & Infrastructure</h3>
+                  <h3 className="font-semibold text-lg mb-3">
+                    Cloud & Infrastructure
+                  </h3>
                   <ul className="space-y-2 text-muted-foreground" role="list">
-                    <li>• Architecture cloud (AWS, Azure)</li>
-                    <li>• Infrastructure as Code (Terraform, CloudFormation)</li>
+                    <li>• Architecture Cloud (AWS)</li>
+                    <li>• Infrastructure as Code (Terraform)</li>
                     <li>• Containerisation (Docker, Kubernetes)</li>
                     <li>• CI/CD & DevOps practices</li>
                   </ul>
@@ -182,9 +198,9 @@ export default function HomePage() {
                   <h3 className="font-semibold text-lg mb-3">Développement</h3>
                   <ul className="space-y-2 text-muted-foreground" role="list">
                     <li>• Applications web modernes</li>
-                    <li>• API RESTful & GraphQL</li>
                     <li>• Microservices architecture</li>
                     <li>• Solutions de santé digitale</li>
+                    <li>• Agents IA</li>
                   </ul>
                 </div>
               </div>
@@ -202,10 +218,18 @@ export default function HomePage() {
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="flex items-center gap-2">
+                        <Image
+                          src="/healthincloud-icon.png"
+                          alt="Health In Cloud"
+                          width={24}
+                          height={24}
+                          className="rounded"
+                        />
                         Health In Cloud
-                        <Heart className="h-5 w-5 text-red-500" aria-hidden="true" />
                       </CardTitle>
-                      <CardDescription>Plateforme de santé digitale</CardDescription>
+                      <CardDescription>
+                        Plateforme de santé digitale
+                      </CardDescription>
                     </div>
                     <Button
                       variant="outline"
@@ -225,8 +249,8 @@ export default function HomePage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Application innovante dédiée à la santé numérique, combinant
-                    architecture cloud moderne et expérience utilisateur optimale.
+                    Application innovante dédiée à la rééducation numérique,
+                    combinant Web moderne et expérience utilisateur optimale.
                   </p>
                 </CardContent>
               </Card>
@@ -235,17 +259,29 @@ export default function HomePage() {
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
-                      <CardTitle>Rebondir après l&apos;AVC</CardTitle>
-                      <CardDescription>Partage d&apos;expérience & inspiration</CardDescription>
+                      <CardTitle className="flex items-center gap-2">
+                        <Image
+                          src="/pharmacylounge-icon.png"
+                          alt="Pharmacy Lounge"
+                          width={24}
+                          height={24}
+                          className="rounded"
+                        />
+                        pharmacylounge
+                      </CardTitle>
+                      <CardDescription>
+                        Le réseau social sécurisé et éthique des professionnels
+                        de la pharmacie
+                      </CardDescription>
                     </div>
                     <Button
                       variant="outline"
                       size="sm"
                       asChild
-                      aria-label="Soutenir sur Tipeee"
+                      aria-label="Visiter pharmacylounge"
                     >
                       <a
-                        href="https://fr.tipeee.com/rebondir-apres-lavc-ma-carriere-dans-la-tech/"
+                        href="https://www.pharmacylounge.fr/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -256,8 +292,8 @@ export default function HomePage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Projet de sensibilisation et d&apos;accompagnement pour la reprise
-                    professionnelle dans la tech après un parcours de santé complexe.
+                    Une plateforme d&apos;échanges simple et intuitive conçue
+                    par des pharmaciens pour communiquer, s&apos;informer.
                   </p>
                 </CardContent>
               </Card>
@@ -268,24 +304,32 @@ export default function HomePage() {
 
           {/* Section Contact & Réseaux */}
           <section role="region" aria-label="Contact et réseaux sociaux">
-            <h2 className="text-3xl font-bold mb-6 text-center">Contact & Réseaux</h2>
+            <h2 className="text-3xl font-bold mb-6 text-center">
+              Contact & Réseaux
+            </h2>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button
-                variant="default"
+                variant="outline"
                 size="lg"
                 asChild
-                aria-label="Profil LinkedIn de Romain Ecarnot"
+                aria-label="Site personnel de Romain Ecarnot"
+                className="bg-[#8b44f7] hover:bg-[#7a39e0] text-white border-[#8b44f7] hover:border-[#7a39e0] dark:bg-[#8b44f7] dark:hover:bg-[#7a39e0] dark:text-white dark:border-[#8b44f7] dark:hover:border-[#7a39e0]"
               >
                 <a
-                  href="https://www.linkedin.com/in/romainecarnot/"
+                  href="https://www.romain-ecarnot.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
                 >
-                  <Linkedin className="h-5 w-5" aria-hidden="true" />
-                  LinkedIn
+                  <FontAwesomeIcon
+                    icon={faLink}
+                    className="h-5 w-5"
+                    aria-hidden="true"
+                  />
+                  Linktree
                 </a>
               </Button>
+
               <Button
                 variant="outline"
                 size="lg"
@@ -298,16 +342,45 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
                 >
-                  <Github className="h-5 w-5" aria-hidden="true" />
+                  <FontAwesomeIcon
+                    icon={faGithub}
+                    className="h-5 w-5"
+                    aria-hidden="true"
+                  />
                   GitHub
+                </a>
+              </Button>
+              <Button
+                variant="default"
+                size="lg"
+                asChild
+                aria-label="Profil LinkedIn de Romain Ecarnot"
+              >
+                <a
+                  href="https://www.linkedin.com/in/romainecarnot/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  <FontAwesomeIcon
+                    icon={faLinkedin}
+                    className="h-5 w-5"
+                    aria-hidden="true"
+                  />
+                  LinkedIn
                 </a>
               </Button>
             </div>
           </section>
 
           {/* Footer */}
-          <footer className="mt-16 text-center text-sm text-muted-foreground" role="contentinfo">
-            <p>© {new Date().getFullYear()} Romain Ecarnot. Tous droits réservés.</p>
+          <footer
+            className="mt-16 text-center text-sm text-muted-foreground"
+            role="contentinfo"
+          >
+            <p>
+              © {new Date().getFullYear()} Romain Ecarnot. Tous droits réservés.
+            </p>
             <p className="mt-2">
               Construit avec Next.js, React, TypeScript & Tailwind CSS
             </p>
