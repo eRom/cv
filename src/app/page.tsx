@@ -1,4 +1,5 @@
 import { AboutSection } from "@/components/about-section";
+import { ExperienceSection } from "@/components/experience-section";
 import { QRCodeSection } from "@/components/qr-code-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -280,6 +281,11 @@ export default function HomePage() {
               </Card>
             </div>
           </section>
+
+          <Separator className="my-8" />
+
+          {/* Section Expériences */}
+          <ExperienceSection />
 
           <Separator className="my-8" />
 
