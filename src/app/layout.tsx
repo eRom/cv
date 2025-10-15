@@ -24,6 +24,18 @@ export const metadata: Metadata = {
     template: "%s | Romain Ecarnot",
   },
   description: "Architecte cloud et développeur passionné",
+  applicationName: "CV Romain Ecarnot",
+  referrer: "origin-when-cross-origin",
+  authors: [
+    { name: "Romain Ecarnot", url: "https://www.romain-ecarnot.com" },
+  ],
+  creator: "Romain Ecarnot",
+  publisher: "Romain Ecarnot",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   manifest: "/manifest.json",
   icons: {
     icon: [
@@ -34,6 +46,10 @@ export const metadata: Metadata = {
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
+  },
+  other: {
+    "theme-color": "#0a0a0a",
+    "color-scheme": "dark light",
   },
 };
 

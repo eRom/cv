@@ -26,7 +26,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Romain Ecarnot - Architecte Cloud & Développeur | CV Professionnel",
   description:
-    "CV de Romain Ecarnot, architecte cloud et développeur passionné. Expert en technologies cloud, reprise professionnelle après AVC, engagé dans la tech et la santé digitale.",
+    "Architecte Cloud & Développeur Fullstack | 20+ ans d'expertise AWS, DevOps, Terraform | Santé digitale | Reprise professionnelle post-AVC",
   keywords: [
     "Romain Ecarnot",
     "Architecte Cloud",
@@ -86,16 +86,35 @@ export const metadata: Metadata = {
 };
 
 /**
+ * Schéma JSON-LD pour la navigation (BreadcrumbList)
+ */
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Accueil",
+      item: "https://cv.romain-ecarnot.com",
+    },
+  ],
+};
+
+/**
  * Schéma JSON-LD pour SEO structuré (Schema.org Person)
+ * Enrichi avec expériences professionnelles et formations
  */
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Romain Ecarnot",
-  jobTitle: "Architecte Cloud & Développeur",
+  jobTitle: "Architecte Cloud & Développeur Fullstack",
   description:
-    "Architecte cloud et développeur passionné, engagé dans la reprise professionnelle après un AVC. Expert en technologies cloud et santé digitale.",
+    "Architecte cloud et développeur fullstack avec plus de 20 ans d'expérience. Expert en AWS, DevOps, Terraform et santé digitale. Engagé dans la reprise professionnelle après un AVC.",
   url: "https://cv.romain-ecarnot.com",
+  email: "mailto:contact@romain-ecarnot.com",
+  image: "https://cv.romain-ecarnot.com/og-image.jpg",
   sameAs: [
     "https://www.linkedin.com/in/romainecarnot/",
     "https://www.romain-ecarnot.com",
@@ -117,19 +136,60 @@ const jsonLd = {
     "NextJS",
     "Cursor IDE",
   ],
-  alumniOf: {
+  hasOccupation: [
+    {
+      "@type": "Occupation",
+      name: "Architecte Cloud & Développeur Fullstack",
+      occupationLocation: {
+        "@type": "Country",
+        name: "France",
+      },
+      estimatedSalary: {
+        "@type": "MonetaryAmountDistribution",
+        name: "Senior Level",
+      },
+    },
+  ],
+  worksFor: {
     "@type": "Organization",
-    name: "Formation Tech & Cloud",
+    name: "Morannon",
+    url: "https://cv.romain-ecarnot.com",
   },
+  alumniOf: [
+    {
+      "@type": "EducationalOrganization",
+      name: "AWS Training",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Paris",
+        addressCountry: "FR",
+      },
+    },
+    {
+      "@type": "EducationalOrganization",
+      name: "Université - DUT Informatique",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Nantes",
+        addressCountry: "FR",
+      },
+    },
+  ],
 };
 
 export default function HomePage() {
   return (
     <>
-      {/* Injection du JSON-LD dans le head */}
+      {/* Injection du JSON-LD Person dans le head */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {/* Injection du JSON-LD BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       {/* Contenu principal de la page */}
