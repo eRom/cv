@@ -381,8 +381,25 @@ export default function HomePage() {
             <p>
               © {new Date().getFullYear()} Romain Ecarnot. Tous droits réservés.
             </p>
-            <p className="mt-2">
-              Construit avec Next.js, React, TypeScript & Tailwind CSS
+            <p className="text-muted-foreground text-xs mt-2">
+              Développé avec ❤️ et{" "}
+              <a
+                href="https://nextjs.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-foreground transition-colors"
+              >
+                Next.js
+              </a>{" "}
+              /{" "}
+              <a
+                href="https://cursor.sh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-foreground transition-colors"
+              >
+                Cursor
+              </a>
             </p>
           </footer>
         </div>
