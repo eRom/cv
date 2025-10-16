@@ -51,13 +51,13 @@ export function PrintButton() {
       size="icon"
       onClick={handleDownloadPDF}
       disabled={isLoading}
-      className="fixed top-4 left-4 z-50 rounded-full hover:bg-accent/50 transition-all print:hidden disabled:opacity-50"
+      className="fixed top-4 left-4 z-50 h-14 w-14 rounded-full backdrop-blur-xl bg-white/10 border border-white/20 shadow-lg shadow-black/5 hover:bg-white/20 hover:border-white/30 transition-all duration-300 print:hidden disabled:opacity-50 before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-white/20 before:to-transparent before:opacity-50"
       aria-label="Télécharger le CV en PDF"
       title="Télécharger le CV en PDF"
     >
       <FontAwesomeIcon
         icon={faFilePdf}
-        className={`h-5 w-5 text-foreground ${isLoading ? "animate-pulse" : ""}`}
+        className={`h-6 w-6 text-foreground relative z-10 ${isLoading ? "animate-pulse" : ""}`}
         aria-hidden="true"
       />
     </Button>

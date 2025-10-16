@@ -44,7 +44,7 @@ export function ThemeToggle() {
   // Ne rien afficher pendant le SSR
   if (!mounted) {
     return (
-      <div className="w-10 h-10" aria-hidden="true" />
+      <div className="w-14 h-14" aria-hidden="true" />
     );
   }
 
@@ -53,14 +53,14 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="fixed top-4 right-4 z-50 rounded-full hover:bg-accent/50 transition-all print:hidden"
+      className="fixed top-4 right-4 z-50 h-14 w-14 rounded-full backdrop-blur-xl bg-white/10 border border-white/20 shadow-lg shadow-black/5 hover:bg-white/20 hover:border-white/30 transition-all duration-300 print:hidden before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-white/20 before:to-transparent before:opacity-50"
       aria-label={isDark ? "Activer le mode clair" : "Activer le mode sombre"}
       title={isDark ? "Mode clair" : "Mode sombre"}
     >
       {isDark ? (
-        <Sun className="h-5 w-5 text-foreground transition-transform hover:rotate-180 duration-500" />
+        <Sun className="h-6 w-6 text-foreground relative z-10 transition-transform hover:rotate-180 duration-500" />
       ) : (
-        <Moon className="h-5 w-5 text-foreground transition-transform hover:-rotate-12 duration-300" />
+        <Moon className="h-6 w-6 text-foreground relative z-10 transition-transform hover:-rotate-12 duration-300" />
       )}
     </Button>
   );
