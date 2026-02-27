@@ -15,41 +15,40 @@ export function AboutSection() {
       <CardContent className="space-y-4">
         <div className="text-lg leading-relaxed space-y-3">
           <p>
-            Architecte Cloud & Développeur Fullstack, j&apos;accompagne la
-            transformation numérique avec plus de 20 ans d&apos;expertise et une
-            forte résilience après un accident de santé.
+            Il y a un an, on m&apos;a sauvé la vie. AVC, 47 ans, Hôpital Nord
+            Laennec, Nantes. Puis des mois de rééducation au MPR Saint-Jacques
+            du CHU.
           </p>
-
           <p>
-            Animé par la satisfaction client, l&apos;innovation et
-            l&apos;agilité, je veux contribuer au secteur de la santé.
+            Architecte Cloud & Développeur Fullstack avec 20+ ans
+            d&apos;expérience. J&apos;ai traversé l&apos;épreuve — et je suis
+            revenu avec les idées en place.
           </p>
         </div>
 
         {/* Contenu toujours présent dans le DOM pour le SEO, mais caché visuellement */}
         <div
           className={`text-muted-foreground leading-relaxed space-y-3 pt-2 transition-all duration-300 overflow-hidden ${
-            isExpanded ? "max-h-116 opacity-100" : "max-h-0 opacity-0"
+            isExpanded ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
           }`}
           aria-hidden={!isExpanded}
         >
           <p>
-            Après un AVC en janvier 2025, j&apos;ai engagé une reconversion
-            active et une intense rééducation. Cette épreuve m&apos;a permis de
-            développer une grande capacité d&apos;adaptation et de renforcer mon
-            engagement professionnel.
+            Pendant ma rééducation, j&apos;ai construit Trinity — un système
+            d&apos;IA personnel complet. Voice agent temps réel, orchestration
+            multi-LLM, mémoire sémantique vectorielle, 30+ endpoints API.
+            Node.js, TypeScript, Docker, Gemini, Claude. Pas un tuto suivi un
+            dimanche. Un vrai système en production.
           </p>
           <p>
-            J&apos;ai accompagné startups et grands groupes dans la réalisation
-            de projets techniques ambitieux (fullstack, automatisation, sécurité
-            SI, conformité RGPD). Passionné par les défis humains et
-            technologiques, je souhaite aujourd&apos;hui mettre mon énergie et
-            mon expertise au service d&apos;une équipe engagée.
+            J&apos;ai accompagné startups et grands groupes dans des projets
+            techniques ambitieux : Cloud AWS, DevOps, sécurité SI, conformité
+            RGPD. L&apos;AVC n&apos;a rien effacé. Il a recalibré mes
+            priorités.
           </p>
           <p>
-            Mon objectif : apporter une valeur ajoutée concrète en santé
-            digitale, sécuriser et accélérer l&apos;évolution numérique de
-            l&apos;organisation.
+            Aujourd&apos;hui je suis opérationnel et je veux mettre cette
+            énergie au service de quelque chose qui a du sens.
           </p>
         </div>
 

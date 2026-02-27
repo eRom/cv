@@ -201,8 +201,11 @@ export default function HomePage() {
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
               Romain Ecarnot
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-6">
-              Architecte Cloud & Développeur
+            <p className="text-xl md:text-2xl text-muted-foreground mb-2">
+              Architecte & Chef de Projet Expert Technique
+            </p>
+            <p className="text-base text-muted-foreground/70 mb-6">
+              Cloud · IA · Systèmes d&apos;information
             </p>
             <div className="flex flex-wrap gap-2 justify-center mb-8">
               <Badge variant="secondary" className="text-sm">
@@ -243,25 +246,34 @@ export default function HomePage() {
               <CardDescription>Domaines de compétences clés</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-3 gap-6">
                 <div>
                   <h3 className="font-semibold text-lg mb-3">
                     Cloud & Infrastructure
                   </h3>
                   <ul className="space-y-2 text-muted-foreground" role="list">
-                    <li>• Architecture Cloud (AWS)</li>
-                    <li>• Infrastructure as Code (Terraform)</li>
-                    <li>• Containerisation (Docker, Kubernetes)</li>
-                    <li>• CI/CD & DevOps practices</li>
+                    <li>• AWS (certifié 2017–2018)</li>
+                    <li>• Terraform multi-environnements</li>
+                    <li>• Docker / Kubernetes</li>
+                    <li>• CI/CD & DevOps</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-3">IA & Orchestration</h3>
+                  <ul className="space-y-2 text-muted-foreground" role="list">
+                    <li>• Voice agents (Gemini Live)</li>
+                    <li>• Multi-LLM (Claude, GPT, Gemini)</li>
+                    <li>• Serveurs MCP</li>
+                    <li>• Mémoire vectorielle (Qdrant)</li>
                   </ul>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">Développement</h3>
                   <ul className="space-y-2 text-muted-foreground" role="list">
-                    <li>• Applications web modernes</li>
-                    <li>• Microservices architecture</li>
-                    <li>• Solutions de santé digitale</li>
-                    <li>• Agents IA</li>
+                    <li>• Node.js / TypeScript</li>
+                    <li>• Next.js</li>
+                    <li>• APIs REST / WebSocket</li>
+                    <li>• Prisma / SQLite</li>
                   </ul>
                 </div>
               </div>
@@ -274,6 +286,34 @@ export default function HomePage() {
           <section className="mb-12" role="region" aria-label="Projets">
             <h2 className="text-3xl font-bold mb-6">Projets</h2>
             <div className="grid gap-6">
+              <Card className="hover:shadow-lg transition-shadow border-primary/40">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <CardTitle className="flex items-center gap-2 mb-2">
+                        <span className="text-xl">🤖</span>
+                        Trinity LifeOS
+                      </CardTitle>
+                      <CardDescription>
+                        Système d&apos;IA personnel — R&D (nov. 2025 – présent)
+                      </CardDescription>
+                    </div>
+                    <Badge variant="secondary" className="text-xs shrink-0">
+                      Démo sur demande
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Voice agent temps réel (WebSocket, audio bidirectionnel),
+                    orchestration multi-LLM (Gemini, Claude, GPT), mémoire
+                    sémantique vectorielle (Qdrant), 30+ endpoints API, serveur
+                    MCP, extensions Raycast & Chrome. Stack : Node.js,
+                    TypeScript, Docker, n8n, Prisma.
+                  </p>
+                </CardContent>
+              </Card>
+
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex items-start justify-between">

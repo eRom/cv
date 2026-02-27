@@ -13,7 +13,7 @@ export function MotivationSection() {
               Ma mission :
             </div>
             <div className="font-bold text-2xl text-white">
-              Apporter une valeur ajoutée concrète en santé digitale
+              Faire de la technologie un levier au service de l&apos;humain
             </div>
           </div>
         </div>
