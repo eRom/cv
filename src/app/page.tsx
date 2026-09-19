@@ -72,8 +72,12 @@ export default function Home() {
       <main className="relative z-10 w-full max-w-4xl py-10 sm:py-14 flex flex-col gap-9">
         {/* En-tête profil Romain Ecarnot */}
         <header className="flex flex-col items-center text-center gap-4">
-          <div className="relative">
-            <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 ring-1 ring-zinc-800 bg-zinc-900/60 shadow-2xl shadow-black/60">
+          <a
+            href="https://www.romain-ecarnot.com"
+            className="group relative block rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
+            title="Aller sur romain-ecarnot.com"
+          >
+            <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 ring-1 ring-zinc-800 bg-zinc-900/60 shadow-2xl shadow-black/60 transition-transform duration-200 group-hover:scale-105 group-hover:ring-zinc-700">
               <Image
                 src="/avatar.jpg"
                 alt="Photo de profil de Romain Ecarnot"
@@ -91,7 +95,7 @@ export default function Home() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 ring-2 ring-[#09090b]" />
             </span>
-          </div>
+          </a>
 
           <div className="flex flex-col items-center gap-1.5">
             <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-100">
