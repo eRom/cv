@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Romain Ecarnot - Console d'Architecte & CV</title>
+  <meta name="description" content="CV interactif de Romain Ecarnot - Accompagnement aux usages du numérique et de l'IA. 25 ans d'architecture des systèmes aujourd'hui au service de ceux qui les utilisent.">
+  <link rel="stylesheet" href="/dashboard/styles.css">
+</head>
+<body>
+  <!-- Barre d'état supérieure fixe / En-tête système -->
+  <header class="sys-header">
+    <div class="sys-header-left">
+      <div class="sys-brand">
+        <span class="sys-status-indicator pulse" title="Console Active"></span>
+        <span class="sys-title">ROMAIN ECARNOT</span>
+        <span class="sys-badge rqth-badge">RQTH</span>
+      </div>
+      <div class="sys-sub">25 ans d'architecture des systèmes au service des usages</div>
+    </div>
+
+    <!-- Filtres & Raccourcis de navigation rapide -->
+    <nav class="sys-nav" aria-label="Navigation principale">
+      <button class="nav-tab active" data-target="panel-overview" data-key="1">
+        <span class="kbd">1</span>
+        <span class="tab-label">Vue d'ensemble</span>
+      </button>
+      <button class="nav-tab" data-target="panel-evidence" data-key="2">
+        <span class="kbd">2</span>
+        <span class="tab-label">Preuves & Systèmes</span>
+      </button>
+      <button class="nav-tab" data-target="panel-skills" data-key="3">
+        <span class="kbd">3</span>
+        <span class="tab-label">Compétences</span>
+      </button>
+      <button class="nav-tab" data-target="panel-history" data-key="4">
+        <span class="kbd">4</span>
+        <span class="tab-label">Parcours & Formations</span>
+      </button>
+      <button class="nav-tab nav-all" data-target="all" data-key="0" title="Afficher toutes les sections simultanément">
+        <span class="kbd">0</span>
+        <span class="tab-label">Tout afficher</span>
+      </button>
+    </nav>
+
+    <!-- Outils rapides et actions -->
+    <div class="sys-actions">
+      <div class="sys-search-wrapper">
+        <span class="search-icon">/</span>
+        <input type="text" id="filter-input" placeholder="Filtrer (ex: Ollama, AWS, RGPD)..." aria-label="Filtrer les compétences et systèmes">
+        <button id="clear-filter" class="btn-clear" aria-label="Effacer le filtre">&times;</button>
+      </div>
+      <a href="/" class="btn-tool" title="Retour à la sélection des expériences" style="text-decoration: none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>Accueil</span>
+      </a>
+      <button id="btn-print" class="btn-tool" title="Imprimer ou exporter en PDF (format 2 pages optimisé)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <span>Imprimer PDF</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Métadonnées & Contacts rapides (Sticky Bar) -->
+  <aside class="meta-strip">
+    <div class="meta-item">
+      <span class="meta-label">LOCALISATION:</span>
+      <span class="meta-value">Nantes, France</span>
+    </div>
+    <div class="meta-separator">|</div>
+    <div class="meta-item">
+      <span class="meta-label">EMAIL:</span>
+      <button class="btn-copy" data-copy="hire@romain-ecarnot.com" title="Cliquer pour copier l'adresse email">
+        <span>hire@romain-ecarnot.com</span>
+        <svg class="copy-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      </button>
+    </div>
+    <div class="meta-separator">|</div>
+    <div class="meta-item">
+      <span class="meta-label">WEB:</span>
+      <button class="btn-copy" data-copy="https://romain-ecarnot.com" title="Cliquer pour copier l'adresse du site web">
+        <span>romain-ecarnot.com</span>
+        <svg class="copy-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      </button>
+      <a href="https://romain-ecarnot.com" target="_blank" rel="noopener noreferrer" class="link-ext" title="Ouvrir le site">↗</a>
+    </div>
+    <div class="meta-separator">|</div>
+    <div class="meta-item">
+      <span class="meta-label">LINKEDIN:</span>
+      <a href="https://linkedin.com/in/romainecarnot" target="_blank" rel="noopener noreferrer" class="meta-link">
+        <span>linkedin.com/in/romainecarnot</span>
+        <span class="link-ext">↗</span>
+      </a>
+    </div>
+    <div class="meta-separator">|</div>
+    <div class="meta-item status-pill-item">
+      <span class="status-dot living-green"></span>
+      <span class="meta-status">DISPONIBLE POUR MISSIONS & PROJETS</span>
+    </div>
+  </aside>
+
+  <!-- Conteneur Principal Console -->
+  <main class="console-container">
+
+    <!-- En-tête imprimable (affiché uniquement en mode impression) -->
+    <section class="print-header">
+      <div class="print-name-block">
+        <h1>ROMAIN ECARNOT</h1>
+        <div class="print-subtitle">Accompagnement aux usages du numérique et de l'IA</div>
+        <div class="print-baseline">25 ans d'architecture des systèmes - aujourd'hui au service de ceux qui les utilisent</div>
+      </div>
+      <div class="print-contact-block">
+        <div>Nantes, France | hire@romain-ecarnot.com | romain-ecarnot.com | linkedin.com/in/romainecarnot</div>
+        <div>Reconnaissance de la Qualité de Travailleur Handicapé (RQTH)</div>
+      </div>
+    </section>
+
+    <!-- SECTION 1 : VUE D'ENSEMBLE & CE QUE J'APPORTE -->
+    <section id="panel-overview" class="console-panel active">
+      <div class="panel-tag-bar">
+        <span class="panel-code">// SECTION_01</span>
+        <h2 class="panel-title">CE QUE J'APPORTE</h2>
+        <span class="panel-hint">Proposition de valeur & Vision opérationnelle</span>
+      </div>
+
+      <div class="manifesto-card">
+        <p class="lead-text">
+          J'aide les organisations, entreprises, collectivités, associations, organismes de formation, à <strong>faire adopter le numérique et l'IA</strong> par ceux qui les utilisent. Vingt-cinq ans à construire des systèmes m'ont appris une chose : ils échouent quand on oublie leurs utilisateurs.
+        </p>
+      </div>
+
+      <div class="pillars-grid">
+        <!-- Pilier 1 -->
+        <article class="console-card pillar-card" data-tags="cruchot trinity open-source production outillage">
+          <div class="card-header">
+            <span class="card-badge">PILIER 01</span>
+            <span class="status-pill status-cyan">● Pragmatique</span>
+          </div>
+          <h3 class="card-title">Apporteur de solutions</h3>
+          <p class="card-body">
+            Un problème repéré, un outil livré. Cruchot, client IA de bureau 100 % local et open source, publié en 2026 ; Trinity LifeOS, système d'IA personnel complet ; une vingtaine d'outils open source. Le chemin le plus court entre l'idée et la production, sans sur-ingénierie.
+          </p>
+          <div class="card-metrics">
+            <span class="metric-tag">Outils livrés</span>
+            <span class="metric-tag">Chemin direct</span>
+            <span class="metric-tag">Anti sur-ingénierie</span>
+          </div>
+        </article>
+
+        <!-- Pilier 2 -->
+        <article class="console-card pillar-card" data-tags="veille rag claude gemini deepseek mistral benchmark">
+          <div class="card-header">
+            <span class="card-badge">PILIER 02</span>
+            <span class="status-pill status-cyan">● Indexation Continue</span>
+          </div>
+          <h3 class="card-title">Veille constante</h3>
+          <p class="card-body">
+            Je lis, je teste, j'indexe. Chaque modèle majeur (Claude, Gemini, DeepSeek, GLM, Kimi, Mistral) est essayé la semaine de sa sortie, sur des tâches réelles. Tout ce que je lis alimente un RAG local qui me le ressert daté et sourcé. Une veille qui produit des études, pas des captures d'écran.
+          </p>
+          <div class="card-metrics">
+            <span class="metric-tag">RAG local indexé</span>
+            <span class="metric-tag">Essais semaine 0</span>
+            <span class="metric-tag">Études concrètes</span>
+          </div>
+        </article>
+
+        <!-- Pilier 3 -->
+        <article class="console-card pillar-card" data-tags="local ollama rgpd dpo souveraineté données sécurité">
+          <div class="card-header">
+            <span class="card-badge">PILIER 03</span>
+            <span class="status-pill status-green">● Données Maîtrisées</span>
+          </div>
+          <h3 class="card-title">IA locale et données maîtrisées</h3>
+          <p class="card-body">
+            Les données restent où elles sont. Modèles ouverts sur Ollama, RAG hybride en local, clés chiffrées, zéro télémétrie ; 4 ans de DPO interne sur des données sensibles. Je sais dire ce qu'un modèle local fait bien, ce qu'il fait mal, et quand le cloud reste le bon choix.
+          </p>
+          <div class="card-metrics">
+            <span class="metric-tag">100% Local / Ollama</span>
+            <span class="metric-tag">Zéro télémétrie</span>
+            <span class="metric-tag">DPO 4 ans</span>
+          </div>
+        </article>
+
+        <!-- Pilier 4 -->
+        <article class="console-card pillar-card" data-tags="formation pédagogie transmission open veolia bbox pharmacylounge conduite du changement">
+          <div class="card-header">
+            <span class="card-badge">PILIER 04</span>
+            <span class="status-pill status-cyan">● Pédagogie & Métier</span>
+          </div>
+          <h3 class="card-title">Transmission</h3>
+          <p class="card-body">
+            Un fil rouge, pas une reconversion : animation d'une communauté cloud nationale chez OPEN (webinaires, workshops, mentorat), conduite du changement sur la migration SI de Veolia, services Bbox TV conçus pour des millions d'utilisateurs peu technophiles, formation des pharmaciens de pharmacylounge. Je parle la langue des ingénieurs, celle des métiers et celle des usagers : mon métier est de traduire entre les trois.
+          </p>
+          <div class="card-metrics">
+            <span class="metric-tag">Pont Ingénieur-Métier-Usager</span>
+            <span class="metric-tag">Mentorat & Workshops</span>
+            <span class="metric-tag">Millions d'usagers</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Note humaine & Récit post-AVC -->
+      <div class="insight-banner" data-tags="accessibilité inclusion post-avc rqth ux">
+        <div class="insight-header">
+          <span class="insight-icon">ℹ</span>
+          <span class="insight-title">EXPÉRIENCE HUMAINE & ACCESSIBILITÉ VÉCUE</span>
+        </div>
+        <p class="insight-text">
+          Un AVC en janvier 2025 m'a fait vivre l'administration numérique avec des capacités diminuées. Je sais où le numérique perd les gens : j'y suis passé.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 2 : PREUVES & SYSTÈMES -->
+    <section id="panel-evidence" class="console-panel">
+      <div class="panel-tag-bar">
+        <span class="panel-code">// SECTION_02</span>
+        <h2 class="panel-title">PREUVES & SYSTÈMES LIVRÉS</h2>
+        <span class="panel-hint">Quatre réalisations tangibles, déployées et documentées</span>
+      </div>
+
+      <div class="systems-grid">
+        <!-- Preuve 1 : Cruchot -->
+        <article class="console-card system-card" data-tags="cruchot electron typescript ollama rag local macos securite multi-llm">
+          <div class="system-top">
+            <div class="system-meta">
+              <div class="system-tags-row">
+                <span class="status-pill status-green pulse">● 100% Local</span>
+                <span class="status-pill status-cyan">● Open Source</span>
+                <span class="status-pill">2026</span>
+              </div>
+              <h3 class="system-name">Cruchot - l'IA sur le bureau, sans fuite de données (2026)</h3>
+              <div class="system-url">
+                <a href="https://cruchot.romain-ecarnot.com" target="_blank" rel="noopener noreferrer">cruchot.romain-ecarnot.com ↗</a>
+                <button class="btn-copy-inline" data-copy="https://cruchot.romain-ecarnot.com" title="Copier le lien">Copier</button>
+              </div>
+            </div>
+            <button class="btn-inspect" data-system="cruchot" aria-label="Inspecter l'architecture technique de Cruchot">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span>Inspecteur Système</span>
+            </button>
+          </div>
+
+          <p class="system-lead">Client de bureau multi-LLM (Electron / TypeScript), open source, publié avec site et binaire macOS. <strong>cruchot.romain-ecarnot.com</strong></p>
+
+          <ul class="system-specs">
+            <li><strong>11 fournisseurs dans une seule application</strong>, dont les modèles locaux (Ollama, LM Studio).</li>
+            <li><strong>100 % local</strong> : base et index vectoriel embarqués, clés chiffrées dans le trousseau macOS, zéro télémétrie.</li>
+            <li><strong>Arène LLM contre LLM</strong>, mémoire épisodique, RAG personnel, voix en direct, sécurité renforcée.</li>
+          </ul>
+
+          <div class="system-tech-stack">
+            <span class="tech-chip">Electron</span>
+            <span class="tech-chip">TypeScript</span>
+            <span class="tech-chip">Ollama / LM Studio</span>
+            <span class="tech-chip">Index Vectoriel Embarqué</span>
+            <span class="tech-chip">macOS Keychain Chiffré</span>
+            <span class="tech-chip">Voix en direct</span>
+          </div>
+        </article>
+
+        <!-- Preuve 2 : Trinity LifeOS -->
+        <article class="console-card system-card" data-tags="trinity lifeos agents n8n vocal mcp vectoriel reconstruction production">
+          <div class="system-top">
+            <div class="system-meta">
+              <div class="system-tags-row">
+                <span class="status-pill status-green pulse">● En Production</span>
+                <span class="status-pill status-amber">● Démo sur demande</span>
+                <span class="status-pill">2025-2026</span>
+              </div>
+              <h3 class="system-name">Trinity LifeOS - l'IA comme outil de reconstruction (2025-2026)</h3>
+              <div class="system-url">
+                <span class="meta-label">STATUT:</span> Déployé en production personnelle
+              </div>
+            </div>
+            <button class="btn-inspect" data-system="trinity" aria-label="Inspecter l'architecture technique de Trinity LifeOS">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span>Inspecteur Système</span>
+            </button>
+          </div>
+
+          <p class="system-lead">Système d'IA personnel conçu et développé pendant et après ma rééducation :</p>
+
+          <ul class="system-specs">
+            <li><strong>Orchestration multi-agents</strong> (Claude, Gemini, Mistral), agent vocal temps réel, serveur MCP.</li>
+            <li><strong>30+ endpoints API</strong> (n8n), mémoire sémantique vectorielle, déployé en production.</li>
+            <li><strong>Récit & Pédagogie</strong> : Ce projet prouve deux choses : mes compétences sont à jour, et je sais raconter l'IA à travers une expérience humaine, ce qui fait un formateur qu'on écoute. <strong>Démo sur demande.</strong></li>
+          </ul>
+
+          <div class="system-tech-stack">
+            <span class="tech-chip">Multi-agents (Claude/Gemini/Mistral)</span>
+            <span class="tech-chip">Agent Vocal Temps Réel</span>
+            <span class="tech-chip">Serveur MCP</span>
+            <span class="tech-chip">n8n (30+ Endpoints)</span>
+            <span class="tech-chip">Mémoire Vectorielle</span>
+          </div>
+        </article>
+
+        <!-- Preuve 3 : L'atelier -->
+        <article class="console-card system-card" data-tags="atelier multi-agents rag juridique legifrance securite hds ai-act claude gemini mistral deepseek glm kimi cli">
+          <div class="system-top">
+            <div class="system-meta">
+              <div class="system-tags-row">
+                <span class="status-pill status-cyan">● Multi-Agents Supervisés</span>
+                <span class="status-pill status-green">● 20+ Briques OS</span>
+                <span class="status-pill">2025-2026</span>
+              </div>
+              <h3 class="system-name">L'atelier - une équipe d'agents IA au travail tous les jours (2025-2026)</h3>
+              <div class="system-url">
+                <span class="meta-label">ENVIRONNEMENT:</span> Supervision collaborative de modèles
+              </div>
+            </div>
+          </div>
+
+          <p class="system-lead">Environnement de travail où Claude, Gemini, DeepSeek, GLM et Kimi coopèrent sous supervision :</p>
+
+          <ul class="system-specs">
+            <li><strong>Orchestration multi-agents</strong>, revues contradictoires (avocats du diable), recherche approfondie, routines automatisées supervisées, mémoire partagée entre sessions.</li>
+            <li><strong>RAG local de veille</strong> (articles, vidéos, dépôts) et RAG juridique hors ligne sur les 12 codes Légifrance (recherche hybride), jeu de données de questions-réponses pour affiner un petit modèle juridique.</li>
+            <li><strong>Étude d'une infrastructure IA locale</strong> pour une petite structure : 3 classes de service, HDS 2.1, AI Act.</li>
+            <li><strong>Une vingtaine de briques open source</strong> : plugins Claude Code, serveurs MCP, outils CLI, auditeur de sécurité pour skills d'agents IA (18 catégories de menaces).</li>
+          </ul>
+
+          <div class="system-tech-stack">
+            <span class="tech-chip">Coopération Multi-Modèles</span>
+            <span class="tech-chip">RAG Légifrance Hors-Ligne</span>
+            <span class="tech-chip">Fine-Tuning SLM</span>
+            <span class="tech-chip">HDS 2.1 & AI Act</span>
+            <span class="tech-chip">Auditeur Sécurité Agents (18 Menaces)</span>
+          </div>
+        </article>
+
+        <!-- Preuve 4 : pharmacylounge -->
+        <article class="console-card system-card" data-tags="pharmacylounge cto dpo sante rgpd securite support utilisateurs accompagnement cadrage">
+          <div class="system-top">
+            <div class="system-meta">
+              <div class="system-tags-row">
+                <span class="status-pill status-green">● Production 4 ans</span>
+                <span class="status-pill status-cyan">● Santé & DPO</span>
+                <span class="status-pill">2021-2025</span>
+              </div>
+              <h3 class="system-name">pharmacylounge - une plateforme métier sécurisée, de bout en bout (2021-2025)</h3>
+              <div class="system-url">
+                <span class="meta-label">RÔLE:</span> Co-fondateur, CTO et DPO interne
+              </div>
+            </div>
+          </div>
+
+          <p class="system-lead">Co-fondateur, CTO et DPO interne d'une plateforme sécurisée pour professionnels de la pharmacie :</p>
+
+          <ul class="system-specs">
+            <li><strong>RGPD by design</strong>, gestion de données sensibles, sécurité applicative éprouvée en production continue.</li>
+            <li><strong>Accompagnement des utilisateurs</strong> : recueil direct des besoins terrain, démonstrations, formation active, support réactif.</li>
+            <li><strong>4 ans à faire le pont quotidien</strong> entre des professionnels non techniciens (pharmaciens) et une équipe technique de réalisation.</li>
+          </ul>
+
+          <div class="system-tech-stack">
+            <span class="tech-chip">RGPD By Design</span>
+            <span class="tech-chip">DPO Interne</span>
+            <span class="tech-chip">Données Sensibles de Santé</span>
+            <span class="tech-chip">Accompagnement Métier</span>
+            <span class="tech-chip">Bridge Tech-Utilisateurs</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 3 : MATRICE DES COMPÉTENCES -->
+    <section id="panel-skills" class="console-panel">
+      <div class="panel-tag-bar">
+        <span class="panel-code">// SECTION_03</span>
+        <h2 class="panel-title">COMPÉTENCES</h2>
+        <span class="panel-hint">Savoir-faire opératoires & Correspondance d'expérience</span>
+      </div>
+
+      <div class="skills-matrix-grid">
+        <!-- Catégorie 1 -->
+        <div class="console-card skill-group-card" data-category="formation">
+          <div class="skill-group-head">
+            <span class="skill-group-icon">01</span>
+            <h3 class="skill-group-title">Accompagnement & formation</h3>
+          </div>
+          <div class="skill-badge-list">
+            <span class="skill-badge" data-skill="formation-utilisateurs">Formation d'utilisateurs</span>
+            <span class="skill-badge" data-skill="vulgarisation">Vulgarisation</span>
+            <span class="skill-badge" data-skill="conduite-changement">Conduite du changement</span>
+            <span class="skill-badge" data-skill="mentorat">Mentorat & Workshops</span>
+          </div>
+        </div>
+
+        <!-- Catégorie 2 -->
+        <div class="console-card skill-group-card" data-category="ia">
+          <div class="skill-group-head">
+            <span class="skill-group-icon">02</span>
+            <h3 class="skill-group-title">IA générative & agentique</h3>
+          </div>
+          <div class="skill-badge-list">
+            <span class="skill-badge" data-skill="claude-gemini">Claude, Gemini, Mistral, DeepSeek</span>
+            <span class="skill-badge" data-skill="ollama">Modèles ouverts en local (Ollama)</span>
+            <span class="skill-badge" data-skill="rag-qdrant">RAG hybride (Qdrant)</span>
+            <span class="skill-badge" data-skill="mcp">MCP (Model Context Protocol)</span>
+            <span class="skill-badge" data-skill="n8n">n8n (Workflows & Endpoints)</span>
+            <span class="skill-badge" data-skill="multi-agents">Orchestration multi-agents</span>
+            <span class="skill-badge" data-skill="integration-metier">Intégration workflows métier</span>
+            <span class="skill-badge" data-skill="ai-act">AI Act</span>
+          </div>
+        </div>
+
+        <!-- Catégorie 3 -->
+        <div class="console-card skill-group-card" data-category="conformite">
+          <div class="skill-group-head">
+            <span class="skill-group-icon">03</span>
+            <h3 class="skill-group-title">Données & conformité</h3>
+          </div>
+          <div class="skill-badge-list">
+            <span class="skill-badge" data-skill="rgpd-dpo">RGPD / DPO interne</span>
+            <span class="skill-badge" data-skill="securite-applicative">Sécurité applicative</span>
+            <span class="skill-badge" data-skill="donnees-sensibles">Données sensibles</span>
+            <span class="skill-badge" data-skill="local-cloud">Arbitrage Local ou Cloud</span>
+          </div>
+        </div>
+
+        <!-- Catégorie 4 -->
+        <div class="console-card skill-group-card" data-category="projet">
+          <div class="skill-group-head">
+            <span class="skill-group-icon">04</span>
+            <h3 class="skill-group-title">Conduite de projet</h3>
+          </div>
+          <div class="skill-badge-list">
+            <span class="skill-badge" data-skill="amoa">AMOA & Recueil de besoins</span>
+            <span class="skill-badge" data-skill="cadrage">Cadrage opérationnel</span>
+            <span class="skill-badge" data-skill="coordination">Coordination pluridisciplinaire</span>
+            <span class="skill-badge" data-skill="parties-prenantes">Gestion des parties prenantes</span>
+            <span class="skill-badge" data-skill="agile">Méthodes agiles</span>
+          </div>
+        </div>
+
+        <!-- Catégorie 5 -->
+        <div class="console-card skill-group-card" data-category="technique">
+          <div class="skill-group-head">
+            <span class="skill-group-icon">05</span>
+            <h3 class="skill-group-title">Socle technique</h3>
+          </div>
+          <div class="skill-badge-list">
+            <span class="skill-badge" data-skill="aws">AWS (certifié)</span>
+            <span class="skill-badge" data-skill="terraform">Terraform</span>
+            <span class="skill-badge" data-skill="docker">Docker</span>
+            <span class="skill-badge" data-skill="typescript-node">Node.js / TypeScript</span>
+            <span class="skill-badge" data-skill="python">Python</span>
+            <span class="skill-badge" data-skill="electron">Electron</span>
+            <span class="skill-badge" data-skill="archi-secu">Architectures sécurisées (Dialogue DSI)</span>
+          </div>
+        </div>
+
+        <!-- Catégorie 6 -->
+        <div class="console-card skill-group-card" data-category="secteurs">
+          <div class="skill-group-head">
+            <span class="skill-group-icon">06</span>
+            <h3 class="skill-group-title">Secteurs traversés</h3>
+          </div>
+          <div class="skill-badge-list">
+            <span class="skill-badge" data-skill="secteur-sante">Santé et pharmacie</span>
+            <span class="skill-badge" data-skill="secteur-telecoms">Télécoms grand public</span>
+            <span class="skill-badge" data-skill="secteur-energie">Énergie & Services aux collectivités</span>
+            <span class="skill-badge" data-skill="secteur-esn">Services numériques & ESN</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4 : PARCOURS & FORMATIONS -->
+    <section id="panel-history" class="console-panel">
+      <div class="panel-tag-bar">
+        <span class="panel-code">// SECTION_04</span>
+        <h2 class="panel-title">PARCOURS & EXPÉRIENCES</h2>
+        <span class="panel-hint">Survolez ou cliquez sur une organisation pour éclairer les compétences associées</span>
+      </div>
+
+      <!-- Timeline & Table du Parcours -->
+      <div class="timeline-wrapper">
+        <div class="timeline-table">
+          <div class="timeline-header-row">
+            <div class="th-period">Période</div>
+            <div class="th-role">Rôle</div>
+            <div class="th-org">Organisation</div>
+            <div class="th-impact">Impact & Compétences mises en œuvre</div>
+          </div>
+
+          <!-- Entrée 1 : Reconstruction post-AVC -->
+          <div class="timeline-row" data-exp="avc" data-linked-skills="claude-gemini,ollama,rag-qdrant,mcp,n8n,multi-agents,vulgarisation">
+            <div class="td-period">
+              <span class="period-badge current">2025-2026</span>
+            </div>
+            <div class="td-role">
+              <span class="role-title">Reconstruction post-AVC - immersion IA</span>
+            </div>
+            <div class="td-org">
+              <span class="org-name">-</span>
+            </div>
+            <div class="td-impact">
+              Conception de Trinity LifeOS, publication de Cruchot et développement de L'atelier. Pratique quotidienne poussée des modèles locaux et agentiques, résilience humaine transformée en atout pédagogique.
+            </div>
+          </div>
+
+          <!-- Entrée 2 : pharmacylounge -->
+          <div class="timeline-row" data-exp="pharmacylounge" data-linked-skills="rgpd-dpo,securite-applicative,donnees-sensibles,formation-utilisateurs,vulgarisation,amoa,cadrage,secteur-sante">
+            <div class="td-period">
+              <span class="period-badge">2021-2025</span>
+            </div>
+            <div class="td-role">
+              <span class="role-title">Co-fondateur, CTO & DPO interne</span>
+            </div>
+            <div class="td-org">
+              <span class="org-name">pharmacylounge</span>
+              <span class="org-loc">Nantes</span>
+            </div>
+            <div class="td-impact">
+              Plateforme santé sécurisée de bout en bout. 4 ans de DPO interne sur données sensibles, RGPD by design, pont quotidien entre professionnels de santé non techniciens et développeurs.
+            </div>
+          </div>
+
+          <!-- Entrée 3 : Morannon -->
+          <div class="timeline-row" data-exp="morannon" data-linked-skills="aws,terraform,docker,typescript-node,python,archi-secu,agile">
+            <div class="td-period">
+              <span class="period-badge">2021-2025</span>
+            </div>
+            <div class="td-role">
+              <span class="role-title">Architecte Cloud / Développeur Fullstack</span>
+            </div>
+            <div class="td-org">
+              <span class="org-name">Morannon</span>
+              <span class="org-loc">Indépendant</span>
+            </div>
+            <div class="td-impact">
+              Conception d'architectures cloud résilientes, déploiements conteneurisés sécurisés et outillage d'automatisation sur mesure.
+            </div>
+          </div>
+
+          <!-- Entrée 4 : OPEN -->
+          <div class="timeline-row" data-exp="open" data-linked-skills="formation-utilisateurs,conduite-changement,mentorat,aws,coordination,parties-prenantes,secteur-esn">
+            <div class="td-period">
+              <span class="period-badge">2019-2020</span>
+            </div>
+            <div class="td-role">
+              <span class="role-title">Directeur de Programme AWS - animation de communauté & formation</span>
+            </div>
+            <div class="td-org">
+              <span class="org-name">OPEN</span>
+              <span class="org-loc">Paris</span>
+            </div>
+            <div class="td-impact">
+              Animation d'une communauté cloud nationale : webinaires, workshops, programmes de montée en compétences et mentorat d'ingénieurs et chefs de projets.
+            </div>
+          </div>
+
+          <!-- Entrée 5 : Veolia / GFI -->
+          <div class="timeline-row" data-exp="veolia" data-linked-skills="aws,archi-secu,cadrage,coordination,conduite-changement,secteur-energie">
+            <div class="td-period">
+              <span class="period-badge">2016-2018</span>
+            </div>
+            <div class="td-role">
+              <span class="role-title">Architecte Solutions AWS - migration SI Veolia</span>
+            </div>
+            <div class="td-org">
+              <span class="org-name">GFI Informatique</span>
+              <span class="org-loc">Paris</span>
+            </div>
+            <div class="td-impact">
+              Conduite du changement et architecture technique pour la migration du système d'information critique de Veolia vers le cloud AWS.
+            </div>
+          </div>
+
+          <!-- Entrée 6 : Bouygues Telecom -->
+          <div class="timeline-row" data-exp="bouygues" data-linked-skills="typescript-node,archi-secu,vulgarisation,coordination,secteur-telecoms">
+            <div class="td-period">
+              <span class="period-badge">2011-2015</span>
+            </div>
+            <div class="td-role">
+              <span class="role-title">Architecte Logiciel - Services Bbox TV</span>
+            </div>
+            <div class="td-org">
+              <span class="org-name">Bouygues Telecom</span>
+              <span class="org-loc">Paris</span>
+            </div>
+            <div class="td-impact">
+              Architecture et distribution de services applicatifs pour la télévision grand public desservant plusieurs millions d'utilisateurs.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMATIONS & CERTIFICATIONS -->
+      <div class="education-block">
+        <div class="panel-tag-bar sub-tag-bar">
+          <span class="panel-code">// CERTIFICATIONS & DIPLÔMES</span>
+          <h3 class="panel-subtitle">FORMATIONS & CERTIFICATIONS</h3>
+        </div>
+
+        <div class="education-grid">
+          <div class="console-card edu-card">
+            <div class="edu-year">2018</div>
+            <div class="edu-content">
+              <div class="edu-title">AWS Professional Services Delivery Best Practices</div>
+              <div class="edu-issuer">Amazon Web Services</div>
+            </div>
+          </div>
+
+          <div class="console-card edu-card">
+            <div class="edu-year">2017</div>
+            <div class="edu-content">
+              <div class="edu-title">Architecture avancée & Migration d'applications (AWS)</div>
+              <div class="edu-issuer">Amazon Web Services</div>
+            </div>
+          </div>
+
+          <div class="console-card edu-card">
+            <div class="edu-year">1998</div>
+            <div class="edu-content">
+              <div class="edu-title">D.U.T. Informatique</div>
+              <div class="edu-issuer">Université de Nantes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODALE / INSPECTEUR SYSTÈME (ARCHITECTURE TECHNIQUE SVG) -->
+  <div id="system-inspector-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="inspector-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-tag">// INSPECTEUR D'ARCHITECTURE</span>
+          <h3 id="inspector-title">Schéma de flux système</h3>
+        </div>
+        <div class="modal-actions">
+          <div class="modal-tabs">
+            <button id="tab-insp-cruchot" class="tab-btn active" data-sys="cruchot">Cruchot (Local Multi-LLM)</button>
+            <button id="tab-insp-trinity" class="tab-btn" data-sys="trinity">Trinity LifeOS (Multi-Agents)</button>
+          </div>
+          <button id="modal-close" class="modal-close-btn" aria-label="Fermer l'inspecteur">&times;</button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <!-- VUE ARCHITECTURE CRUCHOT -->
+        <div id="view-insp-cruchot" class="inspector-view active">
+          <div class="sys-diagram-wrapper">
+            <svg class="sys-diagram" viewBox="0 0 860 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="grad-cyan" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.2"/>
+                  <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.05"/>
+                </linearGradient>
+                <linearGradient id="grad-green" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#10B981" stop-opacity="0.2"/>
+                  <stop offset="100%" stop-color="#10B981" stop-opacity="0.05"/>
+                </linearGradient>
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748B"/>
+                </marker>
+                <marker id="arrow-cyan" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38BDF8"/>
+                </marker>
+                <marker id="arrow-green" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981"/>
+                </marker>
+              </defs>
+
+              <!-- Périmètre de sécurité local -->
+              <rect x="20" y="20" width="560" height="340" rx="8" fill="#13161F" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <text x="35" y="44" fill="#10B981" font-size="11" font-family="monospace" font-weight="bold">SANCTUAIRE 100% LOCAL (ZÉRO TÉLÉMÉTRIE - POSTE CLIENT)</text>
+
+              <!-- Noeud 1: Interface UI Electron -->
+              <rect x="45" y="70" width="180" height="70" rx="6" fill="url(#grad-cyan)" stroke="#38BDF8" stroke-width="1.5"/>
+              <text x="60" y="95" fill="#E2E8F0" font-size="12" font-family="monospace" font-weight="bold">Interface Bureau</text>
+              <text x="60" y="112" fill="#94A3B8" font-size="11" font-family="sans-serif">Electron & TypeScript</text>
+              <text x="60" y="128" fill="#38BDF8" font-size="10" font-family="monospace">Arène / RAG / Voix</text>
+
+              <!-- Noeud 2: IPC & Sandbox Bridge -->
+              <rect x="270" y="70" width="170" height="70" rx="6" fill="#1A1E29" stroke="#282D3D" stroke-width="1.5"/>
+              <text x="285" y="95" fill="#E2E8F0" font-size="12" font-family="monospace" font-weight="bold">IPC Sécurisé</text>
+              <text x="285" y="112" fill="#94A3B8" font-size="11" font-family="sans-serif">Context Isolation</text>
+              <text x="285" y="128" fill="#64748B" font-size="10" font-family="monospace">Pont Sandbox strict</text>
+
+              <!-- Noeud 3: Trousseau macOS -->
+              <rect x="45" y="180" width="180" height="65" rx="6" fill="#1A1E29" stroke="#282D3D" stroke-width="1.5"/>
+              <text x="60" y="205" fill="#E2E8F0" font-size="12" font-family="monospace" font-weight="bold">Trousseau macOS</text>
+              <text x="60" y="222" fill="#94A3B8" font-size="11" font-family="sans-serif">Chiffrement AES matériel</text>
+              <text x="60" y="236" fill="#10B981" font-size="10" font-family="monospace">Clés API privées isolées</text>
+
+              <!-- Noeud 4: Stockage local SQLite / VSS -->
+              <rect x="45" y="270" width="180" height="70" rx="6" fill="#1A1E29" stroke="#282D3D" stroke-width="1.5"/>
+              <text x="60" y="295" fill="#E2E8F0" font-size="12" font-family="monospace" font-weight="bold">Index Vectoriel Local</text>
+              <text x="60" y="312" fill="#94A3B8" font-size="11" font-family="sans-serif">SQLite + Recherche Hybride</text>
+              <text x="60" y="327" fill="#64748B" font-size="10" font-family="monospace">Mémoire épisodique</text>
+
+              <!-- Noeud 5: Moteur Local Ollama / LM Studio -->
+              <rect x="270" y="200" width="270" height="130" rx="6" fill="url(#grad-green)" stroke="#10B981" stroke-width="1.5"/>
+              <text x="285" y="225" fill="#10B981" font-size="12" font-family="monospace" font-weight="bold">Moteurs IA 100% Locaux</text>
+              <text x="285" y="244" fill="#E2E8F0" font-size="11" font-family="sans-serif">Ollama / LM Studio (GGUF / Quant)</text>
+              <text x="285" y="262" fill="#94A3B8" font-size="11" font-family="sans-serif">Inférence sur puce locale (GPU/NPU)</text>
+              <text x="285" y="280" fill="#94A3B8" font-size="11" font-family="sans-serif">Modèles ouverts (Llama, Mistral, Qwen)</text>
+              <text x="285" y="310" fill="#10B981" font-size="10" font-family="monospace">● ZÉRO FUITE RÉSEAU EXTERNE</text>
+
+              <!-- Périmètre Cloud Optionnel -->
+              <rect x="620" y="20" width="220" height="340" rx="8" fill="#11131B" stroke="#282D3D" stroke-width="1.5"/>
+              <text x="635" y="44" fill="#64748B" font-size="11" font-family="monospace" font-weight="bold">CLOUD OPTIONNEL (DIRECT)</text>
+
+              <!-- Noeud 6: Fournisseurs Cloud Optionnels -->
+              <rect x="640" y="70" width="180" height="260" rx="6" fill="#181B24" stroke="#282D3D" stroke-width="1.5"/>
+              <text x="655" y="95" fill="#E2E8F0" font-size="12" font-family="monospace" font-weight="bold">APIs Distantes</text>
+              <text x="655" y="112" fill="#64748B" font-size="10" font-family="monospace">Appel direct sans proxy</text>
+              <text x="655" y="145" fill="#94A3B8" font-size="11" font-family="sans-serif">• Anthropic (Claude)</text>
+              <text x="655" y="170" fill="#94A3B8" font-size="11" font-family="sans-serif">• Google (Gemini)</text>
+              <text x="655" y="195" fill="#94A3B8" font-size="11" font-family="sans-serif">• OpenAI / Mistral</text>
+              <text x="655" y="220" fill="#94A3B8" font-size="11" font-family="sans-serif">• DeepSeek / Kimi / GLM</text>
+              <text x="655" y="260" fill="#38BDF8" font-size="10" font-family="monospace">Arène comparative</text>
+              <text x="655" y="278" fill="#64748B" font-size="10" font-family="monospace">Mesure des latences</text>
+
+              <!-- Lignes de flux -->
+              <line x1="225" y1="105" x2="265" y2="105" stroke="#38BDF8" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+              <line x1="355" y1="140" x2="355" y2="195" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+              <path d="M 135 140 L 135 175" stroke="#64748B" stroke-width="1.5" marker-end="url(#arrow)"/>
+              <path d="M 135 245 L 135 265" stroke="#64748B" stroke-width="1.5" marker-end="url(#arrow)"/>
+              <path d="M 440" y1="105" L 635 105" stroke="#64748B" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrow)"/>
+            </svg>
+          </div>
+          <div class="diagram-caption">
+            <strong>Architecture Cruchot :</strong> Séparation étanche entre l'interface utilisateur, la sandbox IPC et le stockage sécurisé dans le trousseau macOS. Inférence prioritaire sur le moteur local Ollama / LM Studio pour une confidentialité totale, avec possibilité d'arène multi-LLM comparative directe.
+          </div>
+        </div>
+
+        <!-- VUE ARCHITECTURE TRINITY LIFEOS -->
+        <div id="view-insp-trinity" class="inspector-view">
+          <div class="sys-diagram-wrapper">
+            <svg class="sys-diagram" viewBox="0 0 860 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="grad-purple" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#1E293B" stop-opacity="0.1"/>
+                </linearGradient>
+                <marker id="trinity-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38BDF8"/>
+                </marker>
+                <marker id="trinity-green" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981"/>
+                </marker>
+              </defs>
+
+              <!-- Zone 1 : Entrées vocales & Interaction -->
+              <rect x="25" y="40" width="220" height="300" rx="8" fill="#141824" stroke="#282D3D" stroke-width="1.5"/>
+              <text x="40" y="65" fill="#38BDF8" font-size="11" font-family="monospace" font-weight="bold">COUCHE D'INTERACTION</text>
+
+              <rect x="40" y="85" width="190" height="75" rx="6" fill="#181D2B" stroke="#38BDF8" stroke-width="1.5"/>
+              <text x="55" y="110" fill="#E2E8F0" font-size="12" font-family="monospace" font-weight="bold">Agent Vocal Temps Réel</text>
+              <text x="55" y="128" fill="#94A3B8" font-size="11" font-family="sans-serif">STT / TTS ultra-basse latence</text>
+              <text x="55" y="145" fill="#10B981" font-size="10" font-family="monospace">● Dialogue vocal fluide</text>
+
+              <rect x="40" y="180" width="190" height="75" rx="6" fill="#181D2B" stroke="#282D3D" stroke-width="1.5"/>
+              <text x="55" y="205" fill="#E2E8F0" font-size="12" font-family="monospace" font-weight="bold">Serveur MCP Client</text>
+              <text x="55" y="223" fill="#94A3B8" font-size="11" font-family="sans-serif">Protocole Model Context</text>
+              <text x="55" y="240" fill="#64748B" font-size="10" font-family="monospace">Exécution locale outillée</text>
+
+              <rect x="40" y="275" width="190" height="50" rx="6" fill="#181D2B" stroke="#282D3D" stroke-width="1.5"/>
+              <text x="55" y="298" fill="#E2E8F0" font-size="11" font-family="monospace">Console de Contrôle</text>
+              <text x="55" y="314" fill="#64748B" font-size="10" font-family="sans-serif">Tableau de bord & supervision</text>
+
+              <!-- Zone 2 : Orchestrateur Multi-Agents -->
+              <rect x="290" y="40" width="280" height="300" rx="8" fill="#161B28" stroke="#38BDF8" stroke-width="1.5"/>
+              <text x="305" y="65" fill="#38BDF8" font-size="11" font-family="monospace" font-weight="bold">ORCHESTRATION AGENTIQUE</text>
+
+              <rect x="305" y="85" width="250" height="95" rx="6" fill="#1A2234" stroke="#38BDF8" stroke-width="1.5"/>
+              <text x="320" y="110" fill="#E2E8F0" font-size="12" font-family="monospace" font-weight="bold">Superviseur Multi-Agents</text>
+              <text x="320" y="130" fill="#94A3B8" font-size="11" font-family="sans-serif">• Claude (Raisonnement & Code)</text>
+              <text x="320" y="148" fill="#94A3B8" font-size="11" font-family="sans-serif">• Gemini (Synthèse & Multimodal)</text>
+              <text x="320" y="166" fill="#94A3B8" font-size="11" font-family="sans-serif">• Mistral (Spécialisation locale)</text>
+
+              <rect x="305" y="200" width="250" height="125" rx="6" fill="#181D2B" stroke="#282D3D" stroke-width="1.5"/>
+              <text x="320" y="225" fill="#E2E8F0" font-size="12" font-family="monospace" font-weight="bold">Mémoire Sémantique</text>
+              <text x="320" y="245" fill="#94A3B8" font-size="11" font-family="sans-serif">Indexation vectorielle d'expériences</text>
+              <text x="320" y="265" fill="#94A3B8" font-size="11" font-family="sans-serif">Rappels de contexte personnalisés</text>
+              <text x="320" y="295" fill="#10B981" font-size="10" font-family="monospace">● Continuité cognitive post-AVC</text>
+
+              <!-- Zone 3 : Moteur d'automatisation n8n -->
+              <rect x="615" y="40" width="220" height="300" rx="8" fill="#141824" stroke="#10B981" stroke-width="1.5"/>
+              <text x="630" y="65" fill="#10B981" font-size="11" font-family="monospace" font-weight="bold">COUCHE D'ACTION (N8N)</text>
+
+              <rect x="630" y="85" width="190" height="235" rx="6" fill="#181D2B" stroke="#10B981" stroke-width="1.5"/>
+              <text x="645" y="110" fill="#E2E8F0" font-size="12" font-family="monospace" font-weight="bold">30+ Endpoints API</text>
+              <text x="645" y="130" fill="#10B981" font-size="10" font-family="monospace">● DÉPLOYÉ EN PRODUCTION</text>
+              <text x="645" y="160" fill="#94A3B8" font-size="11" font-family="sans-serif">• Routines administratives</text>
+              <text x="645" y="182" fill="#94A3B8" font-size="11" font-family="sans-serif">• Alertes et synchronisations</text>
+              <text x="645" y="204" fill="#94A3B8" font-size="11" font-family="sans-serif">• Veille automatisée</text>
+              <text x="645" y="226" fill="#94A3B8" font-size="11" font-family="sans-serif">• Gestion documentaire</text>
+              <text x="645" y="258" fill="#38BDF8" font-size="10" font-family="monospace">Exécution événementielle</text>
+              <text x="645" y="278" fill="#64748B" font-size="10" font-family="monospace">Zéro friction cognitive</text>
+
+              <!-- Connexions / Flux -->
+              <line x1="230" y1="122" x2="300" y2="122" stroke="#38BDF8" stroke-width="1.5" marker-end="url(#trinity-arrow)"/>
+              <line x1="230" y1="217" x2="300" y2="217" stroke="#38BDF8" stroke-width="1.5" marker-end="url(#trinity-arrow)"/>
+              <line x1="555" y1="132" x2="625" y2="132" stroke="#10B981" stroke-width="1.5" marker-end="url(#trinity-green)"/>
+              <path d="M 430 180 L 430 195" stroke="#38BDF8" stroke-width="1.5" marker-end="url(#trinity-arrow)"/>
+            </svg>
+          </div>
+          <div class="diagram-caption">
+            <strong>Architecture Trinity LifeOS :</strong> Système conçu pendant la rééducation post-AVC. L'agent vocal basse latence et le protocole MCP alimentent un superviseur multi-modèles (Claude, Gemini, Mistral). Ce dernier s'appuie sur une mémoire vectorielle sémantique et pilote 30+ endpoints API sur n8n pour automatiser le quotidien et décharger la charge cognitive.
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="modal-footer-hint">Appuyez sur <kbd class="kbd">Échap</kbd> ou cliquez hors de la fenêtre pour fermer</div>
+        <button id="modal-close-action" class="btn-action">Fermer l'inspecteur</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST DE CONFIRMATION SYSTÈME -->
+  <div id="sys-toast" class="sys-toast" role="status" aria-live="polite">
+    <span class="toast-indicator">●</span>
+    <span id="toast-message" class="toast-message">Information système</span>
+  </div>
+
+  <!-- Script Vanilla -->
+  <script src="/dashboard/app.js"></script>
+</body>
+</html>

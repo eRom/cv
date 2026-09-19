@@ -12,8 +12,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: baseUrl,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/dashboard`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/scrollytelling`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
     },
   ]
 }
