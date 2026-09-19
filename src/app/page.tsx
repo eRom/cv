@@ -40,7 +40,7 @@ export default function Home() {
   const router = useRouter();
   const [hoveredSide, setHoveredSide] = useState<"a" | "b" | null>(null);
 
-  // Raccourcis clavier A, 1 pour Console / B, 2 pour Scrollytelling
+  // Raccourcis clavier C, 1 pour Console / S, 2 pour Scrollytelling
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
@@ -50,9 +50,9 @@ export default function Home() {
       ) {
         return;
       }
-      if (e.key === "a" || e.key === "A" || e.key === "1") {
+      if (e.key === "c" || e.key === "C" || e.key === "1") {
         router.push("/dashboard");
-      } else if (e.key === "b" || e.key === "B" || e.key === "2") {
+      } else if (e.key === "s" || e.key === "S" || e.key === "2") {
         router.push("/scrollytelling");
       }
     };
@@ -124,32 +124,29 @@ export default function Home() {
             </div>
             <div className="hidden sm:flex items-center gap-2">
               <span className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] font-mono text-zinc-400">
-                A : Console
+                C : Console
               </span>
               <span className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] font-mono text-zinc-400">
-                B : Scrolly
+                S : Scrolly
               </span>
             </div>
           </div>
 
           {/* Grille Cockpit avec commutateur central */}
           <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 items-stretch">
-            
-            {/* BAIE A : Console d'Architecte */}
+
+            {/* BAIE A : Console */}
             <Link
               href="/dashboard"
               onMouseEnter={() => setHoveredSide("a")}
               onMouseLeave={() => setHoveredSide(null)}
-              className="group relative flex flex-col justify-between min-h-[300px] p-5 sm:p-6 rounded-xl border transition-all duration-200 bg-[#121318] border-zinc-800 hover:border-sky-500/50 hover:bg-[#141720] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+              className="group relative flex flex-col p-4 sm:p-5 rounded-xl border transition-all duration-200 bg-[#121318] border-zinc-800 hover:border-sky-500/50 hover:bg-[#141720] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
             >
-              <div>
-                <div className="flex items-center justify-between mb-3">
+              <div className="flex-1 flex flex-col">
+                <div className="flex items-center justify-between mb-2.5">
                   <span className="text-xs font-mono font-bold text-sky-400 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
                     CANAL_01 // SYS
-                  </span>
-                  <span className="px-1.5 py-0.5 rounded bg-zinc-900 border border-zinc-700/50 text-[10px] font-mono text-zinc-400">
-                    Touche 1
                   </span>
                 </div>
 
@@ -158,21 +155,21 @@ export default function Home() {
                     <Terminal className="w-4 h-4" />
                   </div>
                   <h2 className="text-lg font-bold text-zinc-100 group-hover:text-white transition-colors">
-                    Console d&apos;Architecte
+                    Console
                   </h2>
                 </div>
 
-                <p className="text-xs sm:text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors leading-relaxed mb-4">
-                  Écran de contrôle dense et scannable. Raccourcis clavier (1-4), matrice des compétences croisée et schémas d&apos;architecture SVG.
+                <p className="text-xs sm:text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors leading-relaxed mb-3">
+                  Écran de contrôle dense et scannable. Raccourcis clavier (1-4), matrice des compétences croisée.
                 </p>
 
-                <div className="bg-[#08080a] border border-zinc-800/80 rounded-lg p-2.5 font-mono text-xs text-zinc-500 mb-4 leading-relaxed">
+                <div className="bg-[#08080a] border border-zinc-800/80 rounded-lg p-2.5 font-mono text-xs text-zinc-500 leading-relaxed">
                   <div className="text-zinc-400">$ route --target /dashboard</div>
-                  <div className="text-sky-400 mt-0.5">status: 200 OK | zero-dependency</div>
+                  <div className="text-sky-400 mt-0.5">status: 200 OK</div>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-zinc-800/60 text-xs font-mono font-bold text-sky-400">
+              <div className="flex items-center justify-between pt-3 mt-3.5 border-t border-zinc-800/60 text-xs font-mono font-bold text-sky-400">
                 <span>ENGAGER LA CONSOLE</span>
                 <span className="group-hover:translate-x-1 transition-transform flex items-center gap-1">
                   [ENTER] &rarr;
@@ -189,7 +186,7 @@ export default function Home() {
                     : "bg-zinc-700"
                 }`}
               />
-              <div className="w-16 h-8 md:w-11 md:h-18 rounded-full md:rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-center shadow-inner shadow-black">
+              <div className="w-14 h-8 md:w-10 md:h-12 rounded-full md:rounded-xl bg-zinc-950 border border-zinc-800 flex items-center justify-center shadow-inner shadow-black">
                 <span className="font-mono text-xs font-extrabold tracking-wider text-zinc-300">
                   VS
                 </span>
@@ -203,21 +200,18 @@ export default function Home() {
               />
             </div>
 
-            {/* BAIE B : Scrollytelling Documentaire */}
+            {/* BAIE B : Scrollytelling */}
             <Link
               href="/scrollytelling"
               onMouseEnter={() => setHoveredSide("b")}
               onMouseLeave={() => setHoveredSide(null)}
-              className="group relative flex flex-col justify-between min-h-[300px] p-5 sm:p-6 rounded-xl border transition-all duration-200 bg-[#121318] border-zinc-800 hover:border-amber-500/50 hover:bg-[#1c1714] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+              className="group relative flex flex-col p-4 sm:p-5 rounded-xl border transition-all duration-200 bg-[#121318] border-zinc-800 hover:border-amber-500/50 hover:bg-[#1c1714] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
             >
-              <div>
-                <div className="flex items-center justify-between mb-3">
+              <div className="flex-1 flex flex-col">
+                <div className="flex items-center justify-between mb-2.5">
                   <span className="text-xs font-mono font-bold text-amber-400 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                     CANAL_02 // DOC
-                  </span>
-                  <span className="px-1.5 py-0.5 rounded bg-zinc-900 border border-zinc-700/50 text-[10px] font-mono text-zinc-400">
-                    Touche 2
                   </span>
                 </div>
 
@@ -226,21 +220,21 @@ export default function Home() {
                     <BookOpen className="w-4 h-4" />
                   </div>
                   <h2 className="text-lg font-bold text-zinc-100 group-hover:text-white transition-colors">
-                    Scrollytelling Documentaire
+                    Scrollytelling
                   </h2>
                 </div>
 
-                <p className="text-xs sm:text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors leading-relaxed mb-4">
-                  Format d&apos;enquête narrative. Défilement progressif, 4 compteurs réactifs, tournant post-AVC et bascule clair/sombre.
+                <p className="text-xs sm:text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors leading-relaxed mb-3">
+                  Format d&apos;enquête narrative. Défilement progressif, 4 compteurs réactifs.
                 </p>
 
-                <div className="bg-[#08080a] border border-zinc-800/80 rounded-lg p-2.5 font-mono text-xs text-zinc-500 mb-4 leading-relaxed">
+                <div className="bg-[#08080a] border border-zinc-800/80 rounded-lg p-2.5 font-mono text-xs text-zinc-500 leading-relaxed">
                   <div className="text-zinc-400">$ view --format long-story</div>
                   <div className="text-amber-400 mt-0.5">mode: narrative | metrics: 4-live</div>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-zinc-800/60 text-xs font-mono font-bold text-amber-400">
+              <div className="flex items-center justify-between pt-3 mt-3.5 border-t border-zinc-800/60 text-xs font-mono font-bold text-amber-400">
                 <span>OUVRIR LE DOSSIER</span>
                 <span className="group-hover:translate-x-1 transition-transform flex items-center gap-1">
                   [ENTER] &rarr;
