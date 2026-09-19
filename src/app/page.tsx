@@ -94,10 +94,6 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center gap-1.5">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-zinc-900/80 border border-zinc-800 text-[11px] font-mono text-zinc-400 mb-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              CV Interactif · Deux visions face à face
-            </div>
             <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-100">
               Romain Ecarnot
             </h1>
