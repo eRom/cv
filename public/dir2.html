@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direction 02 : Slash Néon - Romain Ecarnot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;800&family=Geist:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --bg: #09090b;
+      --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+      --cyan: #38bdf8;
+      --amber: #f59e0b;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: #fafafa;
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem 3rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .top-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 900px;
+      height: 380px;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(120, 119, 198, 0.18), rgba(255, 255, 255, 0));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Nav switcher */
+    .nav-bar {
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(18, 18, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      padding: 0.3rem 0.4rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .nav-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #71717a;
+      padding: 0 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #a1a1aa;
+      text-decoration: none;
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+    .nav-link.active {
+      background: #27272a;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 980px;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Profile Header */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.8rem;
+    }
+    .avatar-wrapper {
+      position: relative;
+      width: 84px;
+      height: 84px;
+    }
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #27272a;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+    .status-dot {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #10b981;
+      border: 2px solid #09090b;
+    }
+    .status-dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    .profile-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .profile-sub {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #d4d4d8;
+    }
+    .profile-tagline {
+      font-size: 0.82rem;
+      color: #71717a;
+      max-width: 480px;
+    }
+
+    /* -------------------------------------------------------------
+       DIRECTION 2 : LE SLASH NÉON & TYPO D'IMPACT (Inspiré Image 1)
+       ------------------------------------------------------------- */
+    .duel-stage {
+      width: 100%;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    /* Center Slash Ribbon */
+    .versus-ribbon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: -18px;
+      z-index: 20;
+    }
+    .ribbon-track {
+      display: flex;
+      align-items: center;
+      background: #111114;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 0.2rem 1.2rem;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    }
+    .ribbon-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0 0.8rem;
+    }
+    .ribbon-label.f1 { color: var(--cyan); }
+    .ribbon-label.f2 { color: var(--amber); }
+    
+    .versus-badge-cut {
+      position: relative;
+      background: #09090b;
+      border: 2px solid #3f3f46;
+      border-radius: 12px;
+      padding: 0.35rem 1.1rem;
+      margin: 0 0.6rem;
+      transform: skewX(-12deg);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+      transition: all 0.3s var(--ease-out);
+    }
+    .versus-badge-cut span {
+      display: inline-block;
+      transform: skewX(12deg);
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Split Stage Grid */
+    .slash-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      width: 100%;
+    }
+
+    .slash-card {
+      position: relative;
+      background: rgba(18, 18, 22, 0.6);
+      border: 1px solid rgba(63, 63, 70, 0.4);
+      border-radius: 20px;
+      padding: 2.4rem 2rem 2rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out);
+    }
+
+    /* Angled top slash on cards */
+    .slash-card.card-left {
+      border-top-left-radius: 28px;
+    }
+    .slash-card.card-right {
+      border-top-right-radius: 28px;
+    }
+
+    /* Laser Line on top of card */
+    .slash-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.4s;
+    }
+    .card-left::before {
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      transform: translateX(-100%);
+    }
+    .card-right::before {
+      background: linear-gradient(90deg, transparent, var(--amber));
+      transform: translateX(100%);
+    }
+
+    /* Ambient hover scanline effect */
+    .slash-card:hover::before {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slash-card.card-left:hover {
+      background: rgba(22, 28, 38, 0.85);
+      border-color: rgba(56, 189, 248, 0.6);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.15);
+    }
+    .slash-card.card-right:hover {
+      background: rgba(36, 26, 20, 0.85);
+      border-color: rgba(245, 158, 11, 0.6);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(245, 158, 11, 0.15);
+    }
+
+    .card-code {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .card-left .card-code { color: var(--cyan); }
+    .card-right .card-code { color: var(--amber); }
+
+    .card-heading {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      color: #fafafa;
+    }
+
+    .card-body {
+      font-size: 0.86rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .hud-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      padding: 0.9rem;
+      background: rgba(12, 12, 14, 0.7);
+      border: 1px solid rgba(63, 63, 70, 0.3);
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .spec-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      color: #71717a;
+      letter-spacing: 0.05em;
+    }
+    .spec-value {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #e4e4e7;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.75rem 1.1rem;
+      border-radius: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .card-left .cta-button {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--cyan);
+    }
+    .card-left:hover .cta-button {
+      background: var(--cyan);
+      color: #09090b;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    }
+
+    .card-right .cta-button {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--amber);
+    }
+    .card-right:hover .cta-button {
+      background: var(--amber);
+      color: #09090b;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Footer */
+    .links-footer {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .chip-link {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 12px;
+      background: rgba(24, 24, 27, 0.6);
+      border: 1px solid rgba(63, 63, 70, 0.4);
+      color: #d4d4d8;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .chip-link:hover {
+      border-color: #71717a;
+      color: #fff;
+      background: rgba(39, 39, 42, 0.8);
+    }
+
+    @media (max-width: 768px) {
+      .slash-grid { grid-template-columns: 1fr; }
+      .versus-ribbon { margin-bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-glow"></div>
+
+  <!-- Switcher -->
+  <nav class="nav-bar">
+    <span class="nav-label">Directions :</span>
+    <a href="/dir1.html" class="nav-link">01. Monolith</a>
+    <a href="/dir2.html" class="nav-link active">02. Slash Néon</a>
+    <a href="/dir3.html" class="nav-link">03. Dual Core</a>
+    <a href="/dir4.html" class="nav-link">04. Cockpit</a>
+    <a href="/dir5.html" class="nav-link">05. Pill Duel</a>
+  </nav>
+
+  <div class="container">
+    <header class="profile-header">
+      <div class="avatar-wrapper">
+        <img src="/avatar.jpg" alt="Romain Ecarnot" class="avatar-img">
+        <div class="status-dot" title="Disponible pour de nouveaux projets"></div>
+      </div>
+      <h1 class="profile-title">Romain Ecarnot</h1>
+      <p class="profile-sub">Passeur du numérique &amp; Architecte du simple</p>
+      <p class="profile-tagline">25 ans d'architecture des systèmes aujourd'hui au service de ceux qui les utilisent.</p>
+    </header>
+
+    <!-- Stage Duel Slash -->
+    <div class="duel-stage">
+      <div class="versus-ribbon">
+        <div class="ribbon-track">
+          <span class="ribbon-label f1">FIGHTER 01</span>
+          <div class="versus-badge-cut">
+            <span>VS</span>
+          </div>
+          <span class="ribbon-label f2">FIGHTER 02</span>
+        </div>
+      </div>
+
+      <div class="slash-grid">
+        <!-- Fighter 01 -->
+        <a href="/dashboard" class="slash-card card-left">
+          <div>
+            <div class="card-code">EXP_01 // CONSOLE</div>
+            <h2 class="card-heading">Console d'Architecte</h2>
+            <p class="card-body">
+              Système haute densité avec clavier actif (1-4). Visualiseur matriciel synchronisé et flux d'architecture système SVG.
+            </p>
+            <div class="hud-specs">
+              <div class="spec-item">
+                <span class="spec-label">Contrôle</span>
+                <span class="spec-value">Touches 1 à 4</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Temps réponse</span>
+                <span class="spec-value">&lt; 100ms</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Filtre</span>
+                <span class="spec-value">Touche /</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Format</span>
+                <span class="spec-value">Print 2 pages A4</span>
+              </div>
+            </div>
+          </div>
+          <div class="cta-button">
+            <span>ENGAGER LA CONSOLE</span>
+            <span>&rarr;</span>
+          </div>
+        </a>
+
+        <!-- Fighter 02 -->
+        <a href="/scrollytelling" class="slash-card card-right">
+          <div>
+            <div class="card-code">EXP_02 // RÉCIT</div>
+            <h2 class="card-heading">Scrollytelling Documentaire</h2>
+            <p class="card-body">
+              Grand format narratif d'investigation. Défilement progressif, compteurs dynamiques en temps réel et bascule sombre/ivoire.
+            </p>
+            <div class="hud-specs">
+              <div class="spec-item">
+                <span class="spec-label">Expérience</span>
+                <span class="spec-value">Long format</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Indicateurs</span>
+                <span class="spec-value">4 compteurs live</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Thèmes</span>
+                <span class="spec-value">Sombre &amp; Ivoire</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Format</span>
+                <span class="spec-value">Print 2 pages A4</span>
+              </div>
+            </div>
+          </div>
+          <div class="cta-button">
+            <span>EXPLORER LE RÉCIT</span>
+            <span>&rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="links-footer">
+      <a href="https://www.linkedin.com/in/romainecarnot/" target="_blank" rel="noopener noreferrer" class="chip-link">LinkedIn</a>
+      <a href="https://github.com/eRom" target="_blank" rel="noopener noreferrer" class="chip-link">GitHub</a>
+      <a href="https://romain-ecarnot.com" target="_blank" rel="noopener noreferrer" class="chip-link">Site &amp; Outils</a>
+      <a href="mailto:hire@romain-ecarnot.com" class="chip-link">hire@romain-ecarnot.com</a>
+    </footer>
+  </div>
+</body>
+</html>

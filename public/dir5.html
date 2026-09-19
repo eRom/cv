@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direction 05 : Pill Duel Minimaliste - Romain Ecarnot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --bg: #09090b;
+      --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+      --cyan: #38bdf8;
+      --amber: #f59e0b;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: #fafafa;
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem 3rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .top-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 900px;
+      height: 380px;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(120, 119, 198, 0.18), rgba(255, 255, 255, 0));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Nav switcher */
+    .nav-bar {
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(18, 18, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      padding: 0.3rem 0.4rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .nav-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #71717a;
+      padding: 0 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #a1a1aa;
+      text-decoration: none;
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+    .nav-link.active {
+      background: #27272a;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Profile Header */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.8rem;
+    }
+    .avatar-wrapper {
+      position: relative;
+      width: 84px;
+      height: 84px;
+    }
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #27272a;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+    .status-dot {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #10b981;
+      border: 2px solid #09090b;
+    }
+    .status-dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    .profile-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .profile-sub {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #d4d4d8;
+    }
+    .profile-tagline {
+      font-size: 0.82rem;
+      color: #71717a;
+      max-width: 480px;
+    }
+
+    /* -------------------------------------------------------------
+       DIRECTION 5 : TWO-PILL DUEL & SPOTLIGHT MAGNÉTIQUE
+       ------------------------------------------------------------- */
+    .pill-duel-track {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+      position: relative;
+      transition: gap 0.4s var(--ease-out);
+    }
+
+    /* Central Magnetic Repulsor Node */
+    .magnetic-node {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #18181b;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+      user-select: none;
+    }
+    .magnetic-node span {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #a1a1aa;
+      transition: color 0.3s;
+    }
+
+    /* Hover on node expands gap */
+    .pill-duel-track:has(.magnetic-node:hover) {
+      gap: 2.2rem;
+    }
+    .magnetic-node:hover {
+      transform: scale(1.15) rotate(180deg);
+      border-color: #fff;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+    }
+    .magnetic-node:hover span {
+      color: #fff;
+    }
+
+    /* Capsule Pill Card */
+    .pill-card {
+      flex: 1;
+      min-height: 360px;
+      background: rgba(20, 20, 24, 0.6);
+      border: 1px solid rgba(63, 63, 70, 0.4);
+      border-radius: 28px;
+      padding: 2.2rem 2rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s var(--ease-out);
+    }
+
+    /* Cursor Spotlight Effect */
+    .pill-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .pill-card.pill-a:hover {
+      background: rgba(22, 28, 38, 0.9);
+      border-color: rgba(56, 189, 248, 0.6);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(56, 189, 248, 0.12);
+    }
+
+    .pill-card.pill-b:hover {
+      background: rgba(38, 28, 22, 0.9);
+      border-color: rgba(245, 158, 11, 0.6);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(245, 158, 11, 0.12);
+    }
+
+    .pill-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+    .pill-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+    }
+    .pill-a .pill-tag {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--cyan);
+    }
+    .pill-b .pill-tag {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--amber);
+    }
+
+    .pill-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.7rem;
+      color: #fafafa;
+    }
+    .pill-desc {
+      font-size: 0.86rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .pill-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.6rem;
+    }
+    .micro-pill {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      background: rgba(39, 39, 42, 0.6);
+      border: 1px solid rgba(63, 63, 70, 0.4);
+      color: #d4d4d8;
+    }
+
+    .pill-action-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.2rem;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .pill-a .pill-action-pill {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--cyan);
+    }
+    .pill-a:hover .pill-action-pill {
+      background: var(--cyan);
+      color: #09090b;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    }
+
+    .pill-b .pill-action-pill {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: var(--amber);
+    }
+    .pill-b:hover .pill-action-pill {
+      background: var(--amber);
+      color: #09090b;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Footer */
+    .links-footer {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .chip-link {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 12px;
+      background: rgba(24, 24, 27, 0.6);
+      border: 1px solid rgba(63, 63, 70, 0.4);
+      color: #d4d4d8;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .chip-link:hover {
+      border-color: #71717a;
+      color: #fff;
+      background: rgba(39, 39, 42, 0.8);
+    }
+
+    @media (max-width: 768px) {
+      .pill-duel-track {
+        flex-direction: column;
+      }
+      .pill-card { width: 100%; min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-glow"></div>
+
+  <!-- Switcher -->
+  <nav class="nav-bar">
+    <span class="nav-label">Directions :</span>
+    <a href="/dir1.html" class="nav-link">01. Monolith</a>
+    <a href="/dir2.html" class="nav-link">02. Slash Néon</a>
+    <a href="/dir3.html" class="nav-link">03. Dual Core</a>
+    <a href="/dir4.html" class="nav-link">04. Cockpit</a>
+    <a href="/dir5.html" class="nav-link active">05. Pill Duel</a>
+  </nav>
+
+  <div class="container">
+    <header class="profile-header">
+      <div class="avatar-wrapper">
+        <img src="/avatar.jpg" alt="Romain Ecarnot" class="avatar-img">
+        <div class="status-dot" title="Disponible pour de nouveaux projets"></div>
+      </div>
+      <h1 class="profile-title">Romain Ecarnot</h1>
+      <p class="profile-sub">Passeur du numérique &amp; Architecte du simple</p>
+      <p class="profile-tagline">25 ans d'architecture des systèmes aujourd'hui au service de ceux qui les utilisent.</p>
+    </header>
+
+    <!-- Pill Duel Track -->
+    <div class="pill-duel-track">
+      <!-- Pill A -->
+      <a href="/dashboard" class="pill-card pill-a">
+        <div>
+          <div class="pill-header">
+            <span class="pill-tag">Expérience A</span>
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #71717a;">/dashboard</span>
+          </div>
+          <h2 class="pill-title">Console d'Architecte</h2>
+          <p class="pill-desc">
+            Rigueur suisse et densité de travail. Raccourcis clavier (1-4), matrice des compétences synchronisée et schémas d'architecture système SVG.
+          </p>
+          <div class="pill-pills-row">
+            <span class="micro-pill">Touches 1-4</span>
+            <span class="micro-pill">Matrice live</span>
+            <span class="micro-pill">Filtre /</span>
+            <span class="micro-pill">Print 2 pages</span>
+          </div>
+        </div>
+        <div class="pill-action-pill">
+          <span>Ouvrir la Console</span>
+          <span>&rarr;</span>
+        </div>
+      </a>
+
+      <!-- Center Magnetic Node -->
+      <div class="magnetic-node" title="Noeud de répulsion magnétique">
+        <span>VS</span>
+      </div>
+
+      <!-- Pill B -->
+      <a href="/scrollytelling" class="pill-card pill-b">
+        <div>
+          <div class="pill-header">
+            <span class="pill-tag">Expérience B</span>
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #71717a;">/scrollytelling</span>
+          </div>
+          <h2 class="pill-title">Scrollytelling Documentaire</h2>
+          <p class="pill-desc">
+            Grand format narratif. Défilement progressif jalonné, 4 compteurs dynamiques animés, focus sensible post-AVC et mode sombre/clair.
+          </p>
+          <div class="pill-pills-row">
+            <span class="micro-pill">Long format</span>
+            <span class="micro-pill">Compteurs animés</span>
+            <span class="micro-pill">Sommaire latéral</span>
+            <span class="micro-pill">Mode T</span>
+          </div>
+        </div>
+        <div class="pill-action-pill">
+          <span>Découvrir le Récit</span>
+          <span>&rarr;</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="links-footer">
+      <a href="https://www.linkedin.com/in/romainecarnot/" target="_blank" rel="noopener noreferrer" class="chip-link">LinkedIn</a>
+      <a href="https://github.com/eRom" target="_blank" rel="noopener noreferrer" class="chip-link">GitHub</a>
+      <a href="https://romain-ecarnot.com" target="_blank" rel="noopener noreferrer" class="chip-link">Site &amp; Outils</a>
+      <a href="mailto:hire@romain-ecarnot.com" class="chip-link">hire@romain-ecarnot.com</a>
+    </footer>
+  </div>
+</body>
+</html>

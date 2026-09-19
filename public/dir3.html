@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direction 03 : Dual Core Magnétique - Romain Ecarnot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --bg: #09090b;
+      --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+      --cyan: #38bdf8;
+      --blue: #0284c7;
+      --amber: #f59e0b;
+      --crimson: #e11d48;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: #fafafa;
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem 3rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient top glow */
+    .top-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 900px;
+      height: 380px;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(120, 119, 198, 0.18), rgba(255, 255, 255, 0));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Nav switcher */
+    .nav-bar {
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(18, 18, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      padding: 0.3rem 0.4rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .nav-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #71717a;
+      padding: 0 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #a1a1aa;
+      text-decoration: none;
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+    .nav-link.active {
+      background: #27272a;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 980px;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Profile Header */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.8rem;
+    }
+    .avatar-wrapper {
+      position: relative;
+      width: 84px;
+      height: 84px;
+    }
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #27272a;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+    .status-dot {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #10b981;
+      border: 2px solid #09090b;
+    }
+    .status-dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    .profile-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .profile-sub {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #d4d4d8;
+    }
+    .profile-tagline {
+      font-size: 0.82rem;
+      color: #71717a;
+      max-width: 480px;
+    }
+
+    /* -------------------------------------------------------------
+       DIRECTION 3 : DUAL CORE MAGNÉTIQUE (Inspiré Image 2)
+       ------------------------------------------------------------- */
+    .dual-core-stage {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 0;
+      position: relative;
+      margin: 1.5rem 0;
+      background: rgba(14, 14, 18, 0.5);
+      border: 1px solid rgba(63, 63, 70, 0.35);
+      border-radius: 28px;
+      padding: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+    }
+
+    /* Atmospheric Core Halos */
+    .dual-core-stage::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 20%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.28) 0%, rgba(2, 132, 199, 0) 70%);
+      filter: blur(40px);
+      pointer-events: none;
+      transition: all 0.5s var(--ease-out);
+    }
+    .dual-core-stage::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 20%;
+      transform: translate(50%, -50%);
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(225, 29, 72, 0.28) 0%, rgba(225, 29, 72, 0) 70%);
+      filter: blur(40px);
+      pointer-events: none;
+      transition: all 0.5s var(--ease-out);
+    }
+
+    /* Hover reactions on halos */
+    .dual-core-stage:has(.core-card.core-blue:hover)::before {
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.42) 0%, rgba(2, 132, 199, 0) 70%);
+      filter: blur(35px);
+    }
+    .dual-core-stage:has(.core-card.core-red:hover)::after {
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.42) 0%, rgba(225, 29, 72, 0) 70%);
+      filter: blur(35px);
+    }
+
+    /* Center Dividing Beam & Emblem */
+    .core-divider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 20;
+      padding: 0 1rem;
+    }
+    .beam-line {
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
+    .core-vs-badge {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(24, 24, 27, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.5rem 0;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+      transition: all 0.3s var(--ease-out);
+    }
+    .core-vs-badge span {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #fff;
+    }
+    .dual-core-stage:has(.core-blue:hover) .core-vs-badge {
+      border-color: var(--cyan);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+      transform: scale(1.08);
+    }
+    .dual-core-stage:has(.core-red:hover) .core-vs-badge {
+      border-color: var(--amber);
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
+      transform: scale(1.08);
+    }
+
+    /* Core Cards */
+    .core-card {
+      position: relative;
+      z-index: 10;
+      padding: 2.2rem 2rem;
+      border-radius: 20px;
+      background: rgba(20, 20, 24, 0.5);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(63, 63, 70, 0.3);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 380px;
+      transition: all 0.4s var(--ease-out);
+    }
+
+    /* Texture mesh overlay */
+    .core-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      opacity: 0.08;
+      pointer-events: none;
+      background-size: 16px 16px;
+    }
+    .core-blue::before {
+      background-image: radial-gradient(circle, #38bdf8 1px, transparent 1px);
+    }
+    .core-red::before {
+      background-image: radial-gradient(circle, #f59e0b 1px, transparent 1px);
+    }
+
+    .core-blue:hover {
+      background: rgba(18, 28, 42, 0.85);
+      border-color: rgba(56, 189, 248, 0.5);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+    .core-red:hover {
+      background: rgba(42, 22, 26, 0.85);
+      border-color: rgba(245, 158, 11, 0.5);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .core-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .core-blue .core-badge {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--cyan);
+    }
+    .core-red .core-badge {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: var(--amber);
+    }
+
+    .core-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+      color: #fafafa;
+    }
+    .core-desc {
+      font-size: 0.86rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+      margin-bottom: 1.4rem;
+    }
+
+    .core-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.6rem;
+    }
+    .feature-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: #d4d4d8;
+    }
+    .feature-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+    .core-blue .feature-dot { background: var(--cyan); }
+    .core-red .feature-dot { background: var(--amber); }
+
+    .core-action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .core-blue .core-action-btn {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--cyan);
+    }
+    .core-blue:hover .core-action-btn {
+      background: var(--cyan);
+      color: #09090b;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .core-red .core-action-btn {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--amber);
+    }
+    .core-red:hover .core-action-btn {
+      background: var(--amber);
+      color: #09090b;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Footer */
+    .links-footer {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .chip-link {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 12px;
+      background: rgba(24, 24, 27, 0.6);
+      border: 1px solid rgba(63, 63, 70, 0.4);
+      color: #d4d4d8;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .chip-link:hover {
+      border-color: #71717a;
+      color: #fff;
+      background: rgba(39, 39, 42, 0.8);
+    }
+
+    @media (max-width: 840px) {
+      .dual-core-stage {
+        grid-template-columns: 1fr;
+        padding: 1.2rem;
+        gap: 1.2rem;
+      }
+      .core-divider {
+        flex-direction: row;
+        width: 100%;
+        margin: 0.5rem 0;
+      }
+      .beam-line {
+        height: 1px;
+        width: 60px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-glow"></div>
+
+  <!-- Switcher -->
+  <nav class="nav-bar">
+    <span class="nav-label">Directions :</span>
+    <a href="/dir1.html" class="nav-link">01. Monolith</a>
+    <a href="/dir2.html" class="nav-link">02. Slash Néon</a>
+    <a href="/dir3.html" class="nav-link active">03. Dual Core</a>
+    <a href="/dir4.html" class="nav-link">04. Cockpit</a>
+    <a href="/dir5.html" class="nav-link">05. Pill Duel</a>
+  </nav>
+
+  <div class="container">
+    <header class="profile-header">
+      <div class="avatar-wrapper">
+        <img src="/avatar.jpg" alt="Romain Ecarnot" class="avatar-img">
+        <div class="status-dot" title="Disponible pour de nouveaux projets"></div>
+      </div>
+      <h1 class="profile-title">Romain Ecarnot</h1>
+      <p class="profile-sub">Passeur du numérique &amp; Architecte du simple</p>
+      <p class="profile-tagline">25 ans d'architecture des systèmes aujourd'hui au service de ceux qui les utilisent.</p>
+    </header>
+
+    <!-- Dual Core Stage -->
+    <div class="dual-core-stage">
+      <!-- Blue Core (A) -->
+      <a href="/dashboard" class="core-card core-blue">
+        <div>
+          <span class="core-badge">
+            <span class="feature-dot"></span>
+            EXPÉRIENCE A · /DASHBOARD
+          </span>
+          <h2 class="core-title">Console d'Architecte</h2>
+          <p class="core-desc">
+            Système d'ingénierie pur. Haute densité de lecture, réactivité instantanée sans rechargement, synchronisation clavier et diagrammes d'architecture Electron/Ollama.
+          </p>
+          <div class="core-features">
+            <div class="feature-row">
+              <span class="feature-dot"></span>
+              <span>Navigation par raccourcis (1, 2, 3, 4)</span>
+            </div>
+            <div class="feature-row">
+              <span class="feature-dot"></span>
+              <span>Matrice de compétences bidirectionnelle</span>
+            </div>
+            <div class="feature-row">
+              <span class="feature-dot"></span>
+              <span>Recherche instantanée avec filtre rapide</span>
+            </div>
+          </div>
+        </div>
+        <div class="core-action-btn">
+          <span>Lancer la Console</span>
+          <span>&rarr;</span>
+        </div>
+      </a>
+
+      <!-- Center Divider with Beam -->
+      <div class="core-divider">
+        <div class="beam-line"></div>
+        <div class="core-vs-badge" title="Collision d'expériences">
+          <span>VS</span>
+        </div>
+        <div class="beam-line"></div>
+      </div>
+
+      <!-- Red Core (B) -->
+      <a href="/scrollytelling" class="core-card core-red">
+        <div>
+          <span class="core-badge">
+            <span class="feature-dot"></span>
+            EXPÉRIENCE B · /SCROLLYTELLING
+          </span>
+          <h2 class="core-title">Scrollytelling Documentaire</h2>
+          <p class="core-desc">
+            Récit immersif grand format. Progression de lecture jalonnée, compteurs de preuves vérifiables, mise en lumière typographique post-AVC et confort de lecture bimodal.
+          </p>
+          <div class="core-features">
+            <div class="feature-row">
+              <span class="feature-dot"></span>
+              <span>Sommaire interactif latéral synchronisé</span>
+            </div>
+            <div class="feature-row">
+              <span class="feature-dot"></span>
+              <span>4 métriques clés incrémentées au scroll</span>
+            </div>
+            <div class="feature-row">
+              <span class="feature-dot"></span>
+              <span>Bascule immédiate mode sombre / ivoire (T)</span>
+            </div>
+          </div>
+        </div>
+        <div class="core-action-btn">
+          <span>Découvrir le Récit</span>
+          <span>&rarr;</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="links-footer">
+      <a href="https://www.linkedin.com/in/romainecarnot/" target="_blank" rel="noopener noreferrer" class="chip-link">LinkedIn</a>
+      <a href="https://github.com/eRom" target="_blank" rel="noopener noreferrer" class="chip-link">GitHub</a>
+      <a href="https://romain-ecarnot.com" target="_blank" rel="noopener noreferrer" class="chip-link">Site &amp; Outils</a>
+      <a href="mailto:hire@romain-ecarnot.com" class="chip-link">hire@romain-ecarnot.com</a>
+    </footer>
+  </div>
+</body>
+</html>

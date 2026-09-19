@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direction 01 : Split Monolith - Romain Ecarnot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --bg: #09090b;
+      --card-bg: rgba(24, 24, 27, 0.5);
+      --card-border: rgba(63, 63, 70, 0.4);
+      --card-hover-border: rgba(113, 113, 122, 0.6);
+      --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+      --cyan: #38bdf8;
+      --cyan-glow: rgba(56, 189, 248, 0.15);
+      --amber: #f59e0b;
+      --amber-glow: rgba(245, 158, 11, 0.15);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: #fafafa;
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem 3rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient top glow */
+    .top-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 900px;
+      height: 380px;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(120, 119, 198, 0.18), rgba(255, 255, 255, 0));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Nav switcher */
+    .nav-bar {
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(18, 18, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      padding: 0.3rem 0.4rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .nav-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #71717a;
+      padding: 0 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #a1a1aa;
+      text-decoration: none;
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+    .nav-link.active {
+      background: #27272a;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Main Container */
+    .container {
+      width: 100%;
+      max-width: 960px;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.2rem;
+    }
+
+    /* Profile Header */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.8rem;
+    }
+    .avatar-wrapper {
+      position: relative;
+      width: 88px;
+      height: 88px;
+    }
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #27272a;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+    .status-dot {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #10b981;
+      border: 2px solid #09090b;
+    }
+    .status-dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    .profile-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fafafa;
+    }
+    .profile-sub {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #d4d4d8;
+    }
+    .profile-tagline {
+      font-size: 0.82rem;
+      color: #71717a;
+      max-width: 480px;
+      line-height: 1.5;
+    }
+
+    /* -------------------------------------------------------------
+       DIRECTION 1 : LE SPLIT MONOLITH
+       ------------------------------------------------------------- */
+    .duel-arena {
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      position: relative;
+      margin: 1rem 0;
+      perspective: 1200px;
+    }
+
+    /* Central VS Badge */
+    .vs-emblem {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 30;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #18181b;
+      border: 2px solid #3f3f46;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 8px #09090b, 0 12px 30px rgba(0, 0, 0, 0.8);
+      cursor: pointer;
+      transition: all 0.4s var(--ease-out);
+      user-select: none;
+    }
+    .vs-emblem span {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .vs-emblem::before {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #71717a;
+      top: 6px;
+      transition: background 0.3s;
+    }
+
+    /* Monolith Cards */
+    .monolith-card {
+      flex: 1;
+      text-decoration: none;
+      color: inherit;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 2.2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: all 0.5s var(--ease-out);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    /* Left Monolith (A - Tech) */
+    .monolith-card.side-a {
+      border-radius: 24px 12px 12px 24px;
+      transform-origin: right center;
+      transform: rotateY(2deg);
+      border-right: none;
+      padding-right: 2.8rem;
+    }
+    .monolith-card.side-a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 20%, var(--cyan-glow), transparent 70%);
+      opacity: 0.4;
+      transition: opacity 0.4s;
+    }
+
+    /* Right Monolith (B - Human & Narrative) */
+    .monolith-card.side-b {
+      border-radius: 12px 24px 24px 12px;
+      transform-origin: left center;
+      transform: rotateY(-2deg);
+      border-left: none;
+      padding-left: 2.8rem;
+    }
+    .monolith-card.side-b::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 90% 20%, var(--amber-glow), transparent 70%);
+      opacity: 0.4;
+      transition: opacity 0.4s;
+    }
+
+    /* Hover States & Expansion */
+    .duel-arena:has(.side-a:hover) .side-a {
+      flex: 1.35;
+      transform: rotateY(0deg) translateZ(12px);
+      background: rgba(28, 30, 36, 0.95);
+      border-color: rgba(56, 189, 248, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), -10px 0 30px rgba(56, 189, 248, 0.12);
+    }
+    .duel-arena:has(.side-a:hover) .side-a::before { opacity: 0.8; }
+    .duel-arena:has(.side-a:hover) .side-b {
+      flex: 0.65;
+      transform: rotateY(-5deg) scale(0.97);
+      opacity: 0.45;
+    }
+    .duel-arena:has(.side-a:hover) .vs-emblem {
+      transform: translate(-50%, -50%) rotate(-8deg) scale(1.05);
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 8px #09090b, 0 0 25px rgba(56, 189, 248, 0.5);
+    }
+    .duel-arena:has(.side-a:hover) .vs-emblem::before { background: var(--cyan); }
+
+    .duel-arena:has(.side-b:hover) .side-b {
+      flex: 1.35;
+      transform: rotateY(0deg) translateZ(12px);
+      background: rgba(36, 28, 24, 0.95);
+      border-color: rgba(245, 158, 11, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 10px 0 30px rgba(245, 158, 11, 0.12);
+    }
+    .duel-arena:has(.side-b:hover) .side-b::before { opacity: 0.8; }
+    .duel-arena:has(.side-b:hover) .side-a {
+      flex: 0.65;
+      transform: rotateY(5deg) scale(0.97);
+      opacity: 0.45;
+    }
+    .duel-arena:has(.side-b:hover) .vs-emblem {
+      transform: translate(-50%, -50%) rotate(8deg) scale(1.05);
+      border-color: var(--amber);
+      box-shadow: 0 0 0 8px #09090b, 0 0 25px rgba(245, 158, 11, 0.5);
+    }
+    .duel-arena:has(.side-b:hover) .vs-emblem::before { background: var(--amber); }
+
+    /* Card Content */
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .badge-exp {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+    }
+    .side-a .badge-exp { background: rgba(56, 189, 248, 0.15); color: var(--cyan); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .side-b .badge-exp { background: rgba(245, 158, 11, 0.15); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+
+    .route-slug {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #71717a;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: #fafafa;
+      position: relative;
+      z-index: 2;
+    }
+    .card-desc {
+      font-size: 0.85rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.8rem;
+      position: relative;
+      z-index: 2;
+    }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 9999px;
+      background: rgba(39, 39, 42, 0.7);
+      border: 1px solid rgba(63, 63, 70, 0.5);
+      color: #a1a1aa;
+    }
+
+    .card-action {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 2;
+      transition: gap 0.3s;
+    }
+    .side-a .card-action { color: var(--cyan); }
+    .side-b .card-action { color: var(--amber); }
+    .monolith-card:hover .card-action { gap: 0.8rem; }
+
+    /* Footer links */
+    .links-footer {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .chip-link {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 12px;
+      background: rgba(24, 24, 27, 0.6);
+      border: 1px solid rgba(63, 63, 70, 0.4);
+      color: #d4d4d8;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .chip-link:hover {
+      border-color: #71717a;
+      color: #fff;
+      background: rgba(39, 39, 42, 0.8);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .duel-arena {
+        flex-direction: column;
+        perspective: none;
+        gap: 1.5rem;
+      }
+      .monolith-card.side-a,
+      .monolith-card.side-b {
+        border-radius: 20px;
+        transform: none !important;
+        border: 1px solid var(--card-border) !important;
+        padding: 1.8rem;
+      }
+      .vs-emblem {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 48px;
+        height: 48px;
+        box-shadow: 0 0 0 6px #09090b;
+      }
+      .duel-arena:has(.side-a:hover) .side-b,
+      .duel-arena:has(.side-b:hover) .side-a {
+        flex: 1;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-glow"></div>
+
+  <!-- Barre de sélection des directions -->
+  <nav class="nav-bar" aria-label="Choisir une direction">
+    <span class="nav-label">Directions :</span>
+    <a href="/dir1.html" class="nav-link active">01. Monolith</a>
+    <a href="/dir2.html" class="nav-link">02. Slash Néon</a>
+    <a href="/dir3.html" class="nav-link">03. Dual Core</a>
+    <a href="/dir4.html" class="nav-link">04. Cockpit</a>
+    <a href="/dir5.html" class="nav-link">05. Pill Duel</a>
+  </nav>
+
+  <div class="container">
+    <!-- Header Profil -->
+    <header class="profile-header">
+      <div class="avatar-wrapper">
+        <img src="/avatar.jpg" alt="Romain Ecarnot" class="avatar-img">
+        <div class="status-dot" title="Disponible pour de nouveaux projets"></div>
+      </div>
+      <h1 class="profile-title">Romain Ecarnot</h1>
+      <p class="profile-sub">Passeur du numérique &amp; Architecte du simple</p>
+      <p class="profile-tagline">25 ans d'architecture des systèmes aujourd'hui au service de ceux qui les utilisent.</p>
+    </header>
+
+    <!-- Duel Arena : Direction 1 -->
+    <section class="duel-arena" aria-label="Sélection de votre expérience de CV">
+      
+      <!-- Option A -->
+      <a href="/dashboard" class="monolith-card side-a">
+        <div>
+          <div class="card-meta">
+            <span class="badge-exp">Expérience A</span>
+            <span class="route-slug">/dashboard</span>
+          </div>
+          <h2 class="card-title">Console d'Architecte</h2>
+          <p class="card-desc">
+            Vue opérationnelle dense, sombre et hautement scannable. Conçue pour les décideurs techniques : navigation clavier rapide (1-4), matrice des compétences interconnectée et schémas d'architecture SVG.
+          </p>
+          <div class="card-tags">
+            <span class="tag">Raccourcis 1-4</span>
+            <span class="tag">Matrice interactive</span>
+            <span class="tag">Filtre /</span>
+            <span class="tag">Export PDF</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <span>Ouvrir la Console</span>
+          <span>&rarr;</span>
+        </div>
+      </a>
+
+      <!-- Emblème central VS -->
+      <div class="vs-emblem" title="Confrontation des visions">
+        <span>VS</span>
+      </div>
+
+      <!-- Option B -->
+      <a href="/scrollytelling" class="monolith-card side-b">
+        <div>
+          <div class="card-meta">
+            <span class="badge-exp">Expérience B</span>
+            <span class="route-slug">/scrollytelling</span>
+          </div>
+          <h2 class="card-title">Scrollytelling Documentaire</h2>
+          <p class="card-desc">
+            Grand format narratif inspiré du journalisme de données d'investigation. Défilement progressif, jauge latérale, compteurs dynamiques animés et mise en exergue sensible du tournant post-AVC.
+          </p>
+          <div class="card-tags">
+            <span class="tag">Grand format</span>
+            <span class="tag">Scroll progressif</span>
+            <span class="tag">Compteurs animés</span>
+            <span class="tag">Mode Clair/Sombre</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <span>Découvrir le Récit</span>
+          <span>&rarr;</span>
+        </div>
+      </a>
+
+    </section>
+
+    <!-- Footer rapide -->
+    <footer class="links-footer">
+      <a href="https://www.linkedin.com/in/romainecarnot/" target="_blank" rel="noopener noreferrer" class="chip-link">LinkedIn</a>
+      <a href="https://github.com/eRom" target="_blank" rel="noopener noreferrer" class="chip-link">GitHub</a>
+      <a href="https://romain-ecarnot.com" target="_blank" rel="noopener noreferrer" class="chip-link">Site &amp; Outils</a>
+      <a href="mailto:hire@romain-ecarnot.com" class="chip-link">hire@romain-ecarnot.com</a>
+    </footer>
+  </div>
+</body>
+</html>

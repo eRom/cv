@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direction 04 : Tactical Cockpit - Romain Ecarnot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --bg: #09090b;
+      --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+      --cyan: #38bdf8;
+      --amber: #f59e0b;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: #fafafa;
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem 3rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .top-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 900px;
+      height: 380px;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(120, 119, 198, 0.18), rgba(255, 255, 255, 0));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Nav switcher */
+    .nav-bar {
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(18, 18, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      padding: 0.3rem 0.4rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .nav-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #71717a;
+      padding: 0 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #a1a1aa;
+      text-decoration: none;
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+    .nav-link.active {
+      background: #27272a;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Profile Header */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.8rem;
+    }
+    .avatar-wrapper {
+      position: relative;
+      width: 84px;
+      height: 84px;
+    }
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #27272a;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+    .status-dot {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #10b981;
+      border: 2px solid #09090b;
+    }
+    .status-dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    .profile-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .profile-sub {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #d4d4d8;
+    }
+    .profile-tagline {
+      font-size: 0.82rem;
+      color: #71717a;
+      max-width: 480px;
+    }
+
+    /* -------------------------------------------------------------
+       DIRECTION 4 : TACTICAL COCKPIT & HARDWARE TOGGLE
+       ------------------------------------------------------------- */
+    .cockpit-instrument {
+      width: 100%;
+      background: #0d0e12;
+      border: 1px solid #27272a;
+      border-radius: 20px;
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 40px rgba(0, 0, 0, 0.8);
+      margin: 1.5rem 0;
+    }
+
+    /* Technical Corner Crosshairs */
+    .cockpit-instrument::before {
+      content: '+';
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #52525b;
+    }
+    .cockpit-instrument::after {
+      content: '+';
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #52525b;
+    }
+
+    .cockpit-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1f1f23;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .cockpit-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #71717a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .kbd-hint {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: #a1a1aa;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 4px;
+      padding: 0.15rem 0.45rem;
+    }
+
+    /* Dual Switch Grid */
+    .cockpit-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    /* Center Mechanical VS Pillar */
+    .cockpit-vs-pillar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .vs-capsule {
+      width: 44px;
+      height: 72px;
+      background: #141417;
+      border: 1px solid #3f3f46;
+      border-radius: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8);
+    }
+    .vs-capsule span {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #e4e4e7;
+    }
+    .led-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3f3f46;
+      transition: background 0.3s;
+    }
+
+    /* Cockpit Bay Card */
+    .cockpit-bay {
+      background: #121318;
+      border: 1px solid #27272a;
+      border-radius: 14px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 310px;
+      position: relative;
+      transition: all 0.25s var(--ease-out);
+    }
+    .cockpit-bay:hover {
+      border-color: #52525b;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .bay-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+    }
+    .bay-id {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .bay-a .bay-id { color: var(--cyan); }
+    .bay-b .bay-id { color: var(--amber); }
+
+    .bay-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+      color: #fafafa;
+    }
+    .bay-desc {
+      font-size: 0.82rem;
+      color: #a1a1aa;
+      line-height: 1.55;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Terminal Preview snippet */
+    .telemetry-box {
+      background: #08080a;
+      border: 1px solid #1f1f23;
+      border-radius: 8px;
+      padding: 0.65rem 0.8rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #71717a;
+      line-height: 1.5;
+      margin-bottom: 1.2rem;
+    }
+    .bay-a .telemetry-box span { color: var(--cyan); }
+    .bay-b .telemetry-box span { color: var(--amber); }
+
+    .bay-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.8rem;
+      border-top: 1px solid #1f1f23;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+    .bay-a .bay-action-row { color: var(--cyan); }
+    .bay-b .bay-action-row { color: var(--amber); }
+
+    /* Interaction: Light LEDs on hover */
+    .cockpit-grid:has(.bay-a:hover) .led-top {
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
+    }
+    .cockpit-grid:has(.bay-a:hover) .bay-a {
+      border-color: rgba(56, 189, 248, 0.6);
+      background: #141720;
+    }
+
+    .cockpit-grid:has(.bay-b:hover) .led-bottom {
+      background: var(--amber);
+      box-shadow: 0 0 10px var(--amber);
+    }
+    .cockpit-grid:has(.bay-b:hover) .bay-b {
+      border-color: rgba(245, 158, 11, 0.6);
+      background: #1c1714;
+    }
+
+    /* Footer */
+    .links-footer {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .chip-link {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 12px;
+      background: rgba(24, 24, 27, 0.6);
+      border: 1px solid rgba(63, 63, 70, 0.4);
+      color: #d4d4d8;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .chip-link:hover {
+      border-color: #71717a;
+      color: #fff;
+      background: rgba(39, 39, 42, 0.8);
+    }
+
+    @media (max-width: 768px) {
+      .cockpit-grid { grid-template-columns: 1fr; }
+      .cockpit-vs-pillar {
+        flex-direction: row;
+        margin: 0.5rem 0;
+      }
+      .vs-capsule {
+        width: 72px;
+        height: 38px;
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-glow"></div>
+
+  <!-- Switcher -->
+  <nav class="nav-bar">
+    <span class="nav-label">Directions :</span>
+    <a href="/dir1.html" class="nav-link">01. Monolith</a>
+    <a href="/dir2.html" class="nav-link">02. Slash Néon</a>
+    <a href="/dir3.html" class="nav-link">03. Dual Core</a>
+    <a href="/dir4.html" class="nav-link active">04. Cockpit</a>
+    <a href="/dir5.html" class="nav-link">05. Pill Duel</a>
+  </nav>
+
+  <div class="container">
+    <header class="profile-header">
+      <div class="avatar-wrapper">
+        <img src="/avatar.jpg" alt="Romain Ecarnot" class="avatar-img">
+        <div class="status-dot" title="Disponible pour de nouveaux projets"></div>
+      </div>
+      <h1 class="profile-title">Romain Ecarnot</h1>
+      <p class="profile-sub">Passeur du numérique &amp; Architecte du simple</p>
+      <p class="profile-tagline">25 ans d'architecture des systèmes aujourd'hui au service de ceux qui les utilisent.</p>
+    </header>
+
+    <!-- Cockpit Instrument -->
+    <div class="cockpit-instrument">
+      <div class="cockpit-top-bar">
+        <div class="cockpit-label">
+          <span>SÉLECTION OPÉRATIONNELLE</span>
+          <span style="color: #3f3f46;">//</span>
+          <span>CV PROTOCOLE</span>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <span class="kbd-hint">A : Console</span>
+          <span class="kbd-hint">B : Scrolly</span>
+        </div>
+      </div>
+
+      <div class="cockpit-grid">
+        <!-- Bay A -->
+        <a href="/dashboard" class="cockpit-bay bay-a" id="bay-a">
+          <div>
+            <div class="bay-header">
+              <span class="bay-id">● CANAL_01 // SYS</span>
+              <span class="kbd-hint">Touche 1</span>
+            </div>
+            <h2 class="bay-title">Console d'Architecte</h2>
+            <p class="bay-desc">
+              Écran de contrôle dense. Raccourcis clavier (1-4), matrice croisée, inspecteur d'architecture SVG.
+            </p>
+            <div class="telemetry-box">
+              $ route --target /dashboard<br>
+              <span>status: 200 OK | zero-dependency</span>
+            </div>
+          </div>
+          <div class="bay-action-row">
+            <span>ENGAGER LA CONSOLE</span>
+            <span>[ENTER] &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Center Toggle Pillar -->
+        <div class="cockpit-vs-pillar">
+          <div class="led-indicator led-top"></div>
+          <div class="vs-capsule">
+            <span>VS</span>
+          </div>
+          <div class="led-indicator led-bottom"></div>
+        </div>
+
+        <!-- Bay B -->
+        <a href="/scrollytelling" class="cockpit-bay bay-b" id="bay-b">
+          <div>
+            <div class="bay-header">
+              <span class="bay-id">● CANAL_02 // DOC</span>
+              <span class="kbd-hint">Touche 2</span>
+            </div>
+            <h2 class="bay-title">Scrollytelling Documentaire</h2>
+            <p class="bay-desc">
+              Format d'enquête narrative. Défilement progressif, compteurs réactifs, tournant post-AVC et bascule clair/sombre.
+            </p>
+            <div class="telemetry-box">
+              $ view --format long-story<br>
+              <span>mode: narrative | metrics: 4-live</span>
+            </div>
+          </div>
+          <div class="bay-action-row">
+            <span>OUVRIR LE DOSSIER</span>
+            <span>[ENTER] &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="links-footer">
+      <a href="https://www.linkedin.com/in/romainecarnot/" target="_blank" rel="noopener noreferrer" class="chip-link">LinkedIn</a>
+      <a href="https://github.com/eRom" target="_blank" rel="noopener noreferrer" class="chip-link">GitHub</a>
+      <a href="https://romain-ecarnot.com" target="_blank" rel="noopener noreferrer" class="chip-link">Site &amp; Outils</a>
+      <a href="mailto:hire@romain-ecarnot.com" class="chip-link">hire@romain-ecarnot.com</a>
+    </footer>
+  </div>
+
+  <script>
+    // Raccourcis clavier A et B
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'a' || e.key === 'A' || e.key === '1') {
+        window.location.href = '/dashboard';
+      } else if (e.key === 'b' || e.key === 'B' || e.key === '2') {
+        window.location.href = '/scrollytelling';
+      }
+    });
+  </script>
+</body>
+</html>
