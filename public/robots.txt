@@ -1,11 +1,39 @@
-# Robots.txt - Configuration pour les moteurs de recherche
-# Permet à tous les robots d'indexer le site
+# Robots.txt - Romain Ecarnot CV (https://cv.romain-ecarnot.com)
+# Autorisation pour tous les moteurs de recherche & agents IA
 
 User-agent: *
 Allow: /
 
+# Moteurs de recherche IA & Agents conversationnels
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
 # Sitemap
 Sitemap: https://cv.romain-ecarnot.com/sitemap.xml
-
-# Crawl-delay pour éviter la surcharge
-Crawl-delay: 1

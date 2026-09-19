@@ -15,14 +15,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Romain Ecarnot - Passeur du numérique & Architecte du simple | CV",
   description:
-    "Romain Ecarnot - Passeur du numérique & Architecte du simple. 25 ans d'architecture des systèmes aujourd'hui au service de ceux qui les utilisent.",
+    "CV interactif de Romain Ecarnot. Deux expériences de lecture : la Console d'Architecte (/dashboard) et le Scrollytelling Documentaire (/scrollytelling). 25 ans d'architecture des systèmes au service des usages.",
   keywords: [
     "Romain Ecarnot",
     "Passeur du numérique",
     "Architecte du simple",
     "accompagnement numérique",
     "intelligence artificielle",
-    "IA",
+    "IA locale",
     "architecture des systèmes",
     "vulgarisation tech",
     "sobriété numérique",
@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     "reprise professionnelle",
     "AVC",
     "cloud computing",
+    "AWS",
     "CV",
   ],
   authors: [{ name: "Romain Ecarnot" }],
@@ -52,14 +53,14 @@ export const metadata: Metadata = {
     url: "https://cv.romain-ecarnot.com",
     title: "Romain Ecarnot - Passeur du numérique & Architecte du simple | CV",
     description:
-      "Romain Ecarnot - Passeur du numérique & Architecte du simple. 25 ans d'architecture des systèmes aujourd'hui au service de ceux qui les utilisent.",
+      "CV interactif de Romain Ecarnot. Deux expériences de lecture : la Console d'Architecte (/dashboard) et le Scrollytelling Documentaire (/scrollytelling). 25 ans d'architecture des systèmes au service des usages.",
     siteName: "Romain Ecarnot",
     images: [
       {
         url: "https://cv.romain-ecarnot.com/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Romain Ecarnot - Passeur du numérique & Architecte du simple",
+        alt: "Romain Ecarnot - Passeur du numérique & Architecte du simple | CV",
       },
     ],
   },
@@ -67,13 +68,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Romain Ecarnot - Passeur du numérique & Architecte du simple | CV",
     description:
-      "Romain Ecarnot - Passeur du numérique & Architecte du simple. 25 ans d'architecture des systèmes aujourd'hui au service de ceux qui les utilisent.",
+      "CV interactif de Romain Ecarnot. Deux expériences de lecture : la Console d'Architecte (/dashboard) et le Scrollytelling Documentaire (/scrollytelling). 25 ans d'architecture des systèmes au service des usages.",
     images: [
       "https://cv.romain-ecarnot.com/og-image.jpg",
     ],
   },
   alternates: {
     canonical: "https://cv.romain-ecarnot.com",
+  },
+  verification: {
+    google: "IEOR1xYofoX9wNR1O31-PSF9hK__8p-OpojAVz7O4JQ",
   },
 };
 
@@ -85,7 +89,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className="dark">
       <head>
-        {/* JSON-LD Schema.org */}
+        {/* JSON-LD Schema.org (Google ProfilePage + Person + WebSite + ItemList Graph) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -98,7 +102,8 @@ export default function RootLayout({
                   "url": "https://cv.romain-ecarnot.com",
                   "name": "Romain Ecarnot - Passeur du numérique & Architecte du simple | CV",
                   "description":
-                    "Romain Ecarnot - Passeur du numérique & Architecte du simple. Accompagnement aux usages du numérique et de l'IA.",
+                    "Curriculum Vitae interactif de Romain Ecarnot. Accompagnement aux usages du numérique et de l'IA, architecture des systèmes et sobriété logicielle.",
+                  "dateModified": "2026-09-19T14:30:00+02:00",
                   "inLanguage": "fr-FR",
                   "mainEntity": {
                     "@id": "https://cv.romain-ecarnot.com/#person",
@@ -116,29 +121,71 @@ export default function RootLayout({
                     "Passeur du numérique et architecte du simple, Romain Ecarnot accompagne particuliers et professionnels vers une appropriation fluide, sobre et émancipatrice du numérique et de l'intelligence artificielle.",
                   "url": "https://cv.romain-ecarnot.com",
                   "image": "https://cv.romain-ecarnot.com/avatar.jpg",
+                  "email": "hire@romain-ecarnot.com",
                   "sameAs": [
                     "https://www.linkedin.com/in/romainecarnot/",
                     "https://github.com/eRom",
                     "https://romain-ecarnot.com",
+                    "https://linktree.romain-ecarnot.com",
                   ],
+                  "alumniOf": {
+                    "@type": "EducationalOrganization",
+                    "name": "Université de Nantes",
+                  },
                   "knowsAbout": [
                     "Accompagnement aux usages du numérique",
-                    "Intelligence Artificielle & IA Locale",
-                    "Architecture des Systèmes",
-                    "Développement Web & Cloud",
+                    "Intelligence Artificielle & Multi-LLM",
+                    "Architecture des Systèmes Cloud",
+                    "Gouvernance des Données & RGPD / HDS",
                     "Sobriété et Simplicité logicielle",
                     "Pédagogie & Vulgarisation Tech",
                     "Résilience et Rebond post-AVC",
                   ],
                   "address": {
                     "@type": "PostalAddress",
+                    "addressLocality": "Nantes",
                     "addressCountry": "FR",
                   },
                 },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://cv.romain-ecarnot.com/#website",
+                  "url": "https://cv.romain-ecarnot.com",
+                  "name": "Romain Ecarnot - CV",
+                  "publisher": {
+                    "@id": "https://cv.romain-ecarnot.com/#person",
+                  },
+                  "inLanguage": "fr-FR",
+                },
+                {
+                  "@type": "ItemList",
+                  "@id": "https://cv.romain-ecarnot.com/#experiences",
+                  "name": "Expériences de consultation du CV",
+                  "description": "Deux formats interactifs et complémentaires pour découvrir le parcours de Romain Ecarnot",
+                  "itemListElement": [
+                    {
+                      "@type": "ListItem",
+                      "position": 1,
+                      "name": "Expérience A - Console d'Architecte",
+                      "description": "Interface technique dense et scannable, navigation au clavier (touches 1 à 4), matrice des compétences interconnectée et inspecteur d'architecture SVG.",
+                      "url": "https://cv.romain-ecarnot.com/dashboard"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 2,
+                      "name": "Expérience B - Scrollytelling Documentaire",
+                      "description": "Format narratif grand angle inspiré du web journalisme, défilement progressif, compteurs dynamiques animés et mise en exergue du tournant post-AVC.",
+                      "url": "https://cv.romain-ecarnot.com/scrollytelling"
+                    }
+                  ]
+                }
               ],
             }),
           }}
         />
+
+        {/* AI Manifest Discovery */}
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
 
         <meta name="theme-color" content="#09090b" />
         <meta name="msapplication-TileColor" content="#09090b" />
@@ -147,6 +194,7 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
 
+        {/* Favicons & Manifest */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
           rel="icon"

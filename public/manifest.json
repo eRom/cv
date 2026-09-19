@@ -1,11 +1,11 @@
 {
-  "name": "Romain Ecarnot - CV Professionnel",
-  "short_name": "R. Ecarnot CV",
-  "description": "CV de Romain Ecarnot, architecte cloud et développeur passionné",
+  "name": "Romain Ecarnot - CV",
+  "short_name": "Romain Ecarnot",
+  "description": "Romain Ecarnot - Passeur du numérique & Architecte du simple. 25 ans d'architecture des systèmes aujourd'hui au service de ceux qui les utilisent.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
   "orientation": "portrait",
   "lang": "fr-FR",
   "scope": "/",
@@ -21,6 +21,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
-  ]
+  ],
+  "categories": ["business", "productivity", "career"]
 }

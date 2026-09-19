@@ -1,0 +1,65 @@
+# Romain Ecarnot - Curriculum Vitae
+
+> Passeur du numérique & Architecte du simple
+> 25 ans d'architecture des systèmes aujourd'hui au service de ceux qui les utilisent.
+> Accompagnement aux usages du numérique et de l'IA.
+
+Ce document fournit aux modèles de langage et aux moteurs d'indexation IA les informations structurelles sur Romain Ecarnot, son parcours professionnel, ses compétences et les deux expériences interactives de son CV.
+
+## Expériences Interactives du CV
+
+- **Homepage (Hub de sélection)** : https://cv.romain-ecarnot.com/
+- **Expérience A - Console d'Architecte** : https://cv.romain-ecarnot.com/dashboard
+  - Interface opérationnelle dense, sombre et scannable, pensée pour les directeurs techniques et recruteurs tech.
+  - Fonctionnalités : navigation au clavier (touches 1 à 4), matrice des compétences interconnectée, filtre instantané (/), inspecteur d'architecture SVG et export PDF 2 pages optimisé.
+- **Expérience B - Scrollytelling Documentaire** : https://cv.romain-ecarnot.com/scrollytelling
+  - Format grand reportage narratif inspiré du web journalisme haut de gamme (The Pudding, Apple Pro).
+  - Fonctionnalités : défilement progressif, jauge latérale, compteurs dynamiques incrémentés au scroll, dossier de preuves, mise en valeur du tournant post-AVC et bascule clair/sombre.
+
+## Profil & Proposition de Valeur
+
+Romain Ecarnot aide les organisations, entreprises, collectivités, associations et organismes de formation à **faire adopter le numérique et l'IA** par ceux qui les utilisent. 25 ans à construire des architectures et des systèmes d'information ont forgé une certitude : un système échoue quand on oublie ses utilisateurs.
+
+- **Apporteur de solutions concrètes** : Cruchot (client IA de bureau multi-LLM 100% local et open source), Trinity LifeOS (système d'IA personnel complet), une vingtaine d'outils open source livrés sans sur-ingénierie.
+- **Veille constante & Pragmatisme** : Évaluation immédiate de chaque modèle majeur (Claude, Gemini, DeepSeek, GLM, Kimi, Mistral) sur des tâches réelles et utiles.
+- **Culture de l'anti-overkill** : Le chemin le plus court, sobre et efficace entre l'idée et la production.
+- **Pédagogie & Post-AVC** : Reconstruit après un AVC, Romain a réappris l'informatique en observant où se loge la friction. Il sait expliquer la technique aux non-techniciens et la rendre désirable.
+
+## Systèmes & Preuves en Production
+
+1. **Cruchot** (2026) : Client de bureau multi-LLM (Electron, TypeScript), 100% local, open source, publié avec binaire macOS et site dédié (cruchot.romain-ecarnot.com). Zéro fuite de données, chiffrement Trousseau macOS.
+2. **Trinity LifeOS** (2025-2026) : Système d'intelligence artificielle personnel. Orchestration multi-agents (Claude, Gemini, Mistral), mémoire sémantique vectorielle SQLite/sqlite-vec, 30+ endpoints de flux sur n8n.
+3. **L'atelier de veille & de production** (2025-2026) : Infrastructure de veille locale et automatisée. Ingestion quotidienne d'articles, flux RSS, dépôts GitHub et synthèses structurées.
+4. **pharmacylounge** (2021-2025) : Réseau social professionnel sécurisé pour pharmaciens. Rôle de co-fondateur, CTO et DPO interne. Architecture HDS / RGPD, zéro fuite, conformité CNIL.
+
+## Parcours Professionnel Synthétique
+
+- **2025-2026** : Reconstruction post-AVC & immersion IA / Projets open source
+- **2021-2025** : Co-fondateur, CTO & DPO interne, pharmacylounge (Nantes)
+- **2021-2025** : Architecte Cloud / Développeur Fullstack, Morannon (indépendant)
+- **2019-2020** : Directeur de Programme AWS, formation & animation de communauté, OPEN (Paris)
+- **2016-2018** : Architecte Solutions AWS, migration SI Veolia, GFI Informatique (Paris)
+- **2011-2015** : Architecte Logiciel, Services Bbox TV, Bouygues Telecom (Paris)
+
+## Compétences Majeures
+
+- **Intelligence Artificielle & Automatisation** : Multi-LLM, RAG local, Agents autonomes, prompt design, n8n, Ollama, LM Studio, intégration APIs IA.
+- **Architecture Systèmes & Cloud** : AWS (Well-Architected, Migration, Serverless), Terraform, Docker, Microservices, API REST.
+- **Gouvernance, Sécurité & Éthique** : DPO interne, RGPD, Hébergement Données de Santé (HDS), Privacy by Design, IA locale souveraine.
+- **Pédagogie & Conduite du Changement** : Vulgarisation, conception de formations, animation de communautés d'architectes, acculturation numérique.
+
+## Certifications & Diplômes
+
+- AWS Professional Services Delivery Best Practices (2018)
+- Architecture avancée & Migration d'applications AWS (2017)
+- D.U.T. Informatique, Université de Nantes (1998)
+
+## Coordonnées & Liens
+
+- **Site & Outils** : https://romain-ecarnot.com/
+- **Linktree** : https://linktree.romain-ecarnot.com/
+- **LinkedIn** : https://www.linkedin.com/in/romainecarnot/
+- **GitHub** : https://github.com/eRom
+- **Contact Email** : hire@romain-ecarnot.com
+- **Localisation** : Nantes, France
+- **Statut** : Reconnaissance de la Qualité de Travailleur Handicapé (RQTH)
