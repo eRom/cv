@@ -69,7 +69,7 @@ export default function Home() {
         aria-hidden="true"
       />
 
-      <main className="relative z-10 w-full max-w-3xl py-10 sm:py-14 flex flex-col gap-9">
+      <main className="relative z-10 w-full max-w-4xl py-10 sm:py-14 flex flex-col gap-9">
         {/* En-tête profil Romain Ecarnot */}
         <header className="flex flex-col items-center text-center gap-4">
           <div className="relative">
