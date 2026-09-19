@@ -329,10 +329,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 7. BOUTON IMPRESSION / EXPORT PDF
+  // 7. BOUTON OUVERTURE DU PDF
   // --------------------------------------------------------------------------
   const printBtn = document.getElementById('btn-print');
-  printBtn?.addEventListener('click', () => {
-    window.print();
+  printBtn?.addEventListener('click', (e) => {
+    if (!printBtn.getAttribute('href')) {
+      e.preventDefault();
+      window.open('/CV_Romain_Ecarnot.pdf', '_blank', 'noopener,noreferrer');
+    }
   });
 });

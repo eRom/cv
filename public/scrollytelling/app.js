@@ -204,11 +204,14 @@
   }
 
   /**
-   * 5. Action d'impression / export PDF
+   * 5. Action d'ouverture du PDF
    */
   if (printBtn) {
-    printBtn.addEventListener('click', () => {
-      window.print();
+    printBtn.addEventListener('click', (e) => {
+      if (!printBtn.getAttribute('href')) {
+        e.preventDefault();
+        window.open('/CV_Romain_Ecarnot.pdf', '_blank', 'noopener,noreferrer');
+      }
     });
   }
 
