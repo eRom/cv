@@ -1,134 +1,149 @@
-import sharp from '/Users/recarnot/dev/linktree/node_modules/sharp/lib/index.js';
-import fs from 'fs';
-import path from 'path';
+// Génère public/og-image.jpg (1200x630) dans le monde « page Portrait », comme le site principal :
+// une page HTML rendue par Chrome headless via le protocole DevTools, sans dépendance.
+// Usage : bun scripts/generate-og-image.mjs   (CHROME_PATH pour un autre binaire que Chrome macOS)
+import { spawn } from 'node:child_process';
+import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
 
 const WIDTH = 1200;
 const HEIGHT = 630;
-const AVATAR_PATH = path.join(import.meta.dir, '../public/avatar.jpg');
+const PORT = 9335;
+const CHROME_PATH =
+  process.env.CHROME_PATH ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const PORTRAIT_PATH = path.join(import.meta.dir, '../public/portrait.jpg');
 const OUTPUT_PATH = path.join(import.meta.dir, '../public/og-image.jpg');
 
-async function generateCVOGImage() {
-  console.log('🎨 Génération de l\'image OpenGraph pour cv.romain-ecarnot.com...');
+const PAPER = '#facebc';
+const INK = '#1c1411';
 
-  // 1. Préparer l'avatar circulaire
-  const AVATAR_SIZE = 240;
-  const avatarBuffer = fs.readFileSync(AVATAR_PATH);
-
-  const circularAvatar = await sharp(avatarBuffer)
-    .resize(AVATAR_SIZE, AVATAR_SIZE, { fit: 'cover' })
-    .composite([
-      {
-        input: Buffer.from(`
-          <svg width="${AVATAR_SIZE}" height="${AVATAR_SIZE}">
-            <circle cx="${AVATAR_SIZE / 2}" cy="${AVATAR_SIZE / 2}" r="${AVATAR_SIZE / 2}" fill="white"/>
-          </svg>
-        `),
-        blend: 'dest-in'
-      }
-    ])
-    .png()
-    .toBuffer();
-
-  // 2. SVG Background & Typography (Dark Épuré Linear/Vercel style)
-  const svgContent = `
-    <svg width="${WIDTH}" height="${HEIGHT}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <!-- Top ambient glow -->
-        <radialGradient id="topGlow" cx="50%" cy="0%" r="60%">
-          <stop offset="0%" stop-color="#3b3b44" stop-opacity="0.35"/>
-          <stop offset="100%" stop-color="#09090b" stop-opacity="0"/>
-        </radialGradient>
-
-        <!-- Subtle Card gradient -->
-        <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#18181b" stop-opacity="0.85"/>
-          <stop offset="100%" stop-color="#111113" stop-opacity="0.95"/>
-        </linearGradient>
-
-        <linearGradient id="cardBorder" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#3f3f46" stop-opacity="0.8"/>
-          <stop offset="100%" stop-color="#27272a" stop-opacity="0.3"/>
-        </linearGradient>
-      </defs>
-
-      <!-- Base background #09090b -->
-      <rect width="${WIDTH}" height="${HEIGHT}" fill="#09090b"/>
-      <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#topGlow)"/>
-
-      <!-- Central Card -->
-      <rect x="70" y="75" width="1060" height="480" rx="24" fill="url(#cardGrad)"/>
-      <rect x="70" y="75" width="1060" height="480" rx="24" fill="none" stroke="url(#cardBorder)" stroke-width="1.5"/>
-
-      <!-- Avatar Ring -->
-      <circle cx="250" cy="315" r="126" fill="none" stroke="#27272a" stroke-width="2"/>
-      <circle cx="250" cy="315" r="130" fill="none" stroke="#3f3f46" stroke-width="1" opacity="0.5"/>
-
-      <!-- Active Green Status Dot -->
-      <circle cx="338" cy="403" r="14" fill="#10b981" stroke="#18181b" stroke-width="4"/>
-
-      <!-- Header Label / Domain -->
-      <g transform="translate(420, 145)">
-        <rect width="210" height="32" rx="16" fill="#27272a" opacity="0.6"/>
-        <circle cx="16" cy="16" r="4" fill="#10b981"/>
-        <text x="30" y="21" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#a1a1aa" letter-spacing="0.5">
-          cv.romain-ecarnot.com
-        </text>
-      </g>
-
-      <!-- Main Title -->
-      <text x="420" y="240" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="50" font-weight="700" fill="#fafafa" letter-spacing="-1">
-        Romain Ecarnot
-      </text>
-
-      <!-- Subtitle -->
-      <text x="420" y="295" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="25" font-weight="500" fill="#d4d4d8">
-        Passeur du numérique &amp; Architecte du simple
-      </text>
-
-      <!-- Tagline -->
-      <text x="420" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="400" fill="#71717a">
-        25 ans d'architecture des systèmes aujourd'hui au service des usages
-      </text>
-
-      <!-- Badges Experiences A & B -->
-      <g transform="translate(420, 395)">
-        <!-- Expérience A -->
-        <rect x="0" y="0" width="180" height="36" rx="10" fill="#0284c7" opacity="0.15"/>
-        <rect x="0" y="0" width="180" height="36" rx="10" fill="none" stroke="#0284c7" stroke-width="1" opacity="0.5"/>
-        <text x="90" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#38bdf8" text-anchor="middle">
-          Console d&apos;Architecte
-        </text>
-
-        <!-- Expérience B -->
-        <rect x="195" y="0" width="195" height="36" rx="10" fill="#d97706" opacity="0.15"/>
-        <rect x="195" y="0" width="195" height="36" rx="10" fill="none" stroke="#d97706" stroke-width="1" opacity="0.5"/>
-        <text x="292" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#fbbf24" text-anchor="middle">
-          Scrollytelling Récit
-        </text>
-
-        <!-- Format A4 & Web -->
-        <rect x="405" y="0" width="135" height="36" rx="10" fill="#27272a" opacity="0.5"/>
-        <rect x="405" y="0" width="135" height="36" rx="10" fill="none" stroke="#3f3f46" stroke-width="1" opacity="0.6"/>
-        <text x="472" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#a1a1aa" text-anchor="middle">
-          Web &amp; Print 2p
-        </text>
-      </g>
-    </svg>
-  `;
-
-  // 3. Composer l'image finale
-  await sharp(Buffer.from(svgContent))
-    .composite([
-      {
-        input: circularAvatar,
-        top: 195,
-        left: 130,
-      }
-    ])
-    .jpeg({ quality: 95, mozjpeg: true })
-    .toFile(OUTPUT_PATH);
-
-  console.log('✅ Image OpenGraph générée pour le CV :', OUTPUT_PATH);
+// Le portrait est seulement recadré (background-position), jamais filtré.
+function buildHtml(portraitDataUri) {
+  return `<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:opsz,wght@8..60,200..900&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: ${WIDTH}px; height: ${HEIGHT}px; background: ${PAPER}; color: ${INK}; }
+  body { box-sizing: border-box; padding: 38px 56px 46px; display: flex; flex-direction: column; font-family: 'Source Serif 4', serif; }
+  .folio { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px;
+    font: 650 15px/1 'Archivo', sans-serif; font-variation-settings: 'wdth' 88; letter-spacing: .07em; text-transform: uppercase; }
+  .rule { height: 9px; box-sizing: border-box; border-top: 4px solid ${INK}; border-bottom: 1.5px solid ${INK}; }
+  .main { flex: 1; min-height: 0; display: grid; grid-template-columns: 392px 1fr; gap: 52px; margin-top: 30px; }
+  .photo { background: #777 url(${portraitDataUri}) 37% 35% / cover no-repeat; }
+  .text { display: flex; flex-direction: column; justify-content: space-between; }
+  h1 { margin: 0; font: 900 96px/.9 'Archivo', sans-serif; font-variation-settings: 'wdth' 70; letter-spacing: -.012em; white-space: nowrap; }
+  .deck { margin: 24px 0 0; max-width: 32ch; font: 600 28px/1.28 'Source Serif 4', serif; font-optical-sizing: auto; }
+  .coupon { border: 1.5px dashed ${INK}; display: flex; }
+  .line { flex: 1 1 auto; display: flex; align-items: center; gap: 12px; padding: 14px 18px;
+    font: 800 24px/1 'Archivo', sans-serif; font-variation-settings: 'wdth' 80; white-space: nowrap; }
+  .line + .line { border-left: 1.5px solid ${INK}; }
+  .line.main-action { background: ${INK}; color: ${PAPER}; }
+  .box { width: 18px; height: 18px; box-sizing: border-box; border: 1.5px solid currentColor; flex: none; }
+</style>
+</head>
+<body>
+  <div class="folio"><span>cv.romain-ecarnot.com</span><span>Suite de la page Portrait</span></div>
+  <div class="rule"></div>
+  <div class="main">
+    <div class="photo"></div>
+    <div class="text">
+      <div>
+        <h1>Romain Ecarnot,<br>à lire au choix.</h1>
+        <p class="deck">Passeur du numérique &amp; Architecte du simple : vingt-cinq ans d&rsquo;architecture des systèmes, au service de ceux qui les utilisent.</p>
+      </div>
+      <div class="coupon">
+        <span class="line main-action"><span class="box"></span>Le grand reportage</span>
+        <span class="line"><span class="box"></span>La Console</span>
+        <span class="line"><span class="box"></span>Le PDF</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>`;
 }
 
-generateCVOGImage().catch(console.error);
+async function pageSocketUrl() {
+  for (let attempt = 0; attempt < 50; attempt++) {
+    try {
+      const pages = await (await fetch(`http://127.0.0.1:${PORT}/json/list`)).json();
+      const page = pages.find((entry) => entry.type === 'page');
+      if (page) return page.webSocketDebuggerUrl;
+    } catch {
+      // Chrome démarre encore.
+    }
+    await new Promise((resolve) => setTimeout(resolve, 200));
+  }
+  throw new Error(`Chrome headless injoignable (${CHROME_PATH})`);
+}
+
+async function generateOGImage() {
+  console.log('Création de l\'image OpenGraph du CV (monde page Portrait)...');
+
+  const workDir = mkdtempSync(path.join(tmpdir(), 'og-image-'));
+  const htmlPath = path.join(workDir, 'og.html');
+  const portraitDataUri = `data:image/jpeg;base64,${readFileSync(PORTRAIT_PATH).toString('base64')}`;
+  writeFileSync(htmlPath, buildHtml(portraitDataUri));
+
+  const chrome = spawn(CHROME_PATH, [
+    '--headless=new',
+    `--remote-debugging-port=${PORT}`,
+    `--user-data-dir=${path.join(workDir, 'profile')}`,
+    '--hide-scrollbars',
+    '--no-first-run',
+    'about:blank',
+  ]);
+
+  try {
+    const socket = new WebSocket(await pageSocketUrl());
+    await new Promise((resolve) => socket.addEventListener('open', resolve, { once: true }));
+
+    let nextId = 1;
+    const pending = new Map();
+    let onLoad = null;
+    socket.addEventListener('message', (event) => {
+      const message = JSON.parse(String(event.data));
+      if (message.id && pending.has(message.id)) {
+        pending.get(message.id)(message.result);
+        pending.delete(message.id);
+      } else if (message.method === 'Page.loadEventFired' && onLoad) {
+        onLoad();
+      }
+    });
+    const send = (method, params = {}) => {
+      const id = nextId++;
+      socket.send(JSON.stringify({ id, method, params }));
+      return new Promise((resolve) => pending.set(id, resolve));
+    };
+
+    await send('Page.enable');
+    await send('Emulation.setDeviceMetricsOverride', {
+      width: WIDTH,
+      height: HEIGHT,
+      deviceScaleFactor: 1,
+      mobile: false,
+    });
+    const loaded = new Promise((resolve) => (onLoad = resolve));
+    await send('Page.navigate', { url: `file://${htmlPath}` });
+    await loaded;
+    await send('Runtime.evaluate', { expression: 'document.fonts.ready', awaitPromise: true });
+
+    const shot = await send('Page.captureScreenshot', {
+      format: 'jpeg',
+      quality: 90,
+      clip: { x: 0, y: 0, width: WIDTH, height: HEIGHT, scale: 1 },
+    });
+    writeFileSync(OUTPUT_PATH, Buffer.from(shot.data, 'base64'));
+    socket.close();
+  } finally {
+    chrome.kill();
+  }
+
+  console.log('Image OpenGraph générée :', OUTPUT_PATH);
+}
+
+generateOGImage().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
