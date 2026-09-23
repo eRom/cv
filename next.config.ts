@@ -7,10 +7,6 @@ const nextConfig: NextConfig = {
         source: "/dashboard",
         destination: "/dashboard/index.html",
       },
-      {
-        source: "/scrollytelling",
-        destination: "/scrollytelling/index.html",
-      },
     ];
   },
 };

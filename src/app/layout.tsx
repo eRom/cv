@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Grotesque de titraille (axe de largeur pour les titres condensés) et serif de texte en colonnes.
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
+  axes: ["wdth"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
+  axes: ["opsz"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -53,7 +58,7 @@ export const metadata: Metadata = {
     url: "https://cv.romain-ecarnot.com",
     title: "Romain Ecarnot - Passeur du numérique & Architecte du simple | CV",
     description:
-      "CV interactif de Romain Ecarnot. Deux expériences de lecture : la Console d'Architecte (/dashboard) et le Scrollytelling Documentaire (/scrollytelling). 25 ans d'architecture des systèmes au service des usages.",
+      "CV interactif de Romain Ecarnot. Deux lectures au choix : le grand reportage, le CV en neuf questions (/scrollytelling), et la Console d'Architecte (/dashboard). 25 ans d'architecture des systèmes au service des usages.",
     siteName: "Romain Ecarnot",
     images: [
       {
@@ -68,7 +73,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Romain Ecarnot - Passeur du numérique & Architecte du simple | CV",
     description:
-      "CV interactif de Romain Ecarnot. Deux expériences de lecture : la Console d'Architecte (/dashboard) et le Scrollytelling Documentaire (/scrollytelling). 25 ans d'architecture des systèmes au service des usages.",
+      "CV interactif de Romain Ecarnot. Deux lectures au choix : le grand reportage, le CV en neuf questions (/scrollytelling), et la Console d'Architecte (/dashboard). 25 ans d'architecture des systèmes au service des usages.",
     images: [
       "https://cv.romain-ecarnot.com/og-image.jpg",
     ],
@@ -99,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className="dark">
+    <html lang="fr" className={`${archivo.variable} ${sourceSerif.variable}`}>
       <head>
         {/* JSON-LD Schema.org (Google ProfilePage + Person + WebSite + ItemList Graph) */}
         <script
@@ -115,7 +120,7 @@ export default function RootLayout({
                   "name": "Romain Ecarnot - Passeur du numérique & Architecte du simple | CV",
                   "description":
                     "Curriculum Vitae interactif de Romain Ecarnot. Accompagnement aux usages du numérique et de l'IA, architecture des systèmes et sobriété logicielle.",
-                  "dateModified": "2026-09-19T14:30:00+02:00",
+                  "dateModified": "2026-09-23T12:00:00+02:00",
                   "inLanguage": "fr-FR",
                   "mainEntity": {
                     "@id": "https://cv.romain-ecarnot.com/#person",
@@ -133,7 +138,7 @@ export default function RootLayout({
                     "Passeur du numérique et architecte du simple, Romain Ecarnot accompagne particuliers et professionnels vers une appropriation fluide, sobre et émancipatrice du numérique et de l'intelligence artificielle.",
                   "url": "https://cv.romain-ecarnot.com",
                   "image": "https://cv.romain-ecarnot.com/avatar.jpg",
-                  "email": "hire@romain-ecarnot.com",
+                  "email": "contact@romain-ecarnot.com",
                   "sameAs": [
                     "https://www.linkedin.com/in/romainecarnot/",
                     "https://github.com/eRom",
@@ -185,8 +190,8 @@ export default function RootLayout({
                     {
                       "@type": "ListItem",
                       "position": 2,
-                      "name": "Expérience B - Scrollytelling Documentaire",
-                      "description": "Format narratif grand angle inspiré du web journalisme, défilement progressif, compteurs dynamiques animés et mise en exergue du tournant post-AVC.",
+                      "name": "Expérience B - Grand reportage, le CV en questions",
+                      "description": "Entretien de page Portrait : neuf questions de recruteur, les réponses de Romain tirées de son CV, ses preuves en production en encadrés, et un sommaire coché au crayon à mesure de la lecture.",
                       "url": "https://cv.romain-ecarnot.com/scrollytelling"
                     }
                   ]
@@ -199,8 +204,8 @@ export default function RootLayout({
         {/* AI Manifest Discovery */}
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
 
-        <meta name="theme-color" content="#09090b" />
-        <meta name="msapplication-TileColor" content="#09090b" />
+        <meta name="theme-color" content="#facebc" />
+        <meta name="msapplication-TileColor" content="#facebc" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -229,9 +234,13 @@ export default function RootLayout({
         <link rel="icon" sizes="512x512" href="/icon-512.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className="antialiased">
+        <a
+          href="#contenu"
+          className="type-folio sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-4 focus:z-20 focus:border-2 focus:border-ink focus:bg-paper focus:px-3 focus:py-2"
+        >
+          Aller au contenu
+        </a>
         {children}
       </body>
     </html>

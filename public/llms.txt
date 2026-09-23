@@ -8,13 +8,14 @@ Ce document fournit aux modèles de langage et aux moteurs d'indexation IA les i
 
 ## Expériences Interactives du CV
 
-- **Homepage (Hub de sélection)** : https://cv.romain-ecarnot.com/
+- **Homepage (Bulletin de lecture)** : https://cv.romain-ecarnot.com/
+  - Page de journal sur papier saumon : un bulletin où l'on coche sa lecture (grand reportage, Console ou PDF de 2 pages), au clic ou au clavier (touches S, C et P).
 - **Expérience A - Console d'Architecte** : https://cv.romain-ecarnot.com/dashboard
   - Interface opérationnelle dense, sombre et scannable, pensée pour les directeurs techniques et recruteurs tech.
   - Fonctionnalités : navigation au clavier (touches 1 à 4), matrice des compétences interconnectée, filtre instantané (/), inspecteur d'architecture SVG et export PDF 2 pages optimisé.
-- **Expérience B - Scrollytelling Documentaire** : https://cv.romain-ecarnot.com/scrollytelling
-  - Format grand reportage narratif inspiré du web journalisme haut de gamme (The Pudding, Apple Pro).
-  - Fonctionnalités : défilement progressif, jauge latérale, compteurs dynamiques incrémentés au scroll, dossier de preuves, mise en valeur du tournant post-AVC et bascule clair/sombre.
+- **Expérience B - Grand reportage (le CV en questions)** : https://cv.romain-ecarnot.com/scrollytelling
+  - Entretien de page Portrait : neuf questions qu'un recruteur se pose, et les réponses de Romain tirées de son CV ; chaque preuve en production est un encadré posé sous la réponse qu'elle prouve.
+  - Fonctionnalités : sommaire des questions qui reste à l'écran, coche au crayon sur chaque question lue, reprise de la lecture là où elle s'était arrêtée, parcours daté et formations.
 
 ## Profil & Proposition de Valeur
 
@@ -60,6 +61,6 @@ Romain Ecarnot aide les organisations, entreprises, collectivités, associations
 - **Linktree** : https://linktree.romain-ecarnot.com/
 - **LinkedIn** : https://www.linkedin.com/in/romainecarnot/
 - **GitHub** : https://github.com/eRom
-- **Contact Email** : hire@romain-ecarnot.com
+- **Contact Email** : contact@romain-ecarnot.com
 - **Localisation** : Nantes, France
 - **Statut** : Reconnaissance de la Qualité de Travailleur Handicapé (RQTH)

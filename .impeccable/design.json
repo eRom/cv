@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-23T18:00:00+02:00",
+  "title": "Design System: cv.romain-ecarnot.com",
+  "extensions": {
+    "inheritsFrom": "/Users/recarnot/dev/linktree/DESIGN.md",
+    "outOfWorld": [
+      { "path": "/dashboard", "source": "public/dashboard/*", "reason": "La Console garde son propre monde sombre ; elle n'importe ni globals.css ni les polices du layout." }
+    ],
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Encre noire chaude",
+        "canonical": "oklch(0.2 0.014 40)",
+        "hexApprox": "#1c1411",
+        "tonalRamp": ["oklch(0.15 0.014 40)", "oklch(0.26 0.014 40)", "oklch(0.37 0.014 40)", "oklch(0.48 0.014 40)", "oklch(0.6 0.014 40)", "oklch(0.72 0.014 40)", "oklch(0.84 0.014 40)", "oklch(0.95 0.014 40)"]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Encre délavée",
+        "canonical": "oklch(0.4 0.035 42)",
+        "hexApprox": "#584239",
+        "tonalRamp": ["oklch(0.15 0.035 42)", "oklch(0.26 0.035 42)", "oklch(0.37 0.035 42)", "oklch(0.48 0.035 42)", "oklch(0.6 0.035 42)", "oklch(0.72 0.035 42)", "oklch(0.84 0.035 42)", "oklch(0.95 0.035 42)"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Saumon des pages éco",
+        "canonical": "oklch(0.885 0.056 43)",
+        "hexApprox": "#facebc",
+        "tonalRamp": ["oklch(0.15 0.056 43)", "oklch(0.26 0.056 43)", "oklch(0.37 0.056 43)", "oklch(0.48 0.056 43)", "oklch(0.6 0.056 43)", "oklch(0.72 0.056 43)", "oklch(0.84 0.056 43)", "oklch(0.95 0.056 43)"]
+      },
+      "paper-deep": {
+        "role": "neutral",
+        "displayName": "Saumon soutenu",
+        "canonical": "oklch(0.83 0.072 40)",
+        "hexApprox": "#f1b8a4",
+        "tonalRamp": ["oklch(0.15 0.072 40)", "oklch(0.26 0.072 40)", "oklch(0.37 0.072 40)", "oklch(0.48 0.072 40)", "oklch(0.6 0.072 40)", "oklch(0.72 0.072 40)", "oklch(0.84 0.072 40)", "oklch(0.95 0.072 40)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Titre", "purpose": "Titre de l'accueil, plafond 6rem ; mobile clamp(2.6rem, 10.5vw, 4.75rem)." },
+      "display-interview": { "displayName": "Titre-citation", "purpose": "Titre du reportage, plafond 4.75rem ; mobile clamp(2.4rem, 9vw, 3.5rem)." },
+      "proof-name": { "displayName": "Nom de preuve", "purpose": "Nom du système dans un encadré de preuve, sans césure." },
+      "question": { "displayName": "Question", "purpose": "Question du recruteur, titre de section de l'entretien." },
+      "coupon-label": { "displayName": "Libellé du bulletin", "purpose": "Ligne du bulletin à la première personne ; agrandie sur la ligne principale." },
+      "deck": { "displayName": "Chapeau", "purpose": "Chapeau sous chaque titre, 38 à 40ch." },
+      "deck-proof": { "displayName": "Phrase-titre de preuve", "purpose": "Phrase-titre d'un encadré de preuve." },
+      "numeral": { "displayName": "Chiffre de titraille", "purpose": "Numéros en marge, périodes, formats du bulletin, années ; chiffres tabulaires." },
+      "title": { "displayName": "Intitulé", "purpose": "Questions en sommaire, titre courant, compétences, liens d'encadré." },
+      "body": { "displayName": "Texte", "purpose": "Réponses sur 38rem, en drapeau ; 0.9375rem pour les points d'encadré et descriptions." },
+      "rubric": { "displayName": "Rubrique", "purpose": "Titre de rubrique sous un filet de 3px, en capitales." },
+      "folio": { "displayName": "Folio", "purpose": "Folio, sommaire, liens secondaires, références du bulletin." },
+      "caption": { "displayName": "Légende", "purpose": "Légendes, consignes du bulletin, pied de page. Encre délavée." }
+    },
+    "shadows": [],
+    "textures": [
+      { "name": "paper-grain", "value": "feTurbulence fractalNoise baseFrequency .85, 3 octaves, tuile 240px, opacité 0.13", "purpose": "Grain du papier sous le contenu, attaché à la feuille." },
+      { "name": "paper-grain-flat", "value": "même bruit, alpha précalculé 0.0715 (0.55 x 0.13)", "purpose": "Grain d'une surface posée sur la page (titre courant mobile)." }
+    ],
+    "rules": [
+      { "name": "rule-heavy", "value": "border-top: 3px solid var(--color-ink)", "purpose": "Ouvre une rubrique, l'entretien, le pied de page ; bord des encadrés de preuve." },
+      { "name": "rule-thin", "value": "border-top: 1px solid var(--color-ink)", "purpose": "Sépare lignes, questions, lignes du bulletin." },
+      { "name": "rule-double", "value": "height: 7px; border-top: 3px solid var(--color-ink); border-bottom: 1px solid var(--color-ink)", "purpose": "Sous le folio seulement." },
+      { "name": "rule-dashed", "value": "1px dashed var(--color-ink)", "purpose": "Rupture de 2025 dans le parcours ; bord du bulletin (ligne de découpe)." }
+    ],
+    "motion": [
+      { "name": "pencil-underline", "value": "background-size 0% -> 100% 0.42em, 420ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Soulignement au survol et au focus ; permanent sur aria-current=page et .pencil-marked." },
+      { "name": "coupon-tick", "value": "stroke-dasharray 1 3, stroke-dashoffset 1.05 -> 0, 420ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Coche dans la case du bulletin au survol et au focus ; gardée via data-checked." },
+      { "name": "pencil-tick", "value": "stroke-dashoffset 1 -> 0, 480ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Coche après un lien consulté ou une question lue." },
+      { "name": "reduced-motion", "value": "transition-duration: 0s; animation-duration: 0s", "purpose": "Sous prefers-reduced-motion, chaque état apparaît directement." }
+    ],
+    "breakpoints": [
+      { "name": "xs-max", "value": "24rem", "purpose": "En dessous, la date du folio cède la place au sommaire." },
+      { "name": "sm", "value": "40rem", "purpose": "Gouttière 2rem, date longue, réponse alignée sur la question, colonne de marge 3rem." },
+      { "name": "md", "value": "48rem", "purpose": "Mention de suite du folio, questions de l'accueil en trois colonnes, encadrés de preuve en deux moitiés." },
+      { "name": "lg", "value": "64rem", "purpose": "Grille 12 colonnes, sommaire collant, références du bulletin et bascule clavier affichées ; titre courant masqué." }
+    ],
+    "container": { "maxWidth": "88rem" },
+    "print": "Papier blanc, grain retiré ; tout bloc en noir inversé devient un encadré de 3px en encre."
+  },
+  "components": [
+    {
+      "name": "Bulletin de lecture",
+      "kind": "custom",
+      "refersTo": "coupon-line",
+      "description": "Coupon bordé de pointillé : trois lectures à cocher, la principale en noir inversé, puis l'adresse de retour.",
+      "html": "<section class=\"ds-coupon\"><div class=\"ds-coupon-head\"><h2 class=\"ds-rubric\">Bulletin de lecture</h2><p class=\"ds-caption\">Au crayon, ou au clavier · <button type=\"button\" class=\"ds-pencil ds-toggle\">couper le clavier</button></p></div><ul class=\"ds-coupon-lines\"><li><a href=\"#\" class=\"ds-coupon-line ds-coupon-primary\"><span class=\"ds-box\"><svg viewBox=\"0 0 20 16\" class=\"ds-tick\"><path pathLength=\"1\" d=\"M2.2 8.9c1.5 1.2 2.7 2.6 3.9 4.5C8.5 8.6 12.2 4.5 17.8 1.9\"/></svg></span><span class=\"ds-coupon-text\"><span class=\"ds-coupon-label\"><span class=\"ds-pencil ds-pencil-paper\">Je lis le grand reportage</span></span><span class=\"ds-coupon-summary\">Le récit, les preuves, le parcours.</span></span><span class=\"ds-coupon-meta\"><span class=\"ds-format\">4 min</span><span class=\"ds-ref\">Réf. S</span></span></a></li><li><a href=\"#\" class=\"ds-coupon-line\"><span class=\"ds-box\"><svg viewBox=\"0 0 20 16\" class=\"ds-tick\"><path pathLength=\"1\" d=\"M2.2 8.9c1.5 1.2 2.7 2.6 3.9 4.5C8.5 8.6 12.2 4.5 17.8 1.9\"/></svg></span><span class=\"ds-coupon-text\"><span class=\"ds-coupon-label\"><span class=\"ds-pencil\">Je parcours la Console</span></span><span class=\"ds-coupon-summary\">L'essentiel en quatre vues, au clavier.</span></span><span class=\"ds-coupon-meta\"><span class=\"ds-format\">4 vues</span><span class=\"ds-ref\">Réf. C</span></span></a></li></ul><div class=\"ds-coupon-foot\"><p class=\"ds-caption\">Bulletin à renvoyer à :</p><a href=\"#\" class=\"ds-return\"><span class=\"ds-pencil\">contact@romain-ecarnot.com</span></a></div></section>",
+      "css": ".ds-coupon { border: 1px dashed var(--color-ink, oklch(0.2 0.014 40)); color: var(--color-ink, oklch(0.2 0.014 40)); border-radius: 0; } .ds-coupon-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; padding: 16px 24px 12px; } .ds-rubric { margin: 0; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 850; font-variation-settings: 'wdth' 80; font-size: 0.9375rem; line-height: 1.2; letter-spacing: 0.045em; text-transform: uppercase; } .ds-caption { margin: 0; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-variation-settings: 'wdth' 92; font-size: 0.8125rem; line-height: 1.4; color: var(--color-ink-soft, oklch(0.4 0.035 42)); } .ds-toggle { background: none; border: 0; padding: 0 0 0.14em; font: inherit; color: var(--color-ink, oklch(0.2 0.014 40)); cursor: pointer; } .ds-coupon-lines { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-ink, oklch(0.2 0.014 40)); } .ds-coupon-lines li + li { border-top: 1px solid var(--color-ink, oklch(0.2 0.014 40)); } .ds-coupon-line { display: grid; grid-template-columns: 1.3rem minmax(0, 1fr) auto; align-items: start; column-gap: 16px; padding: 16px 24px; color: inherit; text-decoration: none; } .ds-coupon-primary { background: var(--color-ink, oklch(0.2 0.014 40)); color: var(--color-paper, oklch(0.885 0.056 43)); padding: 20px 24px; } .ds-box { position: relative; display: block; margin-top: 4px; width: 1.3rem; height: 1.3rem; border: 1px solid currentColor; } .ds-tick { position: absolute; top: -8px; left: -2px; width: 2rem; height: 1.6rem; overflow: visible; } .ds-tick path { fill: none; stroke: currentColor; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1 3; stroke-dashoffset: 1.05; transition: stroke-dashoffset 420ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-coupon-line:hover .ds-tick path, .ds-coupon-line:focus-visible .ds-tick path { stroke-dashoffset: 0; } .ds-coupon-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; } .ds-coupon-label { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-variation-settings: 'wdth' 80; font-size: 1.375rem; line-height: 1.08; } .ds-coupon-primary .ds-coupon-label { font-size: 1.75rem; } .ds-coupon-summary { font-family: 'Source Serif 4', Georgia, serif; font-size: 0.9375rem; line-height: 1.375; color: var(--color-ink-soft, oklch(0.4 0.035 42)); } .ds-coupon-primary .ds-coupon-summary, .ds-coupon-primary .ds-ref { color: var(--color-paper-deep, oklch(0.83 0.072 40)); } .ds-coupon-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 2px; } .ds-format { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-variation-settings: 'wdth' 72; font-variant-numeric: tabular-nums lining-nums; font-size: 1.375rem; line-height: 1; white-space: nowrap; } .ds-ref { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 650; font-variation-settings: 'wdth' 88; font-size: 0.75rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-ink-soft, oklch(0.4 0.035 42)); } .ds-coupon-line:focus-visible { outline: 2px solid var(--color-ink, oklch(0.2 0.014 40)); outline-offset: -6px; } .ds-coupon-primary:focus-visible { outline-color: var(--color-paper, oklch(0.885 0.056 43)); } .ds-coupon-foot { border-top: 1px solid var(--color-ink, oklch(0.2 0.014 40)); padding: 14px 24px 16px; } .ds-return { display: inline-block; margin-top: 4px; color: inherit; text-decoration: none; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-variation-settings: 'wdth' 84; font-size: 1.25rem; line-height: 1.25; } .ds-pencil { background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.2C24 3.6 41 5.9 63 4.4s43-1.9 66 .2 45 1.1 70-1.4' fill='none' stroke='%231c1411' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 0.42em; padding-bottom: 0.14em; transition: background-size 420ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-pencil-paper { background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.2C24 3.6 41 5.9 63 4.4s43-1.9 66 .2 45 1.1 70-1.4' fill='none' stroke='%23facebc' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E\"); } .ds-pencil:hover, .ds-pencil:focus-visible, .ds-coupon-line:hover .ds-pencil, .ds-coupon-line:focus-visible .ds-pencil, .ds-return:hover .ds-pencil { background-size: 100% 0.42em; } @media (prefers-reduced-motion: reduce) { .ds-pencil, .ds-tick path { transition: none; } }"
+    },
+    {
+      "name": "Action principale (noir inversé)",
+      "kind": "button",
+      "refersTo": "action-primary",
+      "description": "« Écrire à Romain », seul bloc en noir inversé du reportage, en fin d'entretien.",
+      "html": "<a class=\"ds-action\" href=\"#\"><span class=\"ds-action-text\"><span class=\"ds-action-label\">Écrire à Romain</span><span class=\"ds-action-meta\">contact@romain-ecarnot.com</span></span><svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a>",
+      "css": ".ds-action { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: var(--color-ink, oklch(0.2 0.014 40)); color: var(--color-paper, oklch(0.885 0.056 43)); padding: 20px 24px; border-radius: 0; text-decoration: none; } .ds-action-text { display: flex; flex-direction: column; gap: 4px; } .ds-action-label { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-variation-settings: 'wdth' 80; font-size: 1.875rem; line-height: 1.25; } .ds-action-meta { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-variation-settings: 'wdth' 92; font-size: 0.8125rem; color: var(--color-paper-deep, oklch(0.83 0.072 40)); } .ds-action:focus-visible { outline: 2px solid var(--color-ink, oklch(0.2 0.014 40)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Encadré de preuve",
+      "kind": "card",
+      "refersTo": "proof-box",
+      "description": "Encadré de 3px sous la réponse qu'il prouve : la fiche à gauche, les faits à droite, filet vertical entre les deux.",
+      "html": "<aside class=\"ds-proof\"><div class=\"ds-proof-card\"><p class=\"ds-proof-id\"><span class=\"ds-proof-name\">Cruchot</span><span class=\"ds-proof-period\">2026</span></p><p class=\"ds-proof-deck\">L'IA sur le bureau, sans fuite de données</p><p class=\"ds-proof-intro\">Client de bureau multi-LLM, open source, publié avec site et binaire macOS.</p></div><ul class=\"ds-proof-points\"><li><strong>11 fournisseurs</strong> dans une seule application</li><li><strong>100 % local</strong> : base et index vectoriel embarqués</li></ul></aside>",
+      "css": ".ds-proof { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); border: 3px solid var(--color-ink, oklch(0.2 0.014 40)); border-radius: 0; color: var(--color-ink, oklch(0.2 0.014 40)); } .ds-proof-card { display: flex; flex-direction: column; gap: 8px; padding: 24px; } .ds-proof-card p { margin: 0; } .ds-proof-id { display: flex; flex-direction: column; gap: 6px; } .ds-proof-name { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-variation-settings: 'wdth' 74; font-size: 2.125rem; line-height: 1; hyphens: none; } .ds-proof-period { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-variation-settings: 'wdth' 72; font-variant-numeric: tabular-nums lining-nums; font-size: 1rem; line-height: 1; } .ds-proof-deck { font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 1.125rem; line-height: 1.32; } .ds-proof-intro { font-family: 'Source Serif 4', Georgia, serif; font-size: 0.9375rem; line-height: 1.375; color: var(--color-ink-soft, oklch(0.4 0.035 42)); } .ds-proof-points { list-style: none; margin: 0; padding: 0 24px; border-left: 1px solid var(--color-ink, oklch(0.2 0.014 40)); } .ds-proof-points li { padding: 12px 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 0.9375rem; line-height: 1.375; } .ds-proof-points li + li { border-top: 1px solid var(--color-ink, oklch(0.2 0.014 40)); }"
+    },
+    {
+      "name": "Question de l'entretien",
+      "kind": "custom",
+      "refersTo": "question",
+      "description": "Numéro en marge, question en titraille, réponse alignée sur la question sur une mesure de 38rem.",
+      "html": "<section class=\"ds-question\"><span class=\"ds-question-num\">1</span><h2 class=\"ds-question-text\">Que faites-vous aujourd'hui ?</h2><div class=\"ds-answer\"><p><span class=\"ds-attack\">J'aide les organisations</span>, entreprises, collectivités, associations, à faire adopter le numérique et l'IA par ceux qui les utilisent.</p></div></section>",
+      "css": ".ds-question { display: grid; grid-template-columns: 3rem minmax(0, 1fr); column-gap: 16px; border-top: 1px solid var(--color-ink, oklch(0.2 0.014 40)); padding: 20px 0 48px; color: var(--color-ink, oklch(0.2 0.014 40)); } .ds-question-num { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-variation-settings: 'wdth' 72; font-variant-numeric: tabular-nums lining-nums; font-size: 2rem; line-height: 1; } .ds-question-text { margin: 0; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-variation-settings: 'wdth' 80; font-size: 1.875rem; line-height: 1.06; text-wrap: balance; } .ds-answer { grid-column: 2; margin-top: 12px; max-width: 38rem; font-family: 'Source Serif 4', Georgia, serif; font-size: 1.0625rem; line-height: 1.58; } .ds-answer p { margin: 0; text-wrap: pretty; } .ds-attack { font-weight: 700; letter-spacing: 0.03em; font-variant-caps: all-small-caps; }"
+    },
+    {
+      "name": "Sommaire de l'entretien",
+      "kind": "nav",
+      "refersTo": "summary-row",
+      "description": "Neuf questions numérotées ; le crayon souligne la question en cours, coche les questions lues et marque « reprendre ici ».",
+      "html": "<nav class=\"ds-summary\"><h2 class=\"ds-summary-title\">L'entretien en neuf questions</h2><ol><li><a href=\"#\" class=\"ds-summary-row\"><span class=\"ds-summary-num\">1</span><span class=\"ds-summary-q\"><span class=\"ds-pencil\">Que faites-vous aujourd'hui ?</span></span><svg viewBox=\"0 0 20 16\" class=\"ds-read\" aria-hidden=\"true\"><path d=\"M2.2 8.9c1.5 1.2 2.7 2.6 3.9 4.5C8.5 8.6 12.2 4.5 17.8 1.9\"/></svg></a></li><li><a href=\"#\" class=\"ds-summary-row\" aria-current=\"location\"><span class=\"ds-summary-num\">2</span><span class=\"ds-summary-q\"><span class=\"ds-pencil ds-marked\">L'accompagnement, c'est une reconversion ?</span></span><span></span></a></li><li><a href=\"#\" class=\"ds-summary-row\"><span class=\"ds-summary-num\">3</span><span class=\"ds-summary-q\"><span class=\"ds-pencil\">Vous livrez, ou vous conseillez ?</span></span><span></span></a></li></ol></nav>",
+      "css": ".ds-summary { color: var(--color-ink, oklch(0.2 0.014 40)); } .ds-summary-title { margin: 0; border-top: 3px solid var(--color-ink, oklch(0.2 0.014 40)); padding-top: 8px; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 850; font-variation-settings: 'wdth' 80; font-size: 0.9375rem; line-height: 1.2; letter-spacing: 0.045em; text-transform: uppercase; } .ds-summary ol { list-style: none; margin: 4px 0 0; padding: 0; } .ds-summary li + li { border-top: 1px solid var(--color-ink, oklch(0.2 0.014 40)); } .ds-summary-row { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr) 1.25rem; align-items: baseline; column-gap: 8px; padding: 6px 0; color: inherit; text-decoration: none; } .ds-summary-num { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-variation-settings: 'wdth' 72; font-variant-numeric: tabular-nums; font-size: 1rem; line-height: 1; } .ds-summary-q { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-variation-settings: 'wdth' 84; font-size: 0.9375rem; line-height: 1.375; } .ds-read { align-self: center; width: 1.05em; height: 0.85em; } .ds-read path { fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; } .ds-summary-row:focus-visible { outline: 2px solid var(--color-ink, oklch(0.2 0.014 40)); outline-offset: 3px; } .ds-pencil { background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.2C24 3.6 41 5.9 63 4.4s43-1.9 66 .2 45 1.1 70-1.4' fill='none' stroke='%231c1411' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 0.42em; padding-bottom: 0.14em; transition: background-size 420ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-summary-row:hover .ds-pencil, .ds-summary-row:focus-visible .ds-pencil, .ds-marked { background-size: 100% 0.42em; } @media (prefers-reduced-motion: reduce) { .ds-pencil { transition: none; } }"
+    },
+    {
+      "name": "Titre courant (mobile)",
+      "kind": "nav",
+      "refersTo": "running-head",
+      "description": "Bande collée en haut de l'écran sous 64rem : rang et question en cours, retour au sommaire. Même papier, même grain, filet de 1px.",
+      "html": "<a href=\"#\" class=\"ds-running-head\"><span class=\"ds-rh-num\">3/9</span><span class=\"ds-rh-q\">Vous livrez, ou vous conseillez ?</span></a>",
+      "css": ".ds-running-head { display: flex; align-items: baseline; gap: 10px; padding: 10px 16px; background-color: var(--color-paper, oklch(0.885 0.056 43)); border-bottom: 1px solid var(--color-ink, oklch(0.2 0.014 40)); color: var(--color-ink, oklch(0.2 0.014 40)); text-decoration: none; } .ds-rh-num { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-variation-settings: 'wdth' 72; font-variant-numeric: tabular-nums; font-size: 0.9375rem; line-height: 1; } .ds-rh-q { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-variation-settings: 'wdth' 84; font-size: 0.9375rem; line-height: 1.25; } .ds-running-head:focus-visible { outline: 2px solid var(--color-ink, oklch(0.2 0.014 40)); outline-offset: -4px; }"
+    },
+    {
+      "name": "Folio (navigation)",
+      "kind": "nav",
+      "refersTo": "folio",
+      "description": "Date de l'édition, mention de suite, sommaire du CV ; page courante en 850 avec crayon permanent ; double filet dessous.",
+      "html": "<header class=\"ds-folio\"><div class=\"ds-folio-line\"><p><time>Mercredi 23 septembre 2026</time> · <a href=\"#\" class=\"ds-pencil\">Suite de la page Portrait</a></p><nav><a class=\"ds-pencil ds-current\" href=\"#\" aria-current=\"page\">Le CV</a><a class=\"ds-pencil\" href=\"#\">Reportage</a><a class=\"ds-pencil\" href=\"#\">Console</a><a class=\"ds-pencil\" href=\"#\">PDF</a></nav></div><div class=\"ds-rule-double\"></div></header>",
+      "css": ".ds-folio { color: var(--color-ink, oklch(0.2 0.014 40)); } .ds-folio-line { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 8px; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 650; font-variation-settings: 'wdth' 88; font-size: 0.75rem; line-height: 1.3; letter-spacing: 0.07em; text-transform: uppercase; } .ds-folio-line p { margin: 0; } .ds-folio-line nav { display: flex; gap: 24px; } .ds-folio a { color: inherit; text-decoration: none; } .ds-current { font-weight: 850; } .ds-rule-double { height: 7px; border-top: 3px solid var(--color-ink, oklch(0.2 0.014 40)); border-bottom: 1px solid var(--color-ink, oklch(0.2 0.014 40)); } .ds-pencil { background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.2C24 3.6 41 5.9 63 4.4s43-1.9 66 .2 45 1.1 70-1.4' fill='none' stroke='%231c1411' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 0.42em; padding-bottom: 0.14em; transition: background-size 420ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-pencil:hover, .ds-pencil:focus-visible, .ds-pencil[aria-current='page'] { background-size: 100% 0.42em; } .ds-pencil:focus-visible { outline: 2px solid var(--color-ink, oklch(0.2 0.014 40)); outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { .ds-pencil { transition: none; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "La suite de la page Portrait",
+    "overview": "Le CV est la suite, en pages intérieures, de la page Portrait que www.romain-ecarnot.com consacre à Romain Ecarnot. Même monde, même papier saumon des pages éco, même encre noire chaude, même folio à double filet, même crayon du lecteur (le monde et son vocabulaire sont définis par `/Users/recarnot/dev/linktree/DESIGN.md`). Le CV y ajoute deux objets de presse : un bulletin de lecture à découper sur l'accueil, et un entretien en neuf questions numérotées en marge sur `/scrollytelling`, avec ses encadrés de preuve.\n\nLa densité est celle d'une page de journal lue sur écran, mais sans colonnes de journal : les réponses font trois à six lignes et se lisent sur une seule mesure d'environ 65 caractères, en drapeau. Un seul bloc en noir inversé par page dit où aller. Le mouvement appartient au lecteur : le crayon souligne, coche la case du bulletin, coche les questions vraiment lues et marque l'endroit où la lecture s'était arrêtée. Le CV mémorise ces marques d'une visite à l'autre.\n\nLa Console (`/dashboard`, `public/dashboard/*`) est hors de ce monde : HTML statique avec son propre thème sombre, elle n'importe ni `globals.css` ni les polices du layout. Ce document ne la décrit pas et ses styles n'en font pas partie.",
+    "keyCharacteristics": [
+      "Deux couleurs au sens strict : papier saumon et encre noire chaude, avec leurs deux nuances, héritées sans changement du site parent.",
+      "Titraille Archivo condensée (axe `wdth`), texte Source Serif 4 (axe `opsz`), chiffres de titraille tabulaires.",
+      "Structure par filets d'encre et encadrés, jamais par cartes, ombres ou arrondis.",
+      "Noir inversé réservé à l'action principale de chaque page ; le crayon y trace en couleur papier.",
+      "Le crayon a des états persistants : case cochée, question lue, question en cours, « reprendre ici ».",
+      "Une seule mesure de lecture, pas de colonnes de journal."
+    ],
+    "rules": [
+      { "name": "The Reversed Ink Rule", "body": "Le noir inversé est réservé à l'action principale de la page, une seule par page : la ligne « Je lis le grand reportage » du bulletin sur l'accueil, le bloc « Écrire à Romain » en fin d'entretien. À l'impression, il redevient un encadré de 3px en encre sur blanc, sans quoi son texte disparaîtrait.", "section": "colors" },
+      { "name": "The One Ink Rule", "body": "Aucune autre teinte : pas d'accent, pas de couleur d'état, pas de vert de disponibilité. Lu, en cours, à reprendre : chaque état passe par le crayon, la graisse ou la position.", "section": "colors" },
+      { "name": "The French Typography Rule", "body": "Toute copie visible passe par `fr()` (`src/lib/typography.ts`) : apostrophe courbe, fine insécable avant ; ! ? et %, insécable avant les deux-points et dans les guillemets français.", "section": "typography" },
+      { "name": "The Width Hierarchy Rule", "body": "70 pour les titres, 72 pour les chiffres de titraille, 74 pour les noms de preuve, 80 pour les questions, les libellés du bulletin et les rubriques, 84 pour les questions en sommaire et les intitulés, 88 pour le folio, 92 pour les légendes.", "section": "typography" },
+      { "name": "The No Mono Rule", "body": "Le CV n'a aucune commande à copier, donc aucune monospace en usage : le jeton `--font-mono` n'existe que pour garder la règle du monde (monospace réservée aux vraies commandes).", "section": "typography" },
+      { "name": "The One Measure Rule", "body": "Pas de colonnes de journal sur le CV : des réponses de trois à six lignes se lisent sur une seule mesure (38rem), en drapeau, sans justification. Les colonnes du site parent restent réservées à un récit long.", "section": "layout" },
+      { "name": "The Same Paper Rule", "body": "Une surface posée sur la page est découpée dans la même feuille : papier, grain à la même intensité, filet d'encre. Jamais de voile, de flou ni d'ombre portée.", "section": "elevation" },
+      { "name": "The Untouched Portrait Rule", "body": "Le portrait (`public/portrait.jpg`) est affiché tel quel : recadré par `object-position` (et par un agrandissement pour la vignette de l'accueil), jamais filtré ni régénéré.", "section": "elevation" },
+      { "name": "The Cut Line Rule", "body": "Le pointillé dit « ici, ça se coupe » : rupture dans un récit ou découpe d'un coupon. Il distingue le bulletin (objet qu'on remplit) des encadrés pleins de 3px (texte qu'on lit). Pas d'autre usage.", "section": "shapes" },
+      { "name": "The Pencil Rule", "body": "Le mouvement n'existe qu'en réponse au lecteur (survol, focus, lecture) et il est coupé sous `prefers-reduced-motion`. Pas de compteur animé, pas de jauge de progression, pas d'animation d'entrée : la progression est une marque de crayon.", "section": "components" },
+      { "name": "The Remembered Reading Rule", "body": "Ce que le lecteur a fait reste marqué : lectures du bulletin, liens consultés, questions lues et dernière question, en `localStorage` propre au CV, partagé entre onglets.", "section": "components" }
+    ],
+    "dos": [
+      "Do réserver le noir inversé à une seule action par page, et y tracer le crayon en couleur papier.",
+      "Do structurer par filets : 3px ouvre, 1px sépare, pointillé pour une rupture ou une ligne de découpe.",
+      "Do composer les réponses sur une seule mesure de 38rem, en drapeau.",
+      "Do exprimer tout état (lu, en cours, à reprendre, coché) par une marque de crayon, jamais par une couleur.",
+      "Do passer toute copie visible par `fr()`.",
+      "Do laisser la Console (`/dashboard`) dans son propre monde sombre, hors de ce système."
+    ],
+    "donts": [
+      "Don't ajouter une teinte, un dégradé ou une couleur d'état.",
+      "Don't composer en cartes arrondies à ombre portée, ni en « A contre B » côte à côte.",
+      "Don't couper des réponses courtes en colonnes de journal.",
+      "Don't ajouter de compteur animé, de jauge de progression ou de bascule clair/sombre.",
+      "Don't filtrer ou régénérer le portrait.",
+      "Don't afficher un raccourci d'une seule touche qu'on ne peut pas couper."
+    ]
+  }
+}
