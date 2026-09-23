@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Copy } from "lucide-react";
+import { ArrowUpRight, Copy } from "lucide-react";
 import type { ReactNode } from "react";
 import { Colophon } from "@/components/Colophon";
 import { CopyButton } from "@/components/CopyButton";
@@ -259,7 +259,8 @@ export default function ReportagePage() {
                       </span>
                       <span className="type-caption text-paper-deep">{CONTACT_EMAIL}</span>
                     </span>
-                    <ArrowRight aria-hidden="true" strokeWidth={1.75} className="size-7 shrink-0" />
+                    {/* Flèche diagonale : le lien mène à un autre site (la page contact de romain-ecarnot.com). */}
+                    <ArrowUpRight aria-hidden="true" strokeWidth={1.75} className="size-7 shrink-0" />
                   </a>
                   <div className="px-5 pb-4 sm:px-6 sm:pb-5">
                     <CopyButton

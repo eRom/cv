@@ -234,7 +234,7 @@ La case du bulletin est un carré de 1.3rem bordé de 1px en `currentColor`.
 
 ### Buttons
 Pas de bouton applicatif : les actions sont des liens et des blocs de page. Seul vrai `button` : « couper le clavier » / « rétablir le clavier », un lien au crayon dans la légende du bulletin.
-- **Primary :** « Écrire à Romain », bloc pleine largeur de colonne en noir inversé, libellé en grotesque 800 `wdth` 80, adresse en légende saumon soutenu, flèche droite ; dessous, dans le même bloc, le bouton « Copier l'adresse » (folio, filet papier de 1px à 60 %, filet plein au survol), comme sur la page `/contact` du site.
+- **Primary :** « Écrire à Romain », bloc pleine largeur de colonne en noir inversé, libellé en grotesque 800 `wdth` 80, adresse en légende saumon soutenu, flèche diagonale : le lien mène à la page `/contact` de www.romain-ecarnot.com (choix de Romain du 23/09/2026), et la flèche diagonale signale un autre site. Dessous, dans le même bloc, le bouton « Copier l'adresse » (folio, filet papier de 1px à 60 %, filet plein au survol), comme sur cette page `/contact`.
 - **Focus :** contour de 2px à 3px de décalage, en encre ; en papier sur l'encre ; décalé vers l'intérieur (-6px) sur les lignes du bulletin.
 
 ### Navigation
