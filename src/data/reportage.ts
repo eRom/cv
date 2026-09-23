@@ -204,6 +204,11 @@ export const MILESTONES: Milestone[] = [
   },
   { period: "2016–2018", role: "Architecte solutions AWS, migration SI Veolia", organisation: "GFI Informatique, Paris" },
   { period: "2011–2015", role: "Architecte logiciel, services Bbox TV", organisation: "Bouygues Telecom, Paris" },
+  {
+    period: "1998–2010",
+    role: "Développeur multimédia, framework Adobe Flash open source",
+    organisation: "Divers, Nantes",
+  },
 ];
 
 export interface Credential {
