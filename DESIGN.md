@@ -234,14 +234,14 @@ La case du bulletin est un carré de 1.3rem bordé de 1px en `currentColor`.
 
 ### Buttons
 Pas de bouton applicatif : les actions sont des liens et des blocs de page. Seul vrai `button` : « couper le clavier » / « rétablir le clavier », un lien au crayon dans la légende du bulletin.
-- **Primary :** « Écrire à Romain », bloc pleine largeur de colonne en noir inversé, libellé en grotesque 800 `wdth` 80, adresse en légende saumon soutenu, flèche droite.
+- **Primary :** « Écrire à Romain », bloc pleine largeur de colonne en noir inversé, libellé en grotesque 800 `wdth` 80, adresse en légende saumon soutenu, flèche droite ; dessous, dans le même bloc, le bouton « Copier l'adresse » (folio, filet papier de 1px à 60 %, filet plein au survol), comme sur la page `/contact` du site.
 - **Focus :** contour de 2px à 3px de décalage, en encre ; en papier sur l'encre ; décalé vers l'intérieur (-6px) sur les lignes du bulletin.
 
 ### Navigation
 Le folio du site parent : date de l'édition du jour, mention de suite (« Suite de la page Portrait » sur l'accueil, « romain-ecarnot.com » sur le reportage), sommaire Le CV, Reportage, Console, PDF. Page courante en graisse 850 avec crayon permanent. Sous 48rem la mention de suite disparaît, sous 24rem la date aussi.
 
 ### Bulletin de lecture (signature)
-Coupon bordé de pointillé : rubrique « Bulletin de lecture », trois lignes (case, libellé à la première personne, résumé, format en chiffres de titraille, « Réf. » qui est la touche du clavier), puis « Bulletin à renvoyer à : » et l'adresse. La ligne du grand reportage est en noir inversé. Au survol et au focus, la coche se trace dans la case et le libellé se souligne ; une lecture faite garde sa coche. Raccourcis S, C, P (1 et 2 gardés en alias) actifs par défaut et coupables depuis le bulletin (mémorisé en local) ; les références ne s'affichent qu'en grand écran et tant que le clavier est actif.
+Coupon bordé de pointillé : rubrique « Bulletin de lecture », trois lignes (case, libellé à la première personne, résumé, format en chiffres de titraille, « Réf. » qui est la touche du clavier), puis « Bulletin à renvoyer à : », l'adresse (lien mailto) et un bouton « Copier » en folio, serti d'un filet de 1px, rempli de saumon soutenu au survol : un lien mailto n'ouvre une messagerie que si le poste en a une, beaucoup de recruteurs écrivent depuis un webmail. La ligne du grand reportage est en noir inversé. Au survol et au focus, la coche se trace dans la case et le libellé se souligne ; une lecture faite garde sa coche. Raccourcis S, C, P (1 et 2 gardés en alias) actifs par défaut et coupables depuis le bulletin (mémorisé en local) ; les références ne s'affichent qu'en grand écran et tant que le clavier est actif.
 
 ### Encadré de preuve
 Encadré de 3px posé sous la réponse qu'il prouve : à gauche la fiche (nom, période, phrase-titre, intro délavée, lien au crayon avec flèche diagonale, note), à droite les faits séparés de filets de 1px, avec une amorce en gras. Les deux moitiés (2/5, 3/5) sont séparées d'un filet vertical dès 48rem, empilées en dessous.
@@ -262,7 +262,7 @@ Le trait SVG du site parent, avec les états propres au CV :
 - **Coche de lecture** (480ms) après un lien consulté ou une question lue, annoncée aux lecteurs d'écran.
 
 ### Named Rules
-**The Pencil Rule.** Le mouvement n'existe qu'en réponse au lecteur (survol, focus, lecture) et il est coupé sous `prefers-reduced-motion`. Pas de compteur animé, pas de jauge de progression, pas d'animation d'entrée : la progression est une marque de crayon.
+**The Pencil Rule.** Le mouvement n'existe qu'en réponse au lecteur (survol, focus, lecture, copie) et il est coupé sous `prefers-reduced-motion`. La copie de l'adresse laisse le tampon « Copié » du site (incliné à -7 degrés, double bordure, 2,4 s) ; un échec affiche « Copie impossible » et l'annonce aux lecteurs d'écran invite à sélectionner l'adresse à la main. Pas de compteur animé, pas de jauge de progression, pas d'animation d'entrée : la progression est une marque de crayon.
 
 **The Remembered Reading Rule.** Ce que le lecteur a fait reste marqué : lectures du bulletin, liens consultés, questions lues et dernière question, en `localStorage` propre au CV, partagé entre onglets.
 

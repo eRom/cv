@@ -167,6 +167,25 @@
     line-height: 1.4;
     color: var(--color-ink-soft);
   }
+  /* Tampon encreur : trace d'une action accomplie (adresse copiée). */
+  .stamp {
+    font-family: var(--font-grotesk);
+    font-weight: 850;
+    font-variation-settings: "wdth" 80;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-ink);
+    background-color: var(--color-paper);
+    border: 2px solid var(--color-ink);
+    outline: 1px solid var(--color-ink);
+    outline-offset: 2px;
+    padding: 0.2rem 0.55rem;
+    transform: translate(-50%, -50%) rotate(-7deg);
+    animation: stamp-press 220ms cubic-bezier(0.2, 0.9, 0.25, 1) both;
+  }
+
   .tick-draw {
     stroke-dasharray: 1;
     stroke-dashoffset: 0;
@@ -184,6 +203,13 @@
   .group:focus-visible .coupon-tick path,
   .coupon-tick[data-checked] path {
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes stamp-press {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-7deg) scale(1.55);
   }
 }
 

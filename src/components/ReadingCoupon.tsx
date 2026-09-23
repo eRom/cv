@@ -1,8 +1,10 @@
 "use client";
 
+import { Copy } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useSyncExternalStore, type ReactNode } from "react";
+import { CopyButton } from "@/components/CopyButton";
 import { markAsRead, useIsRead } from "@/components/TrackedLink";
 import { CONSOLE_PATH, CONTACT_EMAIL, PDF_PATH, REPORTAGE_PATH } from "@/data/cv";
 import { createLocalStore } from "@/lib/localStore";
@@ -232,14 +234,25 @@ export function ReadingCoupon({ reportageMinutes }: ReadingCouponProps) {
           </li>
         ))}
       </ul>
+      {/* Le lien n'ouvre une messagerie que si le poste en a une : l'adresse se copie aussi. */}
       <div className="border-t border-ink px-5 pt-3.5 pb-4 sm:px-6">
         <p className="type-caption">{fr("Bulletin à renvoyer à :")}</p>
-        <a
-          href={`mailto:${CONTACT_EMAIL}`}
-          className="mt-1 inline-block font-grotesk text-[1.25rem] leading-tight font-extrabold [font-variation-settings:'wdth'_84]"
-        >
-          <span className="pencil">{CONTACT_EMAIL}</span>
-        </a>
+        <div className="mt-1 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="font-grotesk text-[1.25rem] leading-tight font-extrabold [font-variation-settings:'wdth'_84]"
+          >
+            <span className="pencil">{CONTACT_EMAIL}</span>
+          </a>
+          <CopyButton
+            text={CONTACT_EMAIL}
+            label="Copier l'adresse électronique"
+            className="type-folio inline-flex items-center gap-1.5 border border-ink px-3 py-1.5 transition-colors hover:bg-paper-deep"
+          >
+            <Copy aria-hidden="true" className="size-3.5" strokeWidth={2} />
+            Copier
+          </CopyButton>
+        </div>
       </div>
     </section>
   );

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Copy } from "lucide-react";
 import type { ReactNode } from "react";
 import { Colophon } from "@/components/Colophon";
+import { CopyButton } from "@/components/CopyButton";
 import { Folio } from "@/components/Folio";
 import { InterviewSummary } from "@/components/InterviewSummary";
 import { ProofBox } from "@/components/ProofBox";
@@ -245,19 +246,32 @@ export default function ReportagePage() {
 
               <Question index={8}>
                 <Answer>{AVAILABILITY}</Answer>
-                {/* L'action principale de la page, seule en noir inversé. */}
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="flex items-center justify-between gap-6 bg-ink px-5 py-4 text-paper sm:px-6 sm:py-5"
-                >
-                  <span className="flex flex-col gap-1">
-                    <span className="font-grotesk text-[clamp(1.375rem,2.2vw,1.875rem)] leading-tight font-extrabold [font-variation-settings:'wdth'_80]">
-                      {fr("Écrire à Romain")}
+                {/* L'action principale de la page, seule en noir inversé. Le lien n'ouvre une messagerie que si le
+                    poste en a une : pour qui écrit depuis un webmail, l'adresse se copie. */}
+                <section aria-label={fr("Écrire à Romain")} className="bg-ink text-paper">
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}`}
+                    className="flex items-center justify-between gap-6 px-5 pt-4 pb-3 focus-visible:-outline-offset-[6px] focus-visible:outline-paper sm:px-6 sm:pt-5"
+                  >
+                    <span className="flex flex-col gap-1">
+                      <span className="font-grotesk text-[clamp(1.375rem,2.2vw,1.875rem)] leading-tight font-extrabold [font-variation-settings:'wdth'_80]">
+                        {fr("Écrire à Romain")}
+                      </span>
+                      <span className="type-caption text-paper-deep">{CONTACT_EMAIL}</span>
                     </span>
-                    <span className="type-caption text-paper-deep">{CONTACT_EMAIL}</span>
-                  </span>
-                  <ArrowRight aria-hidden="true" strokeWidth={1.75} className="size-7 shrink-0" />
-                </a>
+                    <ArrowRight aria-hidden="true" strokeWidth={1.75} className="size-7 shrink-0" />
+                  </a>
+                  <div className="px-5 pb-4 sm:px-6 sm:pb-5">
+                    <CopyButton
+                      text={CONTACT_EMAIL}
+                      label="Copier l'adresse électronique"
+                      className="type-folio inline-flex items-center gap-2 border border-paper/60 px-3.5 py-2 transition-colors hover:border-paper focus-visible:outline-paper"
+                    >
+                      <Copy aria-hidden="true" className="size-4" strokeWidth={2} />
+                      {fr("Copier l'adresse")}
+                    </CopyButton>
+                  </div>
+                </section>
                 <p className="type-folio flex flex-wrap items-baseline gap-x-5 gap-y-2">
                   <span className="text-ink-soft">Ailleurs</span>
                   <a href={PDF_PATH} target="_blank" rel="noopener noreferrer" className="pencil">
