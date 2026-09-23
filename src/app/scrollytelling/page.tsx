@@ -250,7 +250,7 @@ export default function ReportagePage() {
                     poste en a une : pour qui écrit depuis un webmail, l'adresse se copie. */}
                 <section aria-label={fr("Écrire à Romain")} className="bg-ink text-paper">
                   <a
-                    href={`mailto:${CONTACT_EMAIL}`}
+                    href={`https://www.romain-ecarnot.com/contact`}
                     className="flex items-center justify-between gap-6 px-5 pt-4 pb-3 focus-visible:-outline-offset-[6px] focus-visible:outline-paper sm:px-6 sm:pt-5"
                   >
                     <span className="flex flex-col gap-1">

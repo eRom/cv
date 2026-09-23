@@ -14,14 +14,10 @@ export function Colophon() {
             className="no-underline"
           >
             RQTH
-          </abbr>{" "}
-          ·{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="pencil whitespace-nowrap text-ink">
-            {CONTACT_EMAIL}
-          </a>
+          </abbr>
         </p>
         <p>
-          {fr("Version pour les IA : ")}
+          {fr("Version pour agents : ")}
           <a href="/llms.txt" className="pencil text-ink">
             llms.txt
           </a>{" "}

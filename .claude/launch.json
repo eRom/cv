@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "cv-dev",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["run", "dev", "--port", "3100"],
+      "port": 3100
+    },
+    {
+      "name": "cv-prod",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["run", "start", "--port", "3101"],
+      "port": 3101
+    }
+  ]
+}
