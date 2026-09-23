@@ -181,7 +181,7 @@ La palette du site parent, telle quelle : une encre et un papier, rien d'autre.
 - **Proof name** (900, `wdth` 74) : le nom du système prouvé dans un encadré, protégé de la césure.
 - **Question** (800, `wdth` 80) : la question du recruteur, titre de chaque section de l'entretien.
 - **Coupon label** (800, `wdth` 80) : le libellé d'une ligne du bulletin, à la première personne du lecteur ; agrandi à clamp(1.375rem, 1.9vw, 1.75rem) sur la ligne principale.
-- **Deck** (serif 600, 38 à 40ch) : le chapeau sous chaque titre. **Deck proof** (serif 600, 1.125rem) : la phrase-titre d'un encadré de preuve.
+- **Deck** (serif 600) : le chapeau sous chaque titre, sur 38ch à l'accueil, sur toute la largeur du titre dans le reportage (choix de Romain du 23/09/2026). **Deck proof** (serif 600, 1.125rem) : la phrase-titre d'un encadré de preuve.
 - **Numeral** (900, `wdth` 72, chiffres tabulaires) : les numéros de questions en marge, les périodes du parcours, les formats du bulletin (« 4 min », « 4 vues », « 2 pages », à 1.375rem), les années des formations et les numéros des sommaires (1rem à 1.125rem).
 - **Title** (700 à 800, `wdth` 84) : les questions dans les sommaires, le titre courant, l'intitulé d'une compétence, l'adresse de retour du bulletin (800, 1.25rem), les liens des encadrés.
 - **Body** (serif 400, 1.0625rem, interligne 1.58) : les réponses, sur 38rem au plus ; les points des encadrés et les descriptions descendent à 0.9375rem.

@@ -43,7 +43,7 @@
       "proof-name": { "displayName": "Nom de preuve", "purpose": "Nom du système dans un encadré de preuve, sans césure." },
       "question": { "displayName": "Question", "purpose": "Question du recruteur, titre de section de l'entretien." },
       "coupon-label": { "displayName": "Libellé du bulletin", "purpose": "Ligne du bulletin à la première personne ; agrandie sur la ligne principale." },
-      "deck": { "displayName": "Chapeau", "purpose": "Chapeau sous chaque titre, 38 à 40ch." },
+      "deck": { "displayName": "Chapeau", "purpose": "Chapeau sous chaque titre : 38ch à l'accueil, toute la largeur du titre dans le reportage." },
       "deck-proof": { "displayName": "Phrase-titre de preuve", "purpose": "Phrase-titre d'un encadré de preuve." },
       "numeral": { "displayName": "Chiffre de titraille", "purpose": "Numéros en marge, périodes, formats du bulletin, années ; chiffres tabulaires." },
       "title": { "displayName": "Intitulé", "purpose": "Questions en sommaire, titre courant, compétences, liens d'encadré." },

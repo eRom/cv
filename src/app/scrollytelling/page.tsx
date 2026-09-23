@@ -135,7 +135,8 @@ export default function ReportagePage() {
                 <span className="block">{fr("Romain Ecarnot :")}</span>
                 <span className="block">{fr(`« ${TITLE_QUOTE} »`)}</span>
               </h1>
-              <p className="type-deck max-w-[40ch] text-[clamp(1.1875rem,1.7vw,1.4375rem)]">
+              {/* Le chapeau prend toute la largeur du titre (choix de Romain du 23/09/2026). */}
+              <p className="type-deck text-[clamp(1.1875rem,1.7vw,1.4375rem)]">
                 {fr(CHAPEAU)}
               </p>
             </header>
